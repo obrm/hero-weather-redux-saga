@@ -2,8 +2,8 @@ import React, { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Jumbotron, Row, Col } from 'react-bootstrap'
 
-import { weatherImageChooser } from '../weatherImageChooser'
-import { getCurrentWeatherByCoords } from '../actions/weatherActions'
+import { weatherImageChooser } from './helper/weatherImageChooser'
+import { getCurrentWeather } from '../actions/weatherActions'
 import Spinner from './layout/Spinner'
 import WeatherForecastItem from './WeatherForecastItem'
 import SearchBox from './SearchBox'
@@ -14,13 +14,15 @@ const CityWeather = () => {
   const currentWeather = useSelector((state) => state.currentWeather)
   const { loading, error, weather } = currentWeather
 
-  const {
-    WeatherText,
-    WeatherIcon,
-    Temperature: {
-      Metric: { Value },
-    },
-  } = weather
+  let WeatherText
+  let WeatherIcon
+  let Value
+
+  if (weather) {
+    WeatherText = weather.WeatherText
+    WeatherIcon = weather.WeatherIcon
+    Value = weather.Temperature.Metric.Value
+  }
 
   const roundedTemperature = Math.round(parseFloat(Value))
 
@@ -28,35 +30,9 @@ const CityWeather = () => {
     ? weatherImageChooser(WeatherText)
     : 'cloudy-day'
 
-  const successCallback = (position) => {
-    const { coords } = position
-    return coords
-  }
-
-  const errorCallback = (error) => {
-    const { code } = error
-    return code
-  }
-
-  const options = {
-    enableHighAccuracy: true,
-    timeout: 5000,
-  }
-
-  let result = navigator.geolocation.getCurrentPosition(
-    successCallback,
-    errorCallback,
-    options
-  )
-
-  if (typeof result === 'number') {
-    result = { latitude: 32.0759177, longitude: 34.7839602 }
-  }
-
   useEffect(() => {
-    const { latitude, longitude } = result
-    dispatch(getCurrentWeatherByCoords(latitude, longitude))
-  }, [dispatch, result])
+    dispatch(getCurrentWeather())
+  }, [dispatch])
 
   return (
     <>

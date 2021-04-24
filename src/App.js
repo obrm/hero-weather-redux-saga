@@ -15,6 +15,7 @@ function App() {
             <Col md='auto'>
               <Route path='/favorites' component={Favorites} exact />
               <Route path='/home' component={CityWeather} exact />
+              <Route path='/' component={CityWeather} exact />
             </Col>
           </Row>
         </Container>
