@@ -4,19 +4,31 @@ import { Jumbotron, Row, Col } from 'react-bootstrap'
 
 import { weatherImageChooser } from './helper/weatherImageChooser'
 import { getCurrentWeather } from '../actions/weatherActions'
+import { getCityByCoords } from '../actions/cityActions'
 import Spinner from './layout/Spinner'
 import WeatherForecastItem from './WeatherForecastItem'
 import SearchBox from './SearchBox'
+import useGeolocation from './hooks/useGeolocation'
 
 const CityWeather = () => {
+  const location = useGeolocation()
+
   const dispatch = useDispatch()
 
   const currentWeather = useSelector((state) => state.currentWeather)
   const { loading, error, weather } = currentWeather
 
+  const cityByCoords = useSelector((state) => state.cityByCoords)
+  const { getCityByCoordsLoading, getCityByCoordsError, city } = cityByCoords
+
   let WeatherText
   let WeatherIcon
   let Value
+  let City = 'Tel Aviv'
+
+  if (location.coords && city) {
+    City = city.EnglishName
+  }
 
   if (weather) {
     WeatherText = weather.WeatherText
@@ -31,8 +43,16 @@ const CityWeather = () => {
     : 'cloudy-day'
 
   useEffect(() => {
-    dispatch(getCurrentWeather())
-  }, [dispatch])
+    if (location.coords) {
+      const { latitude, longitude } = location.coords
+      dispatch(getCityByCoords(latitude, longitude))
+    }
+    if (city) {
+      dispatch(getCurrentWeather(city.Key))
+    } else {
+      dispatch(getCurrentWeather())
+    }
+  }, [dispatch, location])
 
   return (
     <>
@@ -59,7 +79,7 @@ const CityWeather = () => {
               className='column'
             />
             <div className='column'>
-              <h4>Tel-Aviv </h4>
+              <h4>{City} </h4>
               <p className='ml-2'>{roundedTemperature} &deg;</p>
             </div>
           </div>
