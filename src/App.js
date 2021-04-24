@@ -1,8 +1,9 @@
-import { BrowserRouter as Router } from 'react-router-dom'
+import { BrowserRouter as Router, Route } from 'react-router-dom'
 import { Container, Row, Col } from 'react-bootstrap'
 
 import Header from './components/Header'
-import SearchBox from './components/SearchBox'
+import CityWeather from './components/CityWeather'
+import Favorites from './components/Favorites'
 
 function App() {
   return (
@@ -12,7 +13,8 @@ function App() {
         <Container>
           <Row className='justify-content-md-center mt-5'>
             <Col md='auto'>
-              <SearchBox />
+              <Route path='/favorites' component={Favorites} exact />
+              <Route path='/home' component={CityWeather} exact />
             </Col>
           </Row>
         </Container>

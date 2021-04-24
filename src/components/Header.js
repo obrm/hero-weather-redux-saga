@@ -13,7 +13,11 @@ const Header = () => {
         <Container>
           <Navbar.Brand className='mr-n4'>
             <Navbar.Brand>
-              <h3>Hero Weather</h3>
+              <LinkContainer to='/home'>
+                <Nav.Link>
+                  <h3 className='logo'>Hero Weather</h3>
+                </Nav.Link>
+              </LinkContainer>
             </Navbar.Brand>
           </Navbar.Brand>
           <Navbar.Toggle aria-controls='basic-navbar-nav' />
@@ -22,7 +26,7 @@ const Header = () => {
             id='basic-navbar-nav'
           >
             <Nav>
-              <LinkContainer to='/'>
+              <LinkContainer to='/home'>
                 <Nav.Link>
                   <i className='fas fa-home'></i> Home{' '}
                 </Nav.Link>
