@@ -11,6 +11,13 @@ import SearchBox from './SearchBox'
 import useGeolocation from './hooks/useGeolocation'
 
 const CityWeather = () => {
+  const [weatherFields, setWeatherFields] = useState({
+    WeatherText: null,
+    WeatherIcon: null,
+    Value: null,
+    City: 'Tel-Aviv',
+  })
+
   const location = useGeolocation()
 
   const dispatch = useDispatch()
@@ -20,13 +27,6 @@ const CityWeather = () => {
 
   const cityByCoords = useSelector((state) => state.cityByCoords)
   const { city } = cityByCoords
-
-  const [weatherFields, setWeatherFields] = useState({
-    WeatherText: null,
-    WeatherIcon: null,
-    Value: null,
-    City: 'Tel Aviv',
-  })
 
   useEffect(() => {
     if (weather) {
@@ -46,6 +46,7 @@ const CityWeather = () => {
   }, [city, location.coords, weatherFields])
 
   const { WeatherText, WeatherIcon, Value, City } = weatherFields
+
   const roundedTemperature = Math.round(parseFloat(Value))
 
   const weatherImage = !loading
@@ -62,6 +63,7 @@ const CityWeather = () => {
     } else {
       dispatch(getCurrentWeather())
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [dispatch, location])
 
   return (
