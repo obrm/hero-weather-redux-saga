@@ -19,23 +19,33 @@ const CityWeather = () => {
   const { loading, error, weather } = currentWeather
 
   const cityByCoords = useSelector((state) => state.cityByCoords)
-  const { getCityByCoordsLoading, getCityByCoordsError, city } = cityByCoords
+  const { city } = cityByCoords
 
-  let WeatherText
-  let WeatherIcon
-  let Value
-  let City = 'Tel Aviv'
+  const [weatherFields, setWeatherFields] = useState({
+    WeatherText: null,
+    WeatherIcon: null,
+    Value: null,
+    City: 'Tel Aviv',
+  })
 
-  if (location.coords && city) {
-    City = city.EnglishName
-  }
+  useEffect(() => {
+    if (weather) {
+      setWeatherFields({
+        ...weatherFields,
+        WeatherText: weather.WeatherText,
+        WeatherIcon: weather.WeatherIcon,
+        Value: weather.Temperature.Metric.Value,
+      })
+    }
+  }, [weather, weatherFields])
 
-  if (weather) {
-    WeatherText = weather.WeatherText
-    WeatherIcon = weather.WeatherIcon
-    Value = weather.Temperature.Metric.Value
-  }
+  useEffect(() => {
+    if (location.coords && city) {
+      setWeatherFields({ ...weatherFields, City: city.EnglishName })
+    }
+  }, [city, location.coords, weatherFields])
 
+  const { WeatherText, WeatherIcon, Value, City } = weatherFields
   const roundedTemperature = Math.round(parseFloat(Value))
 
   const weatherImage = !loading
