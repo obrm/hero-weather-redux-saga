@@ -5208,7 +5208,7 @@ input[type='button'].btn-block {
   right: 0;
   bottom: 0;
   left: 0;
-  padding: 1.25rem;
+  padding: 0.5rem;
   border-radius: calc(0.25rem - 1px);
 }
 

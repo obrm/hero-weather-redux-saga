@@ -51,6 +51,11 @@
   width: 10rem;
 }
 
+.card-text,
+.card-title {
+  margin-bottom: 0;
+}
+
 /* Flex Columns */
 .flex-columns .column {
   display: flex;
@@ -72,7 +77,7 @@
 }
 
 .l-heading {
-  font-size: 8rem;
+  font-size: 6rem;
 }
 
 /* @media (max-width: 731px) and (max-height: 411px) {
@@ -90,6 +95,11 @@
 
   .card-forecast {
     width: 7.6rem;
+    height: 100px;
+  }
+
+  .card-img {
+    height: 100%;
   }
 
   .card-img-overlay h3 {
@@ -106,7 +116,7 @@
   }
 
   .l-heading {
-    font-size: 6rem;
+    font-size: 5rem;
   }
 
   .favorites-grid {
@@ -119,6 +129,10 @@
     width: 80%;
     margin-right: 0.5rem;
     margin-left: 1rem;
+  }
+
+  .card-forecast {
+    height: 120px;
   }
 }
 
@@ -140,12 +154,12 @@
   }
 
   .weather-text {
-    top: 190px;
+    top: 200px;
     left: 45px;
   }
 
   .l-heading {
-    font-size: 5rem;
+    font-size: 3rem;
   }
 
   .weather-icon h4 {
@@ -191,6 +205,7 @@
 
   .weather-text {
     left: 40px;
+    top: 170px;
   }
 
   .weather-forecast {
@@ -216,12 +231,12 @@
   }
 
   .weather-text {
-    top: 170px;
+    top: 180px;
     left: 35px;
   }
 
   .l-heading {
-    font-size: 4rem;
+    font-size: 2.5rem;
   }
 
   .weather-forecast {
@@ -271,7 +286,7 @@
   }
 
   .l-heading {
-    font-size: 6rem;
+    font-size: 4rem;
   }
 
   .favorites-grid {
@@ -314,7 +329,7 @@
   }
 
   .l-heading {
-    font-size: 6rem;
+    font-size: 4rem;
   }
 
   .favorites-grid {
@@ -340,12 +355,12 @@
   }
 
   .weather-text {
-    top: 190px;
-    left: 45px;
+    top: 240px;
+    left: 65px;
   }
 
   .l-heading {
-    font-size: 5rem;
+    font-size: 3.5rem;
   }
 
   .weather-icon h4 {

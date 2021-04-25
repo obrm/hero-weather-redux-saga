@@ -3,7 +3,10 @@ import { useDispatch, useSelector } from 'react-redux'
 import { Jumbotron, Row, Col } from 'react-bootstrap'
 
 import { weatherImageChooser } from './helper/weatherImageChooser'
-import { getCurrentWeather } from '../actions/weatherActions'
+import {
+  getCurrentWeather,
+  getFiveDaysWeather,
+} from '../actions/weatherActions'
 import { getCityByCoords } from '../actions/cityActions'
 import Spinner from './layout/Spinner'
 import WeatherForecastItem from './WeatherForecastItem'
@@ -17,6 +20,7 @@ const CityWeather = () => {
     Value: null,
     City: 'Tel-Aviv',
   })
+  const [dailyForecasts, setDailyForecasts] = useState([])
 
   const location = useGeolocation()
 
@@ -28,6 +32,9 @@ const CityWeather = () => {
   const cityByCoords = useSelector((state) => state.cityByCoords)
   const { city } = cityByCoords
 
+  const fiveDaysWeather = useSelector((state) => state.fiveDaysWeather)
+  const { forecast } = fiveDaysWeather
+
   useEffect(() => {
     if (weather) {
       setWeatherFields({
@@ -37,13 +44,16 @@ const CityWeather = () => {
         Value: weather.Temperature.Metric.Value,
       })
     }
-  }, [weather, weatherFields])
 
-  useEffect(() => {
+    if (forecast) {
+      setDailyForecasts(forecast.DailyForecasts)
+    }
+
     if (location.coords && city) {
       setWeatherFields({ ...weatherFields, City: city.EnglishName })
     }
-  }, [city, location.coords, weatherFields])
+    // eslint-disable-next-line
+  }, [weather, forecast])
 
   const { WeatherText, WeatherIcon, Value, City } = weatherFields
 
@@ -60,11 +70,13 @@ const CityWeather = () => {
     }
     if (city) {
       dispatch(getCurrentWeather(city.Key))
+      dispatch(getFiveDaysWeather(city.Key))
     } else {
       dispatch(getCurrentWeather())
+      dispatch(getFiveDaysWeather())
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [dispatch, location])
+    // eslint-disable-next-line
+  }, [dispatch, location.coords])
 
   return (
     <>
@@ -99,11 +111,12 @@ const CityWeather = () => {
             <h1 className='l-heading'>{WeatherText}</h1>
           </div>
           <div className='weather-forecast'>
-            <WeatherForecastItem />
-            <WeatherForecastItem />
-            <WeatherForecastItem />
-            <WeatherForecastItem />
-            <WeatherForecastItem />
+            {dailyForecasts.map((forecast) => (
+              <WeatherForecastItem
+                key={forecast.EpochDate}
+                forecast={forecast}
+              />
+            ))}
           </div>
         </Jumbotron>
       )}

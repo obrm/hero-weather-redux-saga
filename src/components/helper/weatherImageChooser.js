@@ -40,10 +40,7 @@ export const weatherImageChooser = (weatherText) => {
     case 'Mostly Clear':
       return 'clear-sky-night'
     case 'Partly Cloudy':
-    case 'Intermittent Clouds':
-    case 'Mostly Cloudy':
     case 'Partly Cloudy w/ Showers':
-    case 'Mostly Cloudy w/ Showers':
       return 'cloudy-night'
     case 'Hazy Moonlight':
       return 'hazy-night'
