@@ -7,6 +7,9 @@ import {
   FIVE_DAYS_WEATHER_SUCCESS,
   FIVE_DAYS_WEATHER_FAIL,
   FIVE_DAYS_WEATHER_RESET,
+  FAVORITE_ITEMS_WEATHER_REQUEST,
+  FAVORITE_ITEMS_WEATHER_SUCCESS,
+  FAVORITE_ITEMS_WEATHER_FAIL,
 } from '../constants/weatherConstants'
 
 export const currentWeatherReducer = (
@@ -45,6 +48,27 @@ export const fiveDaysWeatherReducer = (state = { forecast: null }, action) => {
       return { loading: false, error: payload }
     case FIVE_DAYS_WEATHER_RESET:
       return { forecast: null }
+    default:
+      return state
+  }
+}
+
+export const favoritesWeatherReducer = (
+  state = { favoritesWeatherItems: null },
+  action
+) => {
+  const { type, payload } = action
+
+  switch (type) {
+    case FAVORITE_ITEMS_WEATHER_REQUEST:
+      return { ...state, loading: true }
+    case FAVORITE_ITEMS_WEATHER_SUCCESS:
+      return {
+        loading: false,
+        favoritesWeatherItems: payload,
+      }
+    case FAVORITE_ITEMS_WEATHER_FAIL:
+      return { loading: false, error: payload }
     default:
       return state
   }

@@ -1,3 +1,3 @@
-const KEY = 'fJZPSgkjvAwBVkzSGwqU2kXcC6SwIoUQ'
+const KEY = 'FfhzIuYZr7nvEAjMEwUPaG57OALj0IFy'
 
 export default KEY

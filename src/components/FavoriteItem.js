@@ -1,7 +1,7 @@
 import { Card } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 
-const FavoriteItem = () => {
+const FavoriteItem = ({ cityName }) => {
   return (
     <Card className='img-fluid' style={{ width: '15rem', height: '160px' }}>
       <Link to='/home' className='favorite-text'>
@@ -11,7 +11,7 @@ const FavoriteItem = () => {
           style={{ width: '100%' }}
         />
         <Card.ImgOverlay className='text-center'>
-          <h3>Ra'anana</h3>
+          <h3>{cityName}</h3>
           <p className='card-text'>25 &deg;</p>
         </Card.ImgOverlay>{' '}
       </Link>

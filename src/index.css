@@ -75,6 +75,10 @@
   margin-left: 0.5rem;
 }
 
+.card-img-overlay h3 {
+  margin-top: 2.5rem;
+}
+
 .weather-text {
   text-align: center;
   width: 80%;
@@ -148,10 +152,6 @@
 
   .card-img {
     height: 100%;
-  }
-
-  .card-img-overlay h3 {
-    margin-top: 1.5rem;
   }
 
   .card-title {

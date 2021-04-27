@@ -4,6 +4,7 @@ import { composeWithDevTools } from 'redux-devtools-extension'
 import {
   currentWeatherReducer,
   fiveDaysWeatherReducer,
+  favoritesWeatherReducer,
 } from './reducers/weatherReducers'
 import { cityByCoordsReducer } from './reducers/cityReducers'
 import { favoritesReducer } from './reducers/favoritesReducers'
@@ -14,6 +15,7 @@ const reducer = combineReducers({
   currentWeather: currentWeatherReducer,
   autoComplete: autoCompleteReducer,
   fiveDaysWeather: fiveDaysWeatherReducer,
+  favoritesWeather: favoritesWeatherReducer,
   favorites: favoritesReducer,
 })
 
