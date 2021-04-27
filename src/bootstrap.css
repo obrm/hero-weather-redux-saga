@@ -32,7 +32,7 @@
   --info: #3498db;
   --warning: #f39c12;
   --danger: #e74c3c;
-  --light: #adb5bd;
+  --light: #fff;
   --dark: #303030;
   --breakpoint-xs: 0;
   --breakpoint-sm: 576px;
@@ -2705,7 +2705,7 @@ textarea.form-control.is-invalid {
 }
 
 .btn:hover {
-  color: #fff;
+  color: #375a7f;
   text-decoration: none;
 }
 
@@ -2977,14 +2977,13 @@ fieldset:disabled a.btn {
 
 .btn-light {
   color: #222;
-  background-color: #adb5bd;
-  border-color: #adb5bd;
+  background-color: #fff;
+  border-color: #fff;
 }
 
 .btn-light:hover {
   color: #fff;
-  background-color: #98a2ac;
-  border-color: #919ca6;
+  background-color: rgba(152, 162, 172, 0.198);
 }
 
 .btn-light:focus,
@@ -3063,7 +3062,7 @@ fieldset:disabled a.btn {
 }
 
 .btn-outline-primary:hover {
-  color: #fff;
+  color: #375a7f;
   background-color: #375a7f;
   border-color: #375a7f;
 }
@@ -5615,19 +5614,19 @@ a.badge-danger.focus {
 
 .badge-light {
   color: #222;
-  background-color: #adb5bd;
+  background-color: #ffffff00;
 }
 
 a.badge-light:hover,
 a.badge-light:focus {
   color: #222;
-  background-color: #919ca6;
+  background-color: #ffffff00;
 }
 
 a.badge-light:focus,
 a.badge-light.focus {
   outline: 0;
-  box-shadow: 0 0 0 0.2rem rgba(173, 181, 189, 0.5);
+  box-shadow: 0 0 0 0.2rem rgba(255, 255, 255, 0);
 }
 
 .badge-dark {
@@ -5651,7 +5650,6 @@ a.badge-dark.focus {
   margin-bottom: 2rem;
   border-radius: 0.3rem;
 }
-
 
 .jumbotron-fluid {
   padding-right: 0;

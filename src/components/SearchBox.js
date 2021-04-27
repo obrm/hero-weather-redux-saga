@@ -1,24 +1,83 @@
 import React, { useState } from 'react'
-import { Form, Button } from 'react-bootstrap'
+import { useDispatch, useSelector } from 'react-redux'
+import { Form, Col } from 'react-bootstrap'
+
+import { getAutoCompleteResults } from '../actions/autoCompleteActions'
+import {
+  getCurrentWeather,
+  getFiveDaysWeather,
+} from '../actions/weatherActions'
+import { AUTO_COMPLETE_RESET } from '../constants/autoCompleteConstants'
+import {
+  CURRENT_WEATHER_RESET,
+  FIVE_DAYS_WEATHER_RESET,
+} from '../constants/weatherConstants'
 
 const SearchBox = () => {
+  const [text, setText] = useState('')
+
+  const dispatch = useDispatch()
+
+  const autoComplete = useSelector((state) => state.autoComplete)
+  const { results } = autoComplete
+
+  const onChangeHandler = async (text) => {
+    if (text !== '') {
+      dispatch(getAutoCompleteResults(text))
+    }
+    setText(text)
+  }
+
+  const onSubmitHandler = (key, cityName) => {
+    dispatch({ type: CURRENT_WEATHER_RESET })
+    dispatch({ type: FIVE_DAYS_WEATHER_RESET })
+    dispatch(getCurrentWeather(key, cityName))
+    dispatch(getFiveDaysWeather(key))
+    dispatch({ type: AUTO_COMPLETE_RESET })
+    setText('')
+  }
+
   return (
-    // <Form onSubmit={submitHandler} inline>
-    <Form inline>
-      <div className='input-group search-md search-sm'>
-        <input
-          type='text'
-          name='q'
-          // value={keyword}
-          // onChange={(e) => setKeyword(e.target.value)}
-          placeholder='Search Location...'
-          className='mr-sm-2 ml-sm-3 form-control'
-        />
+    <div className='search-box'>
+      <Form inline>
+        <div className='input-group search-md search-sm'>
+          <input
+            type='search'
+            name='q'
+            value={text}
+            onChange={(e) => {
+              if (e.target.value === '') {
+                dispatch({ type: AUTO_COMPLETE_RESET })
+                setText('')
+              }
+              onChangeHandler(e.target.value)
+            }}
+            onBlur={(e) => {
+              setTimeout(() => {
+                dispatch({ type: AUTO_COMPLETE_RESET })
+                setText('')
+              }, 100)
+            }}
+            placeholder='Search Location...'
+            className='mr-sm-2 ml-sm-3 form-control'
+          />
+        </div>
+      </Form>
+      <div className='search-results'>
+        {results &&
+          results.map((result, i) => (
+            <Col
+              key={i}
+              className='suggestion'
+              onClick={(e) => {
+                onSubmitHandler(result.Key, result.LocalizedName)
+              }}
+            >
+              {result.LocalizedName}
+            </Col>
+          ))}
       </div>
-      <Button type='submit' variant='dark' className='p-2'>
-        Search
-      </Button>
-    </Form>
+    </div>
   )
 }
 

@@ -9,6 +9,7 @@ import {
 } from '../actions/weatherActions'
 import { getCityByCoords } from '../actions/cityActions'
 import Spinner from './layout/Spinner'
+import AddFavoriteButton from './AddFavoriteButton'
 import WeatherForecastItem from './WeatherForecastItem'
 import SearchBox from './SearchBox'
 import useGeolocation from './hooks/useGeolocation'
@@ -18,8 +19,9 @@ const CityWeather = () => {
     WeatherText: null,
     WeatherIcon: null,
     Value: null,
-    City: 'Tel-Aviv',
   })
+  const [cityField, setCityField] = useState('Tel-Aviv')
+
   const [dailyForecasts, setDailyForecasts] = useState([])
 
   const location = useGeolocation()
@@ -27,7 +29,7 @@ const CityWeather = () => {
   const dispatch = useDispatch()
 
   const currentWeather = useSelector((state) => state.currentWeather)
-  const { loading, error, weather } = currentWeather
+  const { loading, error, weather, cityName } = currentWeather
 
   const cityByCoords = useSelector((state) => state.cityByCoords)
   const { city } = cityByCoords
@@ -35,7 +37,18 @@ const CityWeather = () => {
   const fiveDaysWeather = useSelector((state) => state.fiveDaysWeather)
   const { forecast } = fiveDaysWeather
 
+  const autoComplete = useSelector((state) => state.autoComplete)
+  const { isSearch } = autoComplete
+
   useEffect(() => {
+    if (location.coords && city && !cityName) {
+      setCityField(city.EnglishName)
+    }
+
+    if (cityName) {
+      setCityField(cityName)
+    }
+
     if (weather) {
       setWeatherFields({
         ...weatherFields,
@@ -49,13 +62,10 @@ const CityWeather = () => {
       setDailyForecasts(forecast.DailyForecasts)
     }
 
-    if (location.coords && city) {
-      setWeatherFields({ ...weatherFields, City: city.EnglishName })
-    }
     // eslint-disable-next-line
   }, [weather, forecast])
 
-  const { WeatherText, WeatherIcon, Value, City } = weatherFields
+  const { WeatherText, WeatherIcon, Value } = weatherFields
 
   const roundedTemperature = Math.round(parseFloat(Value))
 
@@ -64,19 +74,19 @@ const CityWeather = () => {
     : 'cloudy-day'
 
   useEffect(() => {
-    if (location.coords) {
+    if (location.coords && !isSearch) {
       const { latitude, longitude } = location.coords
       dispatch(getCityByCoords(latitude, longitude))
     }
-    if (city) {
+    if (city && !isSearch) {
       dispatch(getCurrentWeather(city.Key))
       dispatch(getFiveDaysWeather(city.Key))
-    } else {
+    } else if (!isSearch) {
       dispatch(getCurrentWeather())
       dispatch(getFiveDaysWeather())
     }
     // eslint-disable-next-line
-  }, [dispatch, location.coords])
+  }, [dispatch, location.coords, isSearch])
 
   return (
     <>
@@ -103,9 +113,12 @@ const CityWeather = () => {
               className='column'
             />
             <div className='column'>
-              <h4>{City} </h4>
+              <h4>{cityField} </h4>
               <p className='ml-2'>{roundedTemperature} &deg;</p>
             </div>
+          </div>
+          <div className='favorite-button'>
+            <AddFavoriteButton />
           </div>
           <div className='weather-text'>
             <h1 className='l-heading'>{WeatherText}</h1>

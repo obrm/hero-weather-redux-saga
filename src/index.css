@@ -3,8 +3,43 @@
   text-decoration: none;
 }
 
+.search-box {
+  position: relative;
+  display: inline-block;
+}
+
+.search-results {
+  position: absolute;
+}
+
+.suggestion {
+  z-index: 99;
+  top: 100%;
+  left: 16px;
+  right: 0;
+  width: 196px;
+  padding: 10px;
+  background-color: #fff;
+  color: #333;
+  cursor: pointer;
+  border-right: 1px solid #333;
+  border-left: 1px solid #333;
+  border-bottom: 1px solid #333;
+}
+
+.suggestion:hover {
+  background-color: #e9e9e9;
+}
+
+/*when navigating through the items using the arrow keys:*/
+.suggestion:active {
+  background-color: DodgerBlue !important;
+  color: #ffffff;
+}
+
 .jumbotron {
   width: 870px;
+  /* height: 570px; */
 }
 
 .weather-img {
@@ -25,6 +60,19 @@
   position: absolute;
   top: 140px;
   left: 60px;
+}
+
+.favorite-button {
+  z-index: 1;
+  position: absolute;
+  top: 140px;
+  right: 40px;
+}
+
+.fav-text {
+  font-weight: 800;
+  font-size: 1.3rem;
+  margin-left: 0.5rem;
 }
 
 .weather-text {
@@ -176,6 +224,14 @@
     left: 55px;
   }
 
+  .favorite-button {
+    top: 120px;
+  }
+
+  .fav-text {
+    display: none;
+  }
+
   .card-img-overlay h4 {
     margin-top: 2rem;
     font-size: 2rem;
@@ -244,6 +300,11 @@
     top: 300px;
   }
 
+  .favorite-button {
+    top: 100px;
+    right: 30px;
+  }
+
   .card-forecast {
     width: 15rem;
   }
@@ -266,6 +327,11 @@
   .weather-forecast {
     top: 420px;
     left: 35px;
+  }
+
+  .favorite-button {
+    top: 110px;
+    right: 40px;
   }
 
   .card-forecast {
@@ -308,6 +374,11 @@
   .weather-forecast {
     top: 420px;
     left: -50px;
+  }
+
+  .favorite-button {
+    top: 110px;
+    right: 35px;
   }
 
   .card-forecast {
@@ -375,6 +446,11 @@
     grid-template-columns: 1fr;
     top: 450px;
     left: 95px;
+  }
+
+  .favorite-button {
+    top: 115px;
+    right: 40px;
   }
 
   .card-img-overlay h4 {

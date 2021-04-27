@@ -9,7 +9,9 @@ import {
   FIVE_DAYS_WEATHER_FAIL,
 } from '../constants/weatherConstants'
 
-export const getCurrentWeather = (location = '215854') => async (dispatch) => {
+export const getCurrentWeather = (location = '215854', cityName='Tel Aviv') => async (
+  dispatch
+) => {
   try {
     dispatch({ type: CURRENT_WEATHER_REQUEST })
 
@@ -19,7 +21,7 @@ export const getCurrentWeather = (location = '215854') => async (dispatch) => {
 
     dispatch({
       type: CURRENT_WEATHER_SUCCESS,
-      payload: data[0],
+      payload: { data: data[0], cityName },
     })
   } catch (error) {
     dispatch({

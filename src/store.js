@@ -6,18 +6,24 @@ import {
   fiveDaysWeatherReducer,
 } from './reducers/weatherReducers'
 import { cityByCoordsReducer } from './reducers/cityReducers'
+import { favoritesReducer } from './reducers/favoritesReducers'
+import { autoCompleteReducer } from './reducers/autoCompleteReducers'
 
 const reducer = combineReducers({
   cityByCoords: cityByCoordsReducer,
   currentWeather: currentWeatherReducer,
+  autoComplete: autoCompleteReducer,
   fiveDaysWeather: fiveDaysWeatherReducer,
+  favorites: favoritesReducer,
 })
 
-// const cartItemsFromStorage = localStorage.getItem('cartItems')
-//   ? JSON.parse(localStorage.getItem('cartItems'))
-//   : []
+const favoritesFromStorage = localStorage.getItem('favorites')
+  ? JSON.parse(localStorage.getItem('favorites'))
+  : []
 
-const initialState = {}
+const initialState = {
+  favorites: { favoritesItems: favoritesFromStorage },
+}
 
 const middleware = [thunk]
 
