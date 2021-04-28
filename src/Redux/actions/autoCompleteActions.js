@@ -6,13 +6,7 @@ import {
   AUTO_COMPLETE_FAIL,
 } from '../constants/autoCompleteConstants'
 
-let accuWeatherKey
-
-if (process.env.NODE_ENV !== 'production') {
-  accuWeatherKey = process.env.REACT_APP_ACCUWEATHER_KEY
-} else {
-  accuWeatherKey = process.env.ACCUWEATHER_KEY
-}
+const accuWeatherKey = process.env.REACT_APP_ACCUWEATHER_KEY
 
 export const getAutoCompleteResults = (query) => async (dispatch) => {
   try {
