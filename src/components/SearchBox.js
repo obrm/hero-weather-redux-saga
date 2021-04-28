@@ -29,12 +29,12 @@ const SearchBox = () => {
     setText(text)
   }
 
-  const onSubmitHandler = (key, cityName) => {
+  const onSubmitHandler = ({ location, cityName }) => {
     dispatch({ type: CURRENT_WEATHER_RESET })
     dispatch({ type: FIVE_DAYS_WEATHER_RESET })
     dispatch({ type: FAVORITE_RESET_ITEM })
-    dispatch(getCurrentWeather(key, cityName))
-    dispatch(getFiveDaysWeather(key))
+    dispatch(getCurrentWeather(location, cityName))
+    dispatch(getFiveDaysWeather(location))
     dispatch({ type: AUTO_COMPLETE_RESET })
     setText('')
   }
@@ -72,7 +72,10 @@ const SearchBox = () => {
               key={i}
               className='suggestion'
               onClick={(e) => {
-                onSubmitHandler(result.Key, result.LocalizedName)
+                onSubmitHandler({
+                  location: result.Key,
+                  cityName: result.LocalizedName,
+                })
               }}
             >
               {result.LocalizedName}

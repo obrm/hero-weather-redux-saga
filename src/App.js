@@ -18,8 +18,7 @@ function App() {
                 <Route path='/favorites' component={FavoritesPage} exact />
                 <Route path='/home' component={HomePage} exact />
                 <Route path='/' component={HomePage} exact />
-                <Route path='/not-found' component={PageNotFound} />
-                <Route component={PageNotFound} />
+                <Route path='/*' component={PageNotFound} />
               </Switch>
             </Col>
           </Row>

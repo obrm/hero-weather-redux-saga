@@ -9,9 +9,7 @@ const PageNotFound = () => {
           <i className='fas fa-exclamation-triangle'></i>&nbsp;&nbsp; 404 Not
           Found
         </h1>
-        <p className='large'>
-          We are sorry, but the page you are looking for does not exist
-        </p>
+        <h4>We are sorry, but the page you are looking for does not exist</h4>
       </div>
     </>
   )

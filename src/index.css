@@ -126,6 +126,7 @@
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 1.5rem;
+  margin-bottom: 3rem;
 }
 
 .favorite-text,
@@ -138,8 +139,11 @@
   font-size: 6rem;
 }
 
-/* @media (max-width: 731px) and (max-height: 411px) {
-} */
+@media (max-width: 1366px) {
+  .favorites-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
 
 @media (max-width: 770px) {
   .weather-text {
@@ -325,47 +329,6 @@
   }
 }
 
-@media (max-height: 375px) {
-  .weather-text {
-    top: 250px;
-  }
-
-  .weather-forecast {
-    top: 420px;
-    left: 35px;
-  }
-
-  .favorite-button {
-    top: 110px;
-    right: 40px;
-  }
-
-  .card-forecast {
-    width: 7.6rem;
-  }
-
-  .card-img-overlay h3 {
-    margin-top: 1.5rem;
-  }
-
-  .card-title {
-    font-size: 1.1rem;
-    margin-bottom: 0.2rem;
-  }
-
-  .jumbotron {
-    width: 680px;
-  }
-
-  .l-heading {
-    font-size: 4rem;
-  }
-
-  .favorites-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
 @media (max-height: 414px) {
   .weather-icon {
     top: 110px;
@@ -403,6 +366,47 @@
   .jumbotron {
     width: 680px;
     margin-left: -5.4rem;
+  }
+
+  .l-heading {
+    font-size: 4rem;
+  }
+
+  .favorites-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-height: 375px) {
+  .weather-text {
+    top: 250px;
+  }
+
+  .weather-forecast {
+    top: 420px;
+    left: 35px;
+  }
+
+  .favorite-button {
+    top: 110px;
+    right: 40px;
+  }
+
+  .card-forecast {
+    width: 7.6rem;
+  }
+
+  .card-img-overlay h3 {
+    margin-top: 1.5rem;
+  }
+
+  .card-title {
+    font-size: 1.1rem;
+    margin-bottom: 0.2rem;
+  }
+
+  .jumbotron {
+    width: 680px;
   }
 
   .l-heading {
@@ -469,9 +473,14 @@
     font-size: 2.5rem;
   }
 
+  .card-text-favorite {
+    font-size: 1.5rem !important;
+  }
+
   .card-forecast {
     margin-left: 0.5rem;
     width: 22rem;
+    height: 9rem;
   }
 
   .favorites-grid {
