@@ -27,7 +27,7 @@ const FavoritesPage = () => {
       ) : error ? (
         <ErrorToast />
       ) : favoritesItems.length === 0 ? (
-        <h2>There are no favorites yet</h2>
+        <h3>There are no favorites yet</h3>
       ) : (
         favoritesItems &&
         !loading &&
