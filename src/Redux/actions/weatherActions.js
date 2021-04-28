@@ -14,8 +14,8 @@ import {
 import { getCityByName } from '../helper/getCityByName'
 
 export const getCurrentWeather = (
-  location = '215854',
-  cityName = 'Tel Aviv'
+  location = process.env.REACT_APP_DEFAULT_LOCATION,
+  cityName = process.env.REACT_APP_DEFAULT_CITY_NAME
 ) => async (dispatch) => {
   try {
     dispatch({ type: CURRENT_WEATHER_REQUEST })
@@ -39,7 +39,9 @@ export const getCurrentWeather = (
   }
 }
 
-export const getFiveDaysWeather = (location = '215854') => async (dispatch) => {
+export const getFiveDaysWeather = (
+  location = process.env.REACT_APP_DEFAULT_LOCATION
+) => async (dispatch) => {
   try {
     dispatch({ type: FIVE_DAYS_WEATHER_REQUEST })
 
