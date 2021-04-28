@@ -13,11 +13,19 @@ import {
 } from '../constants/weatherConstants'
 import { getCityByName } from '../helper/getCityByName'
 
-const accuWeatherKey = process.env.ACCUWEATHER_KEY
-const defaultLocation = process.env.DEFAULT_LOCATION
-const defaultCityName = process.env.DEFAULT_CITY_NAME
+let accuWeatherKey
+let defaultLocation
+let defaultCityName
 
-console.log(accuWeatherKey)
+if (process.env.NODE_ENV !== 'production') {
+  accuWeatherKey = process.env.REACT_APP_ACCUWEATHER_KEY
+  defaultLocation = process.env.REACT_APP_DEFAULT_LOCATION
+  defaultCityName = process.env.REACT_APP_DEFAULT_CITY_NAME
+} else {
+  accuWeatherKey = process.env.ACCUWEATHER_KEY
+  defaultLocation = process.env.DEFAULT_LOCATION
+  defaultCityName = process.env.DEFAULT_CITY_NAME
+}
 
 export const getCurrentWeather = (
   location = defaultLocation,

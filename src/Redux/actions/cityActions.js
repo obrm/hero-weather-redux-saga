@@ -6,7 +6,13 @@ import {
   GET_CITY_BY_COORDS_FAIL,
 } from '../constants/cityConstants'
 
-const accuWeatherKey = process.env.ACCUWEATHER_KEY
+let accuWeatherKey
+
+if (process.env.NODE_ENV !== 'production') {
+  accuWeatherKey = process.env.REACT_APP_ACCUWEATHER_KEY
+} else {
+  accuWeatherKey = process.env.ACCUWEATHER_KEY
+}
 
 export const getCityByCoords = (latitude, longitude) => async (dispatch) => {
   try {

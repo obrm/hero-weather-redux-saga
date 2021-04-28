@@ -1,7 +1,13 @@
 import axios from 'axios'
 
 export const getCityByName = async (cityName) => {
-  const accuWeatherKey = process.env.ACCUWEATHER_KEY
+  let accuWeatherKey
+
+  if (process.env.NODE_ENV !== 'production') {
+    accuWeatherKey = process.env.REACT_APP_ACCUWEATHER_KEY
+  } else {
+    accuWeatherKey = process.env.ACCUWEATHER_KEY
+  }
 
   try {
     const { data } = await axios.get(
