@@ -10,26 +10,22 @@ import {
   FAVORITE_ITEMS_WEATHER_SUCCESS,
   FAVORITE_ITEMS_WEATHER_FAIL,
   FAVORITE_ITEMS_WEATHER_RESET,
+  DEFAULT_LOCATION,
+  DEFAULT_CITY_NAME,
 } from '../constants/weatherConstants'
 import { getCityByName } from '../helper/getCityByName'
 
 let accuWeatherKey
-let defaultLocation
-let defaultCityName
 
 if (process.env.NODE_ENV !== 'production') {
   accuWeatherKey = process.env.REACT_APP_ACCUWEATHER_KEY
-  defaultLocation = process.env.REACT_APP_DEFAULT_LOCATION
-  defaultCityName = process.env.REACT_APP_DEFAULT_CITY_NAME
 } else {
   accuWeatherKey = process.env.ACCUWEATHER_KEY
-  defaultLocation = process.env.DEFAULT_LOCATION
-  defaultCityName = process.env.DEFAULT_CITY_NAME
 }
 
 export const getCurrentWeather = (
-  location = defaultLocation,
-  cityName = defaultCityName
+  location = DEFAULT_LOCATION,
+  cityName = DEFAULT_CITY_NAME
 ) => async (dispatch) => {
   try {
     dispatch({ type: CURRENT_WEATHER_REQUEST })
@@ -53,7 +49,7 @@ export const getCurrentWeather = (
   }
 }
 
-export const getFiveDaysWeather = (location = defaultLocation) => async (
+export const getFiveDaysWeather = (location = DEFAULT_LOCATION) => async (
   dispatch
 ) => {
   try {
