@@ -15,8 +15,6 @@ import {
 } from '../constants/weatherConstants'
 import { getCityByName } from '../helper/getCityByName'
 
-const accuWeatherKey = process.env.REACT_APP_ACCUWEATHER_KEY
-
 export const getCurrentWeather = (
   location = DEFAULT_LOCATION,
   cityName = DEFAULT_CITY_NAME
@@ -25,10 +23,8 @@ export const getCurrentWeather = (
     dispatch({ type: CURRENT_WEATHER_REQUEST })
     debugger
     const { data } = await axios.get(
-      `http://dataservice.accuweather.com/currentconditions/v1/${location}?apikey=${accuWeatherKey}`
+      `http://dataservice.accuweather.com/currentconditions/v1/${location}?apikey=${process.env.REACT_APP_ACCUWEATHER_KEY}`
     )
-
-    console.log(accuWeatherKey)
 
     dispatch({
       type: CURRENT_WEATHER_SUCCESS,
@@ -52,7 +48,7 @@ export const getFiveDaysWeather = (location = DEFAULT_LOCATION) => async (
     dispatch({ type: FIVE_DAYS_WEATHER_REQUEST })
 
     const { data } = await axios.get(
-      `http://dataservice.accuweather.com/forecasts/v1/daily/5day/${location}?apikey=${accuWeatherKey}&metric=true`
+      `http://dataservice.accuweather.com/forecasts/v1/daily/5day/${location}?apikey=${process.env.REACT_APP_ACCUWEATHER_KEY}&metric=true`
     )
 
     dispatch({
@@ -85,7 +81,7 @@ export const getFavoritesWeather = () => async (dispatch, getState) => {
       const key = await getCityByName(favorite.cityName)
 
       const { data } = await axios.get(
-        `http://dataservice.accuweather.com/currentconditions/v1/${key}?apikey=${accuWeatherKey}`
+        `http://dataservice.accuweather.com/currentconditions/v1/${key}?apikey=${process.env.REACT_APP_ACCUWEATHER_KEY}`
       )
 
       dispatch({
