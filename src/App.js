@@ -2,8 +2,8 @@ import { BrowserRouter as Router, Route } from 'react-router-dom'
 import { Container, Row, Col } from 'react-bootstrap'
 
 import Header from './components/Header'
-import CityWeather from './components/CityWeather'
-import Favorites from './components/Favorites'
+import HomePage from './pages/HomePage'
+import FavoritesPage from './pages/FavoritesPage'
 
 function App() {
   return (
@@ -13,9 +13,9 @@ function App() {
         <Container>
           <Row className='justify-content-md-center mt-5'>
             <Col md='auto'>
-              <Route path='/favorites' component={Favorites} exact />
-              <Route path='/home' component={CityWeather} exact />
-              <Route path='/' component={CityWeather} exact />
+              <Route path='/favorites' component={FavoritesPage} exact />
+              <Route path='/home' component={HomePage} exact />
+              <Route path='/' component={HomePage} exact />
             </Col>
           </Row>
         </Container>

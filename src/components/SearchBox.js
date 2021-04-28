@@ -2,17 +2,17 @@ import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Form, Col } from 'react-bootstrap'
 
-import { getAutoCompleteResults } from '../actions/autoCompleteActions'
+import { getAutoCompleteResults } from '../Redux/actions/autoCompleteActions'
 import {
   getCurrentWeather,
   getFiveDaysWeather,
-} from '../actions/weatherActions'
-import { AUTO_COMPLETE_RESET } from '../constants/autoCompleteConstants'
-import { FAVORITE_RESET_ITEM } from '../constants/favoritesConstants'
+} from '../Redux/actions/weatherActions'
+import { AUTO_COMPLETE_RESET } from '../Redux/constants/autoCompleteConstants'
+import { FAVORITE_RESET_ITEM } from '../Redux/constants/favoritesConstants'
 import {
   CURRENT_WEATHER_RESET,
   FIVE_DAYS_WEATHER_RESET,
-} from '../constants/weatherConstants'
+} from '../Redux/constants/weatherConstants'
 
 const SearchBox = () => {
   const [text, setText] = useState('')

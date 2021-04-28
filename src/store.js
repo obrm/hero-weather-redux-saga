@@ -5,10 +5,10 @@ import {
   currentWeatherReducer,
   fiveDaysWeatherReducer,
   favoritesWeatherReducer,
-} from './reducers/weatherReducers'
-import { cityByCoordsReducer } from './reducers/cityReducers'
-import { favoritesReducer } from './reducers/favoritesReducers'
-import { autoCompleteReducer } from './reducers/autoCompleteReducers'
+} from './Redux/reducers/weatherReducers'
+import { cityByCoordsReducer } from './Redux/reducers/cityReducers'
+import { favoritesReducer } from './Redux/reducers/favoritesReducers'
+import { autoCompleteReducer } from './Redux/reducers/autoCompleteReducers'
 
 const reducer = combineReducers({
   cityByCoords: cityByCoordsReducer,

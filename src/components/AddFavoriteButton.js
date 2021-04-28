@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import {
   addToFavorites,
   removeFromFavorites,
-} from '../actions/favoritesActions'
+} from '../Redux/actions/favoritesActions'
 
 const AddFavoriteButton = () => {
   const [isFavorite, setIsFavorite] = useState(false)

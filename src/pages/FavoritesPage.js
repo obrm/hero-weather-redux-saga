@@ -1,12 +1,12 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
-import { getFavoritesWeather } from '../actions/weatherActions'
-import Spinner from './layout/Spinner'
-import ErrorToast from './ErrorToast'
-import FavoriteItem from './FavoriteItem'
+import { getFavoritesWeather } from '../Redux/actions/weatherActions'
+import Spinner from '../components/layout/Spinner'
+import ErrorToast from '../components/ErrorToast'
+import FavoriteItem from '../components/FavoriteItem'
 
-const Favorites = () => {
+const FavoritesPage = () => {
   const dispatch = useDispatch()
 
   const favorites = useSelector((state) => state.favorites)
@@ -44,4 +44,4 @@ const Favorites = () => {
   )
 }
 
-export default Favorites
+export default FavoritesPage

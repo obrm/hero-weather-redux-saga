@@ -2,28 +2,26 @@ import React, { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Jumbotron, Row, Col } from 'react-bootstrap'
 
-import { weatherImageChooser } from './helper/weatherImageChooser'
+import { weatherImageChooser } from '../components/helper/weatherImageChooser'
 import {
   getCurrentWeather,
   getFiveDaysWeather,
-} from '../actions/weatherActions'
-import { getCityByCoords } from '../actions/cityActions'
-import Spinner from './layout/Spinner'
-import AddFavoriteButton from './AddFavoriteButton'
-import WeatherForecastItem from './WeatherForecastItem'
-import SearchBox from './SearchBox'
-import ErrorToast from './ErrorToast'
-import useGeolocation from './hooks/useGeolocation'
+} from '../Redux/actions/weatherActions'
+import { getCityByCoords } from '../Redux/actions/cityActions'
+import Spinner from '../components/layout/Spinner'
+import AddFavoriteButton from '../components/AddFavoriteButton'
+import SearchBox from '../components/SearchBox'
+import ErrorToast from '../components/ErrorToast'
+import useGeolocation from '../components/hooks/useGeolocation'
+import FiveDaysForecast from '../components/FiveDaysForecast'
 
-const CityWeather = () => {
+const HomePage = () => {
   const [weatherFields, setWeatherFields] = useState({
     WeatherText: null,
     WeatherIcon: null,
     Value: null,
   })
   const [cityField, setCityField] = useState('Tel-Aviv')
-
-  const [dailyForecasts, setDailyForecasts] = useState([])
 
   const location = useGeolocation()
 
@@ -35,11 +33,11 @@ const CityWeather = () => {
   const cityByCoords = useSelector((state) => state.cityByCoords)
   const { city } = cityByCoords
 
-  const fiveDaysWeather = useSelector((state) => state.fiveDaysWeather)
-  const { forecast, error: fiveDaysWeatherError } = fiveDaysWeather
-
   const autoComplete = useSelector((state) => state.autoComplete)
   const { isSearch } = autoComplete
+
+  const fiveDaysWeather = useSelector((state) => state.fiveDaysWeather)
+  const { error: fiveDaysWeatherError } = fiveDaysWeather
 
   const favorites = useSelector((state) => state.favorites)
   const { showItem, favoriteCityName } = favorites
@@ -66,12 +64,8 @@ const CityWeather = () => {
       })
     }
 
-    if (forecast) {
-      setDailyForecasts(forecast.DailyForecasts)
-    }
-
     // eslint-disable-next-line
-  }, [weather, forecast])
+  }, [weather])
 
   const { WeatherText, WeatherIcon, Value } = weatherFields
 
@@ -133,18 +127,11 @@ const CityWeather = () => {
           <div className='weather-text'>
             <h1 className='l-heading'>{WeatherText}</h1>
           </div>
-          <div className='weather-forecast'>
-            {dailyForecasts.map((forecast) => (
-              <WeatherForecastItem
-                key={forecast.EpochDate}
-                forecast={forecast}
-              />
-            ))}
-          </div>
+          <FiveDaysForecast />
         </Jumbotron>
       )}
     </>
   )
 }
 
-export default CityWeather
+export default HomePage

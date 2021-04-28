@@ -6,8 +6,8 @@ import { BrowserRouter as Router, useHistory } from 'react-router-dom'
 import {
   getCurrentWeather,
   getFiveDaysWeather,
-} from '../actions/weatherActions'
-import { FAVORITE_SHOW_ITEM } from '../constants/favoritesConstants'
+} from '../Redux/actions/weatherActions'
+import { FAVORITE_SHOW_ITEM } from '../Redux/constants/favoritesConstants'
 import { weatherImageChooser } from './helper/weatherImageChooser'
 
 const FavoriteItem = ({

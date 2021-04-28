@@ -1,5 +1,5 @@
 import axios from 'axios'
-import KEY from '../key'
+import KEY from '../../key'
 import {
   GET_CITY_BY_COORDS_REQUEST,
   GET_CITY_BY_COORDS_SUCCESS,

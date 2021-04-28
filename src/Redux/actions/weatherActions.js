@@ -1,5 +1,5 @@
 import axios from 'axios'
-import KEY from '../key'
+import KEY from '../../key'
 import {
   CURRENT_WEATHER_REQUEST,
   CURRENT_WEATHER_SUCCESS,
@@ -12,7 +12,7 @@ import {
   FAVORITE_ITEMS_WEATHER_FAIL,
   FAVORITE_ITEMS_WEATHER_RESET,
 } from '../constants/weatherConstants'
-import { getCityByName } from '../components/helper/getCityByName'
+import { getCityByName } from '../helper/getCityByName'
 
 export const getCurrentWeather = (
   location = '215854',

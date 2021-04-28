@@ -1,5 +1,5 @@
 import axios from 'axios'
-import KEY from '../key'
+import KEY from '../../key'
 import {
   AUTO_COMPLETE_REQUEST,
   AUTO_COMPLETE_SUCCESS,
