@@ -11,7 +11,7 @@ export const getAutoCompleteResults = (query) => async (dispatch) => {
     dispatch({ type: AUTO_COMPLETE_REQUEST })
 
     const { data } = await axios.get(
-      `http://dataservice.accuweather.com/locations/v1/cities/autocomplete?apikey=${process.env.REACT_APP_ACCUWEATHER_KEY}&q=${query}`
+      `https://dataservice.accuweather.com/locations/v1/cities/autocomplete?apikey=${process.env.REACT_APP_ACCUWEATHER_KEY}&q=${query}`
     )
 
     dispatch({
