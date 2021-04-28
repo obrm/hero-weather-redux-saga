@@ -26,22 +26,23 @@ const FavoritesPage = () => {
         <Spinner />
       ) : error ? (
         <ErrorToast />
-      ) : favoritesItems &&
-        favoritesItems.length !== 0 &&
-        !loading &&
-        favoritesWeatherItems ? (
-        <div className='favorites-grid text-center'>
-          {favoritesWeatherItems.map((fav) => (
-            <FavoriteItem
-              cityName={fav.cityName}
-              weather={fav.weather}
-              key={fav.key}
-              cityKey={fav.key}
-            />
-          ))}
-        </div>
-      ) : (
+      ) : favoritesItems.length === 0 ? (
         <h2>There are no favorites yet</h2>
+      ) : (
+        favoritesItems &&
+        !loading &&
+        favoritesWeatherItems && (
+          <div className='favorites-grid text-center'>
+            {favoritesWeatherItems.map((fav) => (
+              <FavoriteItem
+                cityName={fav.cityName}
+                weather={fav.weather}
+                key={fav.key}
+                cityKey={fav.key}
+              />
+            ))}
+          </div>
+        )
       )}
     </div>
   )
