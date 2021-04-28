@@ -17,6 +17,8 @@ const accuWeatherKey = process.env.ACCUWEATHER_KEY
 const defaultLocation = process.env.DEFAULT_LOCATION
 const defaultCityName = process.env.DEFAULT_CITY_NAME
 
+console.log(accuWeatherKey)
+
 export const getCurrentWeather = (
   location = defaultLocation,
   cityName = defaultCityName
