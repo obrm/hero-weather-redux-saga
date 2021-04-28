@@ -28,6 +28,8 @@ export const getCurrentWeather = (
       `http://dataservice.accuweather.com/currentconditions/v1/${location}?apikey=${accuWeatherKey}`
     )
 
+    console.log(accuWeatherKey)
+
     dispatch({
       type: CURRENT_WEATHER_SUCCESS,
       payload: { data: data[0], cityName },
