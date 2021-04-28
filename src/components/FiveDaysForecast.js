@@ -7,7 +7,7 @@ const FiveDaysForecast = () => {
   const [dailyForecasts, setDailyForecasts] = useState([])
 
   const fiveDaysWeather = useSelector((state) => state.fiveDaysWeather)
-  const { forecast, error: fiveDaysWeatherError } = fiveDaysWeather
+  const { forecast } = fiveDaysWeather
 
   useEffect(() => {
     if (forecast) {

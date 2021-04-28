@@ -1,5 +1,5 @@
 import axios from 'axios'
-import KEY from '../../key'
+import KEY from '../utils/key'
 
 export const getCityByName = async (cityName) => {
   try {

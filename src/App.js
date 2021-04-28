@@ -1,9 +1,10 @@
-import { BrowserRouter as Router, Route } from 'react-router-dom'
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import { Container, Row, Col } from 'react-bootstrap'
 
 import Header from './components/Header'
 import HomePage from './pages/HomePage'
 import FavoritesPage from './pages/FavoritesPage'
+import PageNotFound from './pages/PageNotFound'
 
 function App() {
   return (
@@ -13,9 +14,13 @@ function App() {
         <Container>
           <Row className='justify-content-md-center mt-5'>
             <Col md='auto'>
-              <Route path='/favorites' component={FavoritesPage} exact />
-              <Route path='/home' component={HomePage} exact />
-              <Route path='/' component={HomePage} exact />
+              <Switch>
+                <Route path='/favorites' component={FavoritesPage} exact />
+                <Route path='/home' component={HomePage} exact />
+                <Route path='/' component={HomePage} exact />
+                <Route path='/not-found' component={PageNotFound} />
+                <Route component={PageNotFound} />
+              </Switch>
             </Col>
           </Row>
         </Container>

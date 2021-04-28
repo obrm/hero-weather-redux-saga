@@ -31,7 +31,7 @@ const FavoriteItem = ({
 
   const onClickHandler = () => {
     dispatch({ type: FAVORITE_SHOW_ITEM, payload: cityName })
-    dispatch(getCurrentWeather(cityKey))
+    dispatch(getCurrentWeather(cityKey, cityName))
     dispatch(getFiveDaysWeather(cityKey))
     history.push('/home')
   }

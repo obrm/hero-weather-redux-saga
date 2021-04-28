@@ -1,5 +1,5 @@
 import axios from 'axios'
-import KEY from '../../key'
+import KEY from '../utils/key'
 import {
   CURRENT_WEATHER_REQUEST,
   CURRENT_WEATHER_SUCCESS,

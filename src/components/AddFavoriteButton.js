@@ -20,6 +20,7 @@ const AddFavoriteButton = () => {
 
   useEffect(() => {
     let check = false
+
     if (favoritesItems.length > 0) {
       check = favoritesItems.find((fav) => fav.cityName === cityName)
     }
