@@ -26,7 +26,10 @@ const FavoritesPage = () => {
         <Spinner />
       ) : error ? (
         <ErrorToast />
-      ) : favoritesItems && !loading && favoritesWeatherItems ? (
+      ) : favoritesItems &&
+        favoritesItems.length !== 0 &&
+        !loading &&
+        favoritesWeatherItems ? (
         <div className='favorites-grid text-center'>
           {favoritesWeatherItems.map((fav) => (
             <FavoriteItem
