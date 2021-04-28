@@ -10,6 +10,7 @@ import {
   FAVORITE_ITEMS_WEATHER_REQUEST,
   FAVORITE_ITEMS_WEATHER_SUCCESS,
   FAVORITE_ITEMS_WEATHER_FAIL,
+  FAVORITE_ITEMS_WEATHER_RESET,
 } from '../constants/weatherConstants'
 import { getCityByName } from '../components/helper/getCityByName'
 
@@ -63,15 +64,15 @@ export const getFiveDaysWeather = (location = '215854') => async (dispatch) => {
 }
 
 export const getFavoritesWeather = () => async (dispatch, getState) => {
-  try {
-    const favorites = getState().favorites.favoritesItems
+  dispatch({ type: FAVORITE_ITEMS_WEATHER_RESET })
 
-    const favoritesWeather = []
+  const favorites = getState().favorites.favoritesItems
 
-    if (!favorites || favorites.length === 0)
-      throw new Error('There are no favorites')
+  if (!favorites || favorites.length === 0)
+    throw new Error('There are no favorites')
 
-    favorites.forEach(async (favorite) => {
+  favorites.forEach(async (favorite) => {
+    try {
       dispatch({ type: FAVORITE_ITEMS_WEATHER_REQUEST })
 
       const key = await getCityByName(favorite.cityName)
@@ -80,22 +81,18 @@ export const getFavoritesWeather = () => async (dispatch, getState) => {
         `http://dataservice.accuweather.com/currentconditions/v1/${key}?apikey=${KEY}`
       )
 
-      debugger
-
-      favoritesWeather.push({ cityName: favorite.cityName, weather: data[0] })
-    })
-
-    dispatch({
-      type: FAVORITE_ITEMS_WEATHER_SUCCESS,
-      payload: favoritesWeather,
-    })
-  } catch (error) {
-    dispatch({
-      type: FAVORITE_ITEMS_WEATHER_FAIL,
-      payload:
-        error.response && error.response.data.message
-          ? error.response.data.message
-          : error.message,
-    })
-  }
+      dispatch({
+        type: FAVORITE_ITEMS_WEATHER_SUCCESS,
+        payload: { cityName: favorite.cityName, weather: data[0], key },
+      })
+    } catch (error) {
+      dispatch({
+        type: FAVORITE_ITEMS_WEATHER_FAIL,
+        payload:
+          error.response && error.response.data.message
+            ? error.response.data.message
+            : error.message,
+      })
+    }
+  })
 }

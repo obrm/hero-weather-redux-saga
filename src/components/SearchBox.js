@@ -8,6 +8,7 @@ import {
   getFiveDaysWeather,
 } from '../actions/weatherActions'
 import { AUTO_COMPLETE_RESET } from '../constants/autoCompleteConstants'
+import { FAVORITE_RESET_ITEM } from '../constants/favoritesConstants'
 import {
   CURRENT_WEATHER_RESET,
   FIVE_DAYS_WEATHER_RESET,
@@ -31,6 +32,7 @@ const SearchBox = () => {
   const onSubmitHandler = (key, cityName) => {
     dispatch({ type: CURRENT_WEATHER_RESET })
     dispatch({ type: FIVE_DAYS_WEATHER_RESET })
+    dispatch({ type: FAVORITE_RESET_ITEM })
     dispatch(getCurrentWeather(key, cityName))
     dispatch(getFiveDaysWeather(key))
     dispatch({ type: AUTO_COMPLETE_RESET })

@@ -1,5 +1,6 @@
 import { useSelector } from 'react-redux'
 import { Card } from 'react-bootstrap'
+import PropTypes from 'prop-types'
 
 import Spinner from './layout/Spinner'
 import { weatherImageChooser } from './helper/weatherImageChooser'
@@ -37,25 +38,34 @@ const WeatherForecastItem = ({
   return (
     <>
       {loading ? (
-        <Spinner margin={'0'} />
+        <Spinner margin='0 1rem 2rem' width='130px' />
       ) : error ? (
-        <h4>{error}</h4>
+        <></>
       ) : (
         <Card className='img-fluid card-forecast'>
           <Card.Img
             src={`/img/weather-images/${weatherImage}.jpg`}
             alt='Card image'
             style={{ width: '100%' }}
+            loading='lazy'
           />
           <Card.ImgOverlay className='text-center'>
             <h5 className='card-title'>{day}</h5>
             <p className='card-text'>{roundedTemperature} &deg;</p>
-            <img src={`/img/weather-icons/${Icon}-s.png`} alt='weather icon' />
+            <img
+              src={`/img/weather-icons/${Icon}-s.png`}
+              alt='weather icon'
+              loading='lazy'
+            />
           </Card.ImgOverlay>
         </Card>
       )}
     </>
   )
+}
+
+WeatherForecastItem.propTypes = {
+  forecast: PropTypes.object.isRequired,
 }
 
 export default WeatherForecastItem

@@ -6271,8 +6271,10 @@ a.close.disabled {
   -ms-flex-preferred-size: 350px;
   flex-basis: 350px;
   max-width: 350px;
-  font-size: 0.875rem;
-  background-color: #444;
+  font-size: 1.25rem;
+  font-weight: 800;
+  background-color: #e6948b; 
+  color: #7c1b10 ;
   background-clip: padding-box;
   border: 1px solid rgba(0, 0, 0, 0.1);
   box-shadow: 0 0.25rem 0.75rem rgba(0, 0, 0, 0.1);
@@ -6303,8 +6305,9 @@ a.close.disabled {
   -ms-flex-align: center;
   align-items: center;
   padding: 0.25rem 0.75rem;
-  color: #888;
-  background-color: #303030;
+  color: #fff;
+  font-size: 1.5rem;
+  background-color: #f52f19;
   background-clip: padding-box;
   border-bottom: 1px solid rgba(0, 0, 0, 0.05);
   border-top-left-radius: calc(0.25rem - 1px);

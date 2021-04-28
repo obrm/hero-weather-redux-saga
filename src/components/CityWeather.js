@@ -12,6 +12,7 @@ import Spinner from './layout/Spinner'
 import AddFavoriteButton from './AddFavoriteButton'
 import WeatherForecastItem from './WeatherForecastItem'
 import SearchBox from './SearchBox'
+import ErrorToast from './ErrorToast'
 import useGeolocation from './hooks/useGeolocation'
 
 const CityWeather = () => {
@@ -35,17 +36,24 @@ const CityWeather = () => {
   const { city } = cityByCoords
 
   const fiveDaysWeather = useSelector((state) => state.fiveDaysWeather)
-  const { forecast } = fiveDaysWeather
+  const { forecast, error: fiveDaysWeatherError } = fiveDaysWeather
 
   const autoComplete = useSelector((state) => state.autoComplete)
   const { isSearch } = autoComplete
 
+  const favorites = useSelector((state) => state.favorites)
+  const { showItem, favoriteCityName } = favorites
+
   useEffect(() => {
-    if (location.coords && city && !cityName) {
+    if (favoriteCityName) {
+      setCityField(favoriteCityName)
+    }
+
+    if (location.coords && city && !cityName && !favoriteCityName) {
       setCityField(city.EnglishName)
     }
 
-    if (cityName) {
+    if (cityName && !favoriteCityName) {
       setCityField(cityName)
     }
 
@@ -74,14 +82,14 @@ const CityWeather = () => {
     : 'cloudy-day'
 
   useEffect(() => {
-    if (location.coords && !isSearch) {
+    if (location.coords && !isSearch && !showItem) {
       const { latitude, longitude } = location.coords
       dispatch(getCityByCoords(latitude, longitude))
     }
-    if (city && !isSearch) {
+    if (city && !isSearch && !showItem) {
       dispatch(getCurrentWeather(city.Key))
       dispatch(getFiveDaysWeather(city.Key))
-    } else if (!isSearch) {
+    } else if (!isSearch && !showItem) {
       dispatch(getCurrentWeather())
       dispatch(getFiveDaysWeather())
     }
@@ -97,20 +105,22 @@ const CityWeather = () => {
       </Row>
       {loading ? (
         <Spinner />
-      ) : error ? (
-        <h1>{error}</h1>
+      ) : error || fiveDaysWeatherError ? (
+        <ErrorToast />
       ) : (
         <Jumbotron>
           <img
             src={`/img/weather-images/${weatherImage}.jpg`}
             alt=''
             className='weather-img'
+            loading='lazy'
           />
           <div className='weather-icon'>
             <img
               src={`/img/weather-icons/${WeatherIcon}-s.png`}
               alt='weather icon'
               className='column'
+              loading='lazy'
             />
             <div className='column'>
               <h4>{cityField} </h4>

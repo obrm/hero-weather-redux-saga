@@ -76,7 +76,8 @@
 }
 
 .card-img-overlay h3 {
-  margin-top: 2.5rem;
+  margin-top: 1rem;
+  font-weight: 800;
 }
 
 .weather-text {
@@ -106,6 +107,11 @@
 .card-text,
 .card-title {
   margin-bottom: 0;
+}
+
+.card-text-favorite {
+  font-weight: 800;
+  font-size: 1.5rem;
 }
 
 /* Flex Columns */

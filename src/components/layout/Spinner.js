@@ -1,10 +1,10 @@
 import spinner from '../../img/spinner.gif'
 
-const Spinner = ({ margin }) => (
+const Spinner = ({ margin, width }) => (
   <>
     <img
       src={spinner}
-      style={{ width: '170px', margin, display: 'block' }}
+      style={{ width, margin, display: 'block' }}
       alt='Loading...'
     />
   </>
@@ -12,6 +12,7 @@ const Spinner = ({ margin }) => (
 
 Spinner.defaultProps = {
   margin: '10rem auto 0',
+  width: '170px',
 }
 
 export default Spinner
