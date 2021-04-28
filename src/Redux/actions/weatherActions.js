@@ -1,5 +1,4 @@
 import axios from 'axios'
-import KEY from '../utils/key'
 import {
   CURRENT_WEATHER_REQUEST,
   CURRENT_WEATHER_SUCCESS,
@@ -22,7 +21,7 @@ export const getCurrentWeather = (
     dispatch({ type: CURRENT_WEATHER_REQUEST })
 
     const { data } = await axios.get(
-      `http://dataservice.accuweather.com/currentconditions/v1/${location}?apikey=${KEY}`
+      `http://dataservice.accuweather.com/currentconditions/v1/${location}?apikey=${process.env.REACT_APP_ACCUWEATHER_KEY}`
     )
 
     dispatch({
@@ -45,7 +44,7 @@ export const getFiveDaysWeather = (location = '215854') => async (dispatch) => {
     dispatch({ type: FIVE_DAYS_WEATHER_REQUEST })
 
     const { data } = await axios.get(
-      `http://dataservice.accuweather.com/forecasts/v1/daily/5day/${location}?apikey=${KEY}&metric=true`
+      `http://dataservice.accuweather.com/forecasts/v1/daily/5day/${location}?apikey=${process.env.REACT_APP_ACCUWEATHER_KEY}&metric=true`
     )
 
     dispatch({
@@ -78,7 +77,7 @@ export const getFavoritesWeather = () => async (dispatch, getState) => {
       const key = await getCityByName(favorite.cityName)
 
       const { data } = await axios.get(
-        `http://dataservice.accuweather.com/currentconditions/v1/${key}?apikey=${KEY}`
+        `http://dataservice.accuweather.com/currentconditions/v1/${key}?apikey=${process.env.REACT_APP_ACCUWEATHER_KEY}`
       )
 
       dispatch({

@@ -1,5 +1,5 @@
 import axios from 'axios'
-import KEY from '../utils/key'
+
 import {
   GET_CITY_BY_COORDS_REQUEST,
   GET_CITY_BY_COORDS_SUCCESS,
@@ -11,7 +11,7 @@ export const getCityByCoords = (latitude, longitude) => async (dispatch) => {
     dispatch({ type: GET_CITY_BY_COORDS_REQUEST })
 
     const { data } = await axios.get(
-      `http://dataservice.accuweather.com/locations/v1/cities/geoposition/search?apikey=${KEY}&q=${latitude},${longitude}`
+      `http://dataservice.accuweather.com/locations/v1/cities/geoposition/search?apikey=${process.env.REACT_APP_ACCUWEATHER_KEY}&q=${latitude},${longitude}`
     )
 
     dispatch({
