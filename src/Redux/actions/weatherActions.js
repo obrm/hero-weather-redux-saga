@@ -21,7 +21,7 @@ export const getCurrentWeather = (
 ) => async (dispatch) => {
   try {
     dispatch({ type: CURRENT_WEATHER_REQUEST })
-    debugger
+
     const { data } = await axios.get(
       `http://dataservice.accuweather.com/currentconditions/v1/${location}?apikey=${process.env.REACT_APP_ACCUWEATHER_KEY}`
     )
@@ -70,9 +70,6 @@ export const getFavoritesWeather = () => async (dispatch, getState) => {
   dispatch({ type: FAVORITE_ITEMS_WEATHER_RESET })
 
   const favorites = getState().favorites.favoritesItems
-
-  if (!favorites || favorites.length === 0)
-    throw new Error('There are no favorites')
 
   favorites.forEach(async (favorite) => {
     try {
