@@ -33,7 +33,7 @@ export const getCurrentWeather = (
 ) => async (dispatch) => {
   try {
     dispatch({ type: CURRENT_WEATHER_REQUEST })
-
+    debugger
     const { data } = await axios.get(
       `http://dataservice.accuweather.com/currentconditions/v1/${location}?apikey=${accuWeatherKey}`
     )
