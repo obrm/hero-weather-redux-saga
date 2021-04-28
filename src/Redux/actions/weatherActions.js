@@ -13,15 +13,29 @@ import {
 } from '../constants/weatherConstants'
 import { getCityByName } from '../helper/getCityByName'
 
+let accuWeatherKey
+let defaultLocation
+let defaultCityName
+
+if (process.env.NODE_ENV !== 'production') {
+  accuWeatherKey = process.env.REACT_APP_ACCUWEATHER_KEY
+  defaultLocation = process.env.REACT_APP_DEFAULT_LOCATION
+  defaultCityName = process.env.REACT_APP_DEFAULT_CITY_NAME
+} else {
+  accuWeatherKey = process.env.ACCUWEATHER_KEY
+  defaultLocation = process.env.DEFAULT_LOCATION
+  defaultCityName = process.env.DEFAULT_CITY_NAME
+}
+
 export const getCurrentWeather = (
-  location = process.env.REACT_APP_DEFAULT_LOCATION,
-  cityName = process.env.REACT_APP_DEFAULT_CITY_NAME
+  location = defaultLocation,
+  cityName = defaultCityName
 ) => async (dispatch) => {
   try {
     dispatch({ type: CURRENT_WEATHER_REQUEST })
 
     const { data } = await axios.get(
-      `http://dataservice.accuweather.com/currentconditions/v1/${location}?apikey=${process.env.REACT_APP_ACCUWEATHER_KEY}`
+      `http://dataservice.accuweather.com/currentconditions/v1/${location}?apikey=${accuWeatherKey}`
     )
 
     dispatch({
@@ -39,14 +53,14 @@ export const getCurrentWeather = (
   }
 }
 
-export const getFiveDaysWeather = (
-  location = process.env.REACT_APP_DEFAULT_LOCATION
-) => async (dispatch) => {
+export const getFiveDaysWeather = (location = defaultLocation) => async (
+  dispatch
+) => {
   try {
     dispatch({ type: FIVE_DAYS_WEATHER_REQUEST })
 
     const { data } = await axios.get(
-      `http://dataservice.accuweather.com/forecasts/v1/daily/5day/${location}?apikey=${process.env.REACT_APP_ACCUWEATHER_KEY}&metric=true`
+      `http://dataservice.accuweather.com/forecasts/v1/daily/5day/${location}?apikey=${accuWeatherKey}&metric=true`
     )
 
     dispatch({
@@ -79,7 +93,7 @@ export const getFavoritesWeather = () => async (dispatch, getState) => {
       const key = await getCityByName(favorite.cityName)
 
       const { data } = await axios.get(
-        `http://dataservice.accuweather.com/currentconditions/v1/${key}?apikey=${process.env.REACT_APP_ACCUWEATHER_KEY}`
+        `http://dataservice.accuweather.com/currentconditions/v1/${key}?apikey=${accuWeatherKey}`
       )
 
       dispatch({
