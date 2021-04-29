@@ -5,10 +5,10 @@
 ## Usage
 
 ### `npm install`
-Intalls dependencies
+Intalls dependencies.
 
 ### `npm run start`
-Runs the app on the local server<br>
+Runs the app on the local server.<br>
 Opens http://localhost:3000
 
 ### `npm run build`
