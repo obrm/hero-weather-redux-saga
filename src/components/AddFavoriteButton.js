@@ -48,7 +48,7 @@ const AddFavoriteButton = () => {
         )}
       </Badge>
       <span className='fav-text'>
-        {isFavorite ? `Remove to favorites` : `Add to favorites`}
+        {isFavorite ? `Remove from favorites` : `Add to favorites`}
       </span>
     </Button>
   )
