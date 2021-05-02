@@ -1,6 +1,7 @@
-import React, { useState } from 'react'
+import React, { useState, useCallback } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Form, Col } from 'react-bootstrap'
+import { debounce } from 'lodash'
 
 import { getAutoCompleteResults } from '../Redux/actions/autoCompleteActions'
 import {
@@ -22,11 +23,18 @@ const SearchBox = () => {
   const autoComplete = useSelector((state) => state.autoComplete)
   const { results } = autoComplete
 
-  const onChangeHandler = async (text) => {
-    if (text !== '') {
-      dispatch(getAutoCompleteResults(text))
-    }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  const debouncedDispatch = useCallback(
+    debounce((value) => {
+      console.log(value)
+      dispatch(getAutoCompleteResults(value))
+    }, 1000),
+    []
+  )
+
+  const onChangeHandler = (text) => {
     setText(text)
+    debouncedDispatch(text)
   }
 
   const onSubmitHandler = ({ location, cityName }) => {
