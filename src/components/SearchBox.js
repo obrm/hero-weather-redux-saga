@@ -26,7 +26,6 @@ const SearchBox = () => {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   const debouncedDispatch = useCallback(
     debounce((value) => {
-      console.log(value)
       dispatch(getAutoCompleteResults(value))
     }, 1000),
     []
