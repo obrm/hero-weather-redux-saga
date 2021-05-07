@@ -87,8 +87,16 @@ const HomePage = () => {
       dispatch(getCurrentWeather())
       dispatch(getFiveDaysWeather())
     }
+
     // eslint-disable-next-line
   }, [dispatch, location.coords, isSearch])
+
+  useEffect(() => {
+    document.title = `Hero Weather (${cityField})`
+    return () => {
+      document.title = `Hero Weather Favorites`
+    }
+  }, [cityField])
 
   return (
     <>
