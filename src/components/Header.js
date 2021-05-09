@@ -4,7 +4,7 @@ import { LinkContainer } from 'react-router-bootstrap'
 import DarkModeToggle from 'react-dark-mode-toggle'
 
 const getThemeFromStorage = () => {
-  let theme = true
+  let theme = false
   if (localStorage.getItem('theme')) {
     theme = JSON.parse(localStorage.getItem('theme'))
   }
