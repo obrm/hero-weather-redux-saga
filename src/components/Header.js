@@ -1,7 +1,30 @@
+import React, { useState, useEffect } from 'react'
 import { Navbar, Nav, Container } from 'react-bootstrap'
 import { LinkContainer } from 'react-router-bootstrap'
+import DarkModeToggle from 'react-dark-mode-toggle'
+
+const getThemeFromStorage = () => {
+  let theme = true
+  if (localStorage.getItem('theme')) {
+    theme = JSON.parse(localStorage.getItem('theme'))
+  }
+  return theme
+}
 
 const Header = () => {
+  const [isDarkMode, setIsDarkMode] = useState(getThemeFromStorage())
+
+  useEffect(() => {
+    if (isDarkMode) {
+      document.documentElement.className = 'light'
+      document.body.style.backgroundColor = '#f4f4f4'
+    } else {
+      document.documentElement.className = 'dark'
+      document.body.style.backgroundColor = '#222'
+    }
+    localStorage.setItem('theme', isDarkMode)
+  }, [isDarkMode])
+
   return (
     <header>
       <Navbar
@@ -37,6 +60,12 @@ const Header = () => {
                 </Nav.Link>
               </LinkContainer>
             </Nav>
+            <DarkModeToggle
+              className='toggler'
+              size={50}
+              onChange={setIsDarkMode}
+              checked={isDarkMode}
+            />
           </Navbar.Collapse>
         </Container>
       </Navbar>

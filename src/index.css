@@ -1,3 +1,13 @@
+.dark {
+  background-color: #222 !important;
+  color: #fff !important;
+}
+
+.light {
+  background-color: #f4f4f4 !important;
+  color: #222;
+}
+
 .logo {
   color: #fff;
   text-decoration: none;
@@ -78,6 +88,7 @@
 .card-img-overlay h3 {
   margin-top: 1rem;
   font-weight: 800;
+  color: #fff;
 }
 
 .weather-text {
@@ -107,11 +118,13 @@
 .card-text,
 .card-title {
   margin-bottom: 0;
+  color: #fff;
 }
 
 .card-text-favorite {
   font-weight: 800;
   font-size: 1.5rem;
+  color: #fff;
 }
 
 /* Flex Columns */
@@ -120,6 +133,11 @@
   flex-direction: column;
   flex-basis: 100%;
   flex: 1;
+}
+
+.column h4,
+.column p {
+  color: #fff;
 }
 
 .favorites-grid {
@@ -137,6 +155,7 @@
 
 .l-heading {
   font-size: 6rem;
+  color: #fff;
 }
 
 @media (max-width: 1366px) {
