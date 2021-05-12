@@ -50,11 +50,7 @@ const FavoriteItem = ({
         loading='lazy'
       />
       <Card.ImgOverlay className='text-center'>
-        <h3
-          style={{ fontSize: favoriteCityName.length >= 8 ? '1.5rem' : '2rem' }}
-        >
-          {favoriteCityName}
-        </h3>
+        <h3 style={{ fontSize: '1.5rem' }}>{favoriteCityName}</h3>
         <img
           src={`/img/weather-icons/${WeatherIcon}-s.png`}
           alt='weather icon'

@@ -22,7 +22,7 @@ const HomePage = () => {
     Value: null,
   })
 
-  const [cityNameField, setCityNameField] = useState('Tel-Aviv')
+  const [cityNameField, setCityNameField] = useState('')
 
   const geolocationPosition = useGeolocation()
 
@@ -41,23 +41,47 @@ const HomePage = () => {
   const { error: fiveDaysWeatherError } = fiveDaysWeather
 
   const favorites = useSelector((state) => state.favorites)
-  const { showCityFromFavorites, favoriteCityName } = favorites
+  const { showCityFromFavorites, favoriteCityName: cityFromFavorites } =
+    favorites
 
   useEffect(() => {
-    if (favoriteCityName) {
-      setCityNameField(favoriteCityName)
-    }
+    const geolocationEnabled =
+      geolocationPosition.coords && !isSearch && !showCityFromFavorites
+    const cityFromGeolocation =
+      cityFromCoords && !isSearch && !showCityFromFavorites
+    const cityNotBySearchNotFromFavorites = !isSearch && !showCityFromFavorites
 
-    if (
+    if (geolocationEnabled) {
+      const { latitude, longitude } = geolocationPosition.coords
+      dispatch(getCityByCoords(latitude, longitude))
+    }
+    if (cityFromGeolocation) {
+      dispatch(getCurrentWeather(cityFromCoords.Key))
+      dispatch(getFiveDaysWeather(cityFromCoords.Key))
+    } else if (cityNotBySearchNotFromFavorites) {
+      dispatch(getCurrentWeather())
+      dispatch(getFiveDaysWeather())
+    }
+    // eslint-disable-next-line
+  }, [dispatch, geolocationPosition.coords, isSearch])
+
+  useEffect(() => {
+    const cityFromGeolocation =
       geolocationPosition.coords &&
       cityFromCoords &&
       !currentWeatherCityName &&
-      !favoriteCityName
-    ) {
+      !cityFromFavorites
+    const defaultCity = currentWeatherCityName && !cityFromFavorites
+
+    if (cityFromFavorites) {
+      setCityNameField(cityFromFavorites)
+    }
+
+    if (cityFromGeolocation) {
       setCityNameField(cityFromCoords.EnglishName)
     }
 
-    if (currentWeatherCityName && !favoriteCityName) {
+    if (defaultCity) {
       setCityNameField(currentWeatherCityName)
     }
 
@@ -79,28 +103,6 @@ const HomePage = () => {
   const weatherImage = !loading
     ? weatherImageChooser(WeatherText)
     : 'cloudy-day'
-
-  useEffect(() => {
-    const geolocationEnabled =
-      geolocationPosition.coords && !isSearch && !showCityFromFavorites
-
-    if (geolocationEnabled) {
-      const { latitude, longitude } = geolocationPosition.coords
-      dispatch(getCityByCoords(latitude, longitude))
-    }
-    const cityFromGeolocation =
-      cityFromCoords && !isSearch && !showCityFromFavorites
-    const cityNotBySearchNotFromFavorites = !isSearch && !showCityFromFavorites
-    if (cityFromGeolocation) {
-      dispatch(getCurrentWeather(cityFromCoords.Key))
-      dispatch(getFiveDaysWeather(cityFromCoords.Key))
-    } else if (cityNotBySearchNotFromFavorites) {
-      dispatch(getCurrentWeather())
-      dispatch(getFiveDaysWeather())
-    }
-
-    // eslint-disable-next-line
-  }, [dispatch, geolocationPosition.coords, isSearch])
 
   useEffect(() => {
     document.title = `Hero Weather (${cityNameField})`
