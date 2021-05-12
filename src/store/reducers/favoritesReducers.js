@@ -3,6 +3,10 @@ import {
   FAVORITE_REMOVE_ITEM,
   FAVORITE_RESET_ITEM,
   FAVORITE_SHOW_ITEM,
+  FAVORITE_ITEMS_WEATHER_REQUEST,
+  FAVORITE_ITEMS_WEATHER_SUCCESS,
+  FAVORITE_ITEMS_WEATHER_FAIL,
+  FAVORITE_ITEMS_WEATHER_RESET,
 } from '../constants/favoritesConstants'
 
 export const favoritesReducer = (
@@ -10,6 +14,7 @@ export const favoritesReducer = (
     favoritesWeatherItems: [],
     showCityFromFavorites: false,
     favoriteCityName: null,
+    favoritesItemsWeather: [],
   },
   action
 ) => {
@@ -40,6 +45,17 @@ export const favoritesReducer = (
         showCityFromFavorites: false,
         favoriteCityName: null,
       }
+    case FAVORITE_ITEMS_WEATHER_REQUEST:
+      return { ...state, loading: true }
+    case FAVORITE_ITEMS_WEATHER_SUCCESS:
+      return {
+        loading: false,
+        favoritesItemsWeather: [...state.favoritesItemsWeather, payload],
+      }
+    case FAVORITE_ITEMS_WEATHER_FAIL:
+      return { loading: false, error: payload }
+    case FAVORITE_ITEMS_WEATHER_RESET:
+      return { ...state, favoritesItemsWeather: [] }
     default:
       return state
   }

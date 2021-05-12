@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
-import { getFavoritesWeather } from '../store/actions/weatherActions'
+import { getFavoritesWeather } from '../store/actions/favoritesActions'
 import Spinner from '../components/layout/Spinner'
 import ErrorToast from '../components/ErrorToast'
 import FavoriteItem from '../components/FavoriteItem'
@@ -10,10 +10,8 @@ const FavoritesPage = () => {
   const dispatch = useDispatch()
 
   const favorites = useSelector((state) => state.favorites)
-  const { favoritesWeatherItems } = favorites
-
-  const favoritesWeather = useSelector((state) => state.favoritesWeather)
-  const { loading, favoritesItemsWeather, error } = favoritesWeather
+  const { favoritesWeatherItems, loading, favoritesItemsWeather, error } =
+    favorites
 
   useEffect(() => {
     dispatch(getFavoritesWeather())
