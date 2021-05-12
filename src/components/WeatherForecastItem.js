@@ -28,8 +28,8 @@ const WeatherForecastItem = ({
 
   day = weekday[day]
 
-  const fiveDaysWeather = useSelector((state) => state.fiveDaysWeather)
-  const { loading, error } = fiveDaysWeather
+  const weather = useSelector((state) => state.weather)
+  const { loading, error } = weather
 
   const roundedTemperature = Math.round(parseFloat(Value))
 

@@ -1,11 +1,8 @@
 import axios from 'axios'
 import {
-  CURRENT_WEATHER_REQUEST,
-  CURRENT_WEATHER_SUCCESS,
-  CURRENT_WEATHER_FAIL,
-  FIVE_DAYS_WEATHER_REQUEST,
-  FIVE_DAYS_WEATHER_SUCCESS,
-  FIVE_DAYS_WEATHER_FAIL,
+  WEATHER_REQUEST,
+  WEATHER_SUCCESS,
+  WEATHER_FAIL,
   FAVORITE_ITEMS_WEATHER_REQUEST,
   FAVORITE_ITEMS_WEATHER_SUCCESS,
   FAVORITE_ITEMS_WEATHER_FAIL,
@@ -15,60 +12,45 @@ import {
 } from '../constants/weatherConstants'
 import { getCityByName } from '../helper/getCityByName'
 
-export const getCurrentWeather =
+export const getWeather =
   (location = DEFAULT_LOCATION, currentWeatherCityName = DEFAULT_CITY_NAME) =>
   async (dispatch) => {
-    try {
-      dispatch({ type: CURRENT_WEATHER_REQUEST })
+    dispatch({ type: WEATHER_REQUEST })
 
-      const { data } = await axios.get(
-        `https://dataservice.accuweather.com/currentconditions/v1/${location}?apikey=${process.env.REACT_APP_ACCUWEATHER_KEY}`
-      )
+    const currentWeather = axios.get(
+      `https://dataservice.accuweather.com/currentconditions/v1/${location}?apikey=${process.env.REACT_APP_ACCUWEATHER_KEY}`
+    )
 
-      dispatch({
-        type: CURRENT_WEATHER_SUCCESS,
-        payload: { data: data[0], currentWeatherCityName },
+    const fiveDaysForecast = axios.get(
+      `https://dataservice.accuweather.com/forecasts/v1/daily/5day/${location}?apikey=${process.env.REACT_APP_ACCUWEATHER_KEY}&metric=true`
+    )
+
+    Promise.all([currentWeather, fiveDaysForecast])
+      .then((response) => {
+        dispatch({
+          type: WEATHER_SUCCESS,
+          payload: {
+            currentWeatherData: response[0].data[0],
+            currentWeatherCityName,
+            fiveDaysForecast: response[1].data.DailyForecasts,
+          },
+        })
       })
-    } catch (error) {
-      dispatch({
-        type: CURRENT_WEATHER_FAIL,
-        payload:
-          error.response && error.response.data.message
-            ? error.response.data.message
-            : error.message,
+      .catch((error) => {
+        dispatch({
+          type: WEATHER_FAIL,
+          payload:
+            error.response && error.response.data.message
+              ? error.response.data.message
+              : error.message,
+        })
       })
-    }
-  }
-
-export const getFiveDaysWeather =
-  (location = DEFAULT_LOCATION) =>
-  async (dispatch) => {
-    try {
-      dispatch({ type: FIVE_DAYS_WEATHER_REQUEST })
-
-      const { data } = await axios.get(
-        `https://dataservice.accuweather.com/forecasts/v1/daily/5day/${location}?apikey=${process.env.REACT_APP_ACCUWEATHER_KEY}&metric=true`
-      )
-
-      dispatch({
-        type: FIVE_DAYS_WEATHER_SUCCESS,
-        payload: data,
-      })
-    } catch (error) {
-      dispatch({
-        type: FIVE_DAYS_WEATHER_FAIL,
-        payload:
-          error.response && error.response.data.message
-            ? error.response.data.message
-            : error.message,
-      })
-    }
   }
 
 export const getFavoritesWeather = () => async (dispatch, getState) => {
   dispatch({ type: FAVORITE_ITEMS_WEATHER_RESET })
 
-  const favorites = getState().favorites.favoritesItems
+  const favorites = getState().favorites.favoritesWeatherItems
 
   favorites.forEach(async (favorite) => {
     try {

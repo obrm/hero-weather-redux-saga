@@ -12,7 +12,7 @@ export const addToFavorites =
 
     localStorage.setItem(
       'favorites',
-      JSON.stringify(getState().favorites.favoritesItems)
+      JSON.stringify(getState().favorites.favoritesWeatherItems)
     )
   }
 
@@ -25,6 +25,6 @@ export const removeFromFavorites =
 
     localStorage.setItem(
       'favorites',
-      JSON.stringify(getState().favorites.favoritesItems)
+      JSON.stringify(getState().favorites.favoritesWeatherItems)
     )
   }

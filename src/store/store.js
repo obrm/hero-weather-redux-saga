@@ -1,9 +1,10 @@
 import { createStore, combineReducers, applyMiddleware } from 'redux'
 import thunk from 'redux-thunk'
+// saga
+// import createSagaMiddleware from 'redux-saga'
 import { composeWithDevTools } from 'redux-devtools-extension'
 import {
-  currentWeatherReducer,
-  fiveDaysWeatherReducer,
+  weatherReducer,
   favoritesWeatherReducer,
 } from './reducers/weatherReducers'
 import { cityByCoordsReducer } from './reducers/cityByCoordsReducers'
@@ -11,10 +12,9 @@ import { favoritesReducer } from './reducers/favoritesReducers'
 import { autoCompleteReducer } from './reducers/autoCompleteReducers'
 
 const reducer = combineReducers({
+  weather: weatherReducer,
   cityByCoords: cityByCoordsReducer,
-  currentWeather: currentWeatherReducer,
   autoComplete: autoCompleteReducer,
-  fiveDaysWeather: fiveDaysWeatherReducer,
   favoritesWeather: favoritesWeatherReducer,
   favorites: favoritesReducer,
 })
@@ -24,10 +24,13 @@ const favoritesFromStorage = localStorage.getItem('favorites')
   : []
 
 const initialState = {
-  favorites: { favoritesItems: favoritesFromStorage },
+  favorites: { favoritesWeatherItems: favoritesFromStorage },
 }
 
 const middleware = [thunk]
+// const sagaMiddleware = createSagaMiddleware()
+
+// sagaMiddleware.run()
 
 const store = createStore(
   reducer,

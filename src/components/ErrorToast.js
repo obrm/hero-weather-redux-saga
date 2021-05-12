@@ -5,20 +5,17 @@ import { Toast } from 'react-bootstrap'
 const ErrorToast = () => {
   const [show, setShow] = useState(false)
 
-  const currentWeather = useSelector((state) => state.currentWeather)
-  const { error } = currentWeather
-
-  const fiveDaysWeather = useSelector((state) => state.fiveDaysWeather)
-  const { error: fiveDaysWeatherError } = fiveDaysWeather
+  const weather = useSelector((state) => state.weather)
+  const { error } = weather
 
   const favoritesWeather = useSelector((state) => state.favoritesWeather)
   const { error: favoritesWeatherError } = favoritesWeather
 
   useEffect(() => {
-    if (error || favoritesWeatherError || fiveDaysWeatherError) {
+    if (error || favoritesWeatherError) {
       setShow(true)
     }
-  }, [error, favoritesWeatherError, fiveDaysWeatherError])
+  }, [error, favoritesWeatherError])
 
   const hideToast = () => setShow(false)
 

@@ -12,24 +12,24 @@ const AddFavoriteButton = () => {
 
   const dispatch = useDispatch()
 
-  const currentWeather = useSelector((state) => state.currentWeather)
-  const { currentWeatherCityName } = currentWeather
+  const weather = useSelector((state) => state.weather)
+  const { currentWeatherCityName } = weather
 
   const favorites = useSelector((state) => state.favorites)
-  const { favoritesItems } = favorites
+  const { favoritesWeatherItems } = favorites
 
   useEffect(() => {
     let check = false
 
-    if (favoritesItems.length > 0) {
-      check = favoritesItems.find(
+    if (favoritesWeatherItems.length > 0) {
+      check = favoritesWeatherItems.find(
         (fav) => fav.favoriteCityName === currentWeatherCityName
       )
     }
     if (check) {
       setIsFavorite(true)
     }
-  }, [currentWeatherCityName, favoritesItems])
+  }, [currentWeatherCityName, favoritesWeatherItems])
 
   const favoritesButtonHandler = () => {
     if (isFavorite) {

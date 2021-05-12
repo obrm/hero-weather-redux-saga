@@ -3,10 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { Jumbotron, Row, Col } from 'react-bootstrap'
 
 import { weatherImageChooser } from '../components/helper/weatherImageChooser'
-import {
-  getCurrentWeather,
-  getFiveDaysWeather,
-} from '../store/actions/weatherActions'
+import { getWeather } from '../store/actions/weatherActions'
 import { getCityByCoords } from '../store/actions/cityByCoordsActions'
 import Spinner from '../components/layout/Spinner'
 import AddFavoriteButton from '../components/AddFavoriteButton'
@@ -28,17 +25,14 @@ const HomePage = () => {
 
   const dispatch = useDispatch()
 
-  const currentWeather = useSelector((state) => state.currentWeather)
-  const { loading, error, weather, currentWeatherCityName } = currentWeather
+  const weather = useSelector((state) => state.weather)
+  const { loading, error, currentWeather, currentWeatherCityName } = weather
 
   const cityByCoords = useSelector((state) => state.cityByCoords)
   const { cityFromCoords } = cityByCoords
 
   const autoComplete = useSelector((state) => state.autoComplete)
   const { isSearch } = autoComplete
-
-  const fiveDaysWeather = useSelector((state) => state.fiveDaysWeather)
-  const { error: fiveDaysWeatherError } = fiveDaysWeather
 
   const favorites = useSelector((state) => state.favorites)
   const { showCityFromFavorites, favoriteCityName: cityFromFavorites } =
@@ -56,11 +50,9 @@ const HomePage = () => {
       dispatch(getCityByCoords(latitude, longitude))
     }
     if (cityFromGeolocation) {
-      dispatch(getCurrentWeather(cityFromCoords.Key))
-      dispatch(getFiveDaysWeather(cityFromCoords.Key))
+      dispatch(getWeather(cityFromCoords.Key))
     } else if (cityNotBySearchNotFromFavorites) {
-      dispatch(getCurrentWeather())
-      dispatch(getFiveDaysWeather())
+      dispatch(getWeather())
     }
     // eslint-disable-next-line
   }, [dispatch, geolocationPosition.coords, isSearch])
@@ -85,16 +77,16 @@ const HomePage = () => {
       setCityNameField(currentWeatherCityName)
     }
 
-    if (weather) {
+    if (currentWeather) {
       setApiWeatherFields({
         ...apiWeatherFields,
-        WeatherText: weather.WeatherText,
-        WeatherIcon: weather.WeatherIcon,
-        Value: weather.Temperature.Metric.Value,
+        WeatherText: currentWeather.WeatherText,
+        WeatherIcon: currentWeather.WeatherIcon,
+        Value: currentWeather.Temperature.Metric.Value,
       })
     }
     // eslint-disable-next-line
-  }, [weather])
+  }, [currentWeather])
 
   const { WeatherText, WeatherIcon, Value } = apiWeatherFields
 
@@ -120,7 +112,7 @@ const HomePage = () => {
       </Row>
       {loading ? (
         <Spinner />
-      ) : error || fiveDaysWeatherError ? (
+      ) : error ? (
         <ErrorToast />
       ) : (
         <Jumbotron>

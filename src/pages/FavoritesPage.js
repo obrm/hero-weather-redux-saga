@@ -10,10 +10,10 @@ const FavoritesPage = () => {
   const dispatch = useDispatch()
 
   const favorites = useSelector((state) => state.favorites)
-  const { favoritesItems } = favorites
+  const { favoritesWeatherItems } = favorites
 
   const favoritesWeather = useSelector((state) => state.favoritesWeather)
-  const { loading, favoritesWeatherItems, error } = favoritesWeather
+  const { loading, favoritesItemsWeather, error } = favoritesWeather
 
   useEffect(() => {
     dispatch(getFavoritesWeather())
@@ -26,14 +26,14 @@ const FavoritesPage = () => {
         <Spinner />
       ) : error ? (
         <ErrorToast />
-      ) : favoritesItems.length === 0 ? (
+      ) : favoritesWeatherItems.length === 0 ? (
         <h4>There are no favorites yet</h4>
       ) : (
-        favoritesItems &&
+        favoritesWeatherItems &&
         !loading &&
-        favoritesWeatherItems && (
+        favoritesItemsWeather && (
           <div className='favorites-grid text-center'>
-            {favoritesWeatherItems.map((fav) => (
+            {favoritesItemsWeather.map((fav) => (
               <FavoriteItem
                 favoriteCityName={fav.favoriteCityName}
                 weather={fav.weather}

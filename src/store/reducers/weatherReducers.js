@@ -1,61 +1,48 @@
 import {
-  CURRENT_WEATHER_REQUEST,
-  CURRENT_WEATHER_SUCCESS,
-  CURRENT_WEATHER_FAIL,
-  CURRENT_WEATHER_RESET,
-  FIVE_DAYS_WEATHER_REQUEST,
-  FIVE_DAYS_WEATHER_SUCCESS,
-  FIVE_DAYS_WEATHER_FAIL,
-  FIVE_DAYS_WEATHER_RESET,
+  WEATHER_REQUEST,
+  WEATHER_SUCCESS,
+  WEATHER_FAIL,
+  WEATHER_RESET,
   FAVORITE_ITEMS_WEATHER_REQUEST,
   FAVORITE_ITEMS_WEATHER_SUCCESS,
   FAVORITE_ITEMS_WEATHER_FAIL,
   FAVORITE_ITEMS_WEATHER_RESET,
 } from '../constants/weatherConstants'
 
-export const currentWeatherReducer = (
-  state = { weather: null, currentWeatherCityName: null },
+export const weatherReducer = (
+  state = {
+    currentWeather: null,
+    currentWeatherCityName: null,
+    fiveDaysForecast: null,
+  },
   action
 ) => {
   const { type, payload } = action
-
   switch (type) {
-    case CURRENT_WEATHER_REQUEST:
+    case WEATHER_REQUEST:
       return { ...state, loading: true }
-    case CURRENT_WEATHER_SUCCESS:
+    case WEATHER_SUCCESS:
       return {
         loading: false,
-        weather: payload.data,
+        currentWeather: payload.currentWeatherData,
         currentWeatherCityName: payload.currentWeatherCityName,
+        fiveDaysForecast: payload.fiveDaysForecast,
       }
-    case CURRENT_WEATHER_FAIL:
+    case WEATHER_FAIL:
       return { loading: false, error: payload }
-    case CURRENT_WEATHER_RESET:
-      return { ...state, weather: null, currentWeatherCityName: null }
-    default:
-      return state
-  }
-}
-
-export const fiveDaysWeatherReducer = (state = { forecast: null }, action) => {
-  const { type, payload } = action
-
-  switch (type) {
-    case FIVE_DAYS_WEATHER_REQUEST:
-      return { ...state, loading: true }
-    case FIVE_DAYS_WEATHER_SUCCESS:
-      return { loading: false, forecast: payload }
-    case FIVE_DAYS_WEATHER_FAIL:
-      return { loading: false, error: payload }
-    case FIVE_DAYS_WEATHER_RESET:
-      return { forecast: null }
+    case WEATHER_RESET:
+      return {
+        currentWeather: null,
+        currentWeatherCityName: null,
+        fiveDaysForecast: null,
+      }
     default:
       return state
   }
 }
 
 export const favoritesWeatherReducer = (
-  state = { favoritesWeatherItems: [] },
+  state = { favoritesItemsWeather: [] },
   action
 ) => {
   const { type, payload } = action
@@ -66,12 +53,12 @@ export const favoritesWeatherReducer = (
     case FAVORITE_ITEMS_WEATHER_SUCCESS:
       return {
         loading: false,
-        favoritesWeatherItems: [...state.favoritesWeatherItems, payload],
+        favoritesItemsWeather: [...state.favoritesItemsWeather, payload],
       }
     case FAVORITE_ITEMS_WEATHER_FAIL:
       return { loading: false, error: payload }
     case FAVORITE_ITEMS_WEATHER_RESET:
-      return { ...state, favoritesWeatherItems: [] }
+      return { ...state, favoritesItemsWeather: [] }
     default:
       return state
   }

@@ -4,16 +4,10 @@ import { Form, Col } from 'react-bootstrap'
 import { debounce } from 'lodash'
 
 import { getAutoCompleteResults } from '../store/actions/autoCompleteActions'
-import {
-  getCurrentWeather,
-  getFiveDaysWeather,
-} from '../store/actions/weatherActions'
+import { getWeather } from '../store/actions/weatherActions'
 import { AUTO_COMPLETE_RESET } from '../store/constants/autoCompleteConstants'
 import { FAVORITE_RESET_ITEM } from '../store/constants/favoritesConstants'
-import {
-  CURRENT_WEATHER_RESET,
-  FIVE_DAYS_WEATHER_RESET,
-} from '../store/constants/weatherConstants'
+import { WEATHER_RESET } from '../store/constants/weatherConstants'
 
 const SearchBox = () => {
   const [text, setText] = useState('')
@@ -48,11 +42,9 @@ const SearchBox = () => {
   }
 
   const onClickHandler = (location, cityName) => {
-    dispatch({ type: CURRENT_WEATHER_RESET })
-    dispatch({ type: FIVE_DAYS_WEATHER_RESET })
+    dispatch({ type: WEATHER_RESET })
     dispatch({ type: FAVORITE_RESET_ITEM })
-    dispatch(getCurrentWeather(location, cityName))
-    dispatch(getFiveDaysWeather(location))
+    dispatch(getWeather(location, cityName))
     dispatch({ type: AUTO_COMPLETE_RESET })
     setText('')
   }
