@@ -9,7 +9,7 @@ import {
 
 const AddFavoriteButton = () => {
   const [isFavorite, setIsFavorite] = useState(false)
-  // test
+
   const dispatch = useDispatch()
 
   const weather = useSelector((state) => state.weather)
