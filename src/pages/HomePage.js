@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Jumbotron, Row, Col } from 'react-bootstrap'
+import { Helmet } from 'react-helmet'
 
 import { weatherImageChooser } from '../components/helper/weatherImageChooser'
 import { getWeather } from '../store/actions/weatherActions'
@@ -96,15 +97,11 @@ const HomePage = () => {
     ? weatherImageChooser(WeatherText)
     : 'cloudy-day'
 
-  useEffect(() => {
-    document.title = `Hero Weather (${cityNameField})`
-    return () => {
-      document.title = `Hero Weather Favorites`
-    }
-  }, [cityNameField])
-
   return (
     <>
+      <Helmet>
+        <title>Hero Weather ({cityNameField})</title>
+      </Helmet>
       <Row className='justify-content-md-center mb-5'>
         <Col md='auto'>
           <SearchBox />

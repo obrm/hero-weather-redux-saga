@@ -49,11 +49,12 @@ export const favoritesReducer = (
       return { ...state, loading: true }
     case FAVORITE_ITEMS_WEATHER_SUCCESS:
       return {
+        ...state,
         loading: false,
         favoritesItemsWeather: [...state.favoritesItemsWeather, payload],
       }
     case FAVORITE_ITEMS_WEATHER_FAIL:
-      return { loading: false, error: payload }
+      return { ...state, loading: false, error: payload }
     case FAVORITE_ITEMS_WEATHER_RESET:
       return { ...state, favoritesItemsWeather: [] }
     default:

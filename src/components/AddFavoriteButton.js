@@ -21,7 +21,7 @@ const AddFavoriteButton = () => {
   useEffect(() => {
     let check = false
 
-    if (favoritesWeatherItems.length > 0) {
+    if (favoritesWeatherItems && favoritesWeatherItems.length > 0) {
       check = favoritesWeatherItems.find(
         (fav) => fav.favoriteCityName === currentWeatherCityName
       )
