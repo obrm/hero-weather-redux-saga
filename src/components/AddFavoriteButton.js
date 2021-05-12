@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import {
   addToFavorites,
   removeFromFavorites,
-} from '../Redux/actions/favoritesActions'
+} from '../store/actions/favoritesActions'
 
 const AddFavoriteButton = () => {
   const [isFavorite, setIsFavorite] = useState(false)
@@ -13,7 +13,7 @@ const AddFavoriteButton = () => {
   const dispatch = useDispatch()
 
   const currentWeather = useSelector((state) => state.currentWeather)
-  const { cityName } = currentWeather
+  const { currentWeatherCityName } = currentWeather
 
   const favorites = useSelector((state) => state.favorites)
   const { favoritesItems } = favorites
@@ -22,19 +22,21 @@ const AddFavoriteButton = () => {
     let check = false
 
     if (favoritesItems.length > 0) {
-      check = favoritesItems.find((fav) => fav.cityName === cityName)
+      check = favoritesItems.find(
+        (fav) => fav.favoriteCityName === currentWeatherCityName
+      )
     }
     if (check) {
       setIsFavorite(true)
     }
-  }, [cityName, favoritesItems])
+  }, [currentWeatherCityName, favoritesItems])
 
   const favoritesButtonHandler = () => {
     if (isFavorite) {
-      dispatch(removeFromFavorites(cityName))
+      dispatch(removeFromFavorites(currentWeatherCityName))
       setIsFavorite(false)
     } else {
-      dispatch(addToFavorites(cityName))
+      dispatch(addToFavorites(currentWeatherCityName))
     }
   }
 

@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
-import { getFavoritesWeather } from '../Redux/actions/weatherActions'
+import { getFavoritesWeather } from '../store/actions/weatherActions'
 import Spinner from '../components/layout/Spinner'
 import ErrorToast from '../components/ErrorToast'
 import FavoriteItem from '../components/FavoriteItem'
@@ -35,7 +35,7 @@ const FavoritesPage = () => {
           <div className='favorites-grid text-center'>
             {favoritesWeatherItems.map((fav) => (
               <FavoriteItem
-                cityName={fav.cityName}
+                favoriteCityName={fav.favoriteCityName}
                 weather={fav.weather}
                 key={fav.key}
                 cityKey={fav.key}

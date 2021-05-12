@@ -6,8 +6,8 @@ import { weatherImageChooser } from '../components/helper/weatherImageChooser'
 import {
   getCurrentWeather,
   getFiveDaysWeather,
-} from '../Redux/actions/weatherActions'
-import { getCityByCoords } from '../Redux/actions/cityActions'
+} from '../store/actions/weatherActions'
+import { getCityByCoords } from '../store/actions/cityByCoordsActions'
 import Spinner from '../components/layout/Spinner'
 import AddFavoriteButton from '../components/AddFavoriteButton'
 import SearchBox from '../components/SearchBox'
@@ -16,22 +16,23 @@ import useGeolocation from '../components/hooks/useGeolocation'
 import FiveDaysForecast from '../components/FiveDaysForecast'
 
 const HomePage = () => {
-  const [weatherFields, setWeatherFields] = useState({
+  const [apiWeatherFields, setApiWeatherFields] = useState({
     WeatherText: null,
     WeatherIcon: null,
     Value: null,
   })
-  const [cityField, setCityField] = useState('Tel-Aviv')
 
-  const location = useGeolocation()
+  const [cityNameField, setCityNameField] = useState('Tel-Aviv')
+
+  const geolocationPosition = useGeolocation()
 
   const dispatch = useDispatch()
 
   const currentWeather = useSelector((state) => state.currentWeather)
-  const { loading, error, weather, cityName } = currentWeather
+  const { loading, error, weather, currentWeatherCityName } = currentWeather
 
   const cityByCoords = useSelector((state) => state.cityByCoords)
-  const { city } = cityByCoords
+  const { cityFromCoords } = cityByCoords
 
   const autoComplete = useSelector((state) => state.autoComplete)
   const { isSearch } = autoComplete
@@ -40,34 +41,38 @@ const HomePage = () => {
   const { error: fiveDaysWeatherError } = fiveDaysWeather
 
   const favorites = useSelector((state) => state.favorites)
-  const { showItem, favoriteCityName } = favorites
+  const { showCityFromFavorites, favoriteCityName } = favorites
 
   useEffect(() => {
     if (favoriteCityName) {
-      setCityField(favoriteCityName)
+      setCityNameField(favoriteCityName)
     }
 
-    if (location.coords && city && !cityName && !favoriteCityName) {
-      setCityField(city.EnglishName)
+    if (
+      geolocationPosition.coords &&
+      cityFromCoords &&
+      !currentWeatherCityName &&
+      !favoriteCityName
+    ) {
+      setCityNameField(cityFromCoords.EnglishName)
     }
 
-    if (cityName && !favoriteCityName) {
-      setCityField(cityName)
+    if (currentWeatherCityName && !favoriteCityName) {
+      setCityNameField(currentWeatherCityName)
     }
 
     if (weather) {
-      setWeatherFields({
-        ...weatherFields,
+      setApiWeatherFields({
+        ...apiWeatherFields,
         WeatherText: weather.WeatherText,
         WeatherIcon: weather.WeatherIcon,
         Value: weather.Temperature.Metric.Value,
       })
     }
-
     // eslint-disable-next-line
   }, [weather])
 
-  const { WeatherText, WeatherIcon, Value } = weatherFields
+  const { WeatherText, WeatherIcon, Value } = apiWeatherFields
 
   const roundedTemperature = Math.round(parseFloat(Value))
 
@@ -76,27 +81,33 @@ const HomePage = () => {
     : 'cloudy-day'
 
   useEffect(() => {
-    if (location.coords && !isSearch && !showItem) {
-      const { latitude, longitude } = location.coords
+    const geolocationEnabled =
+      geolocationPosition.coords && !isSearch && !showCityFromFavorites
+
+    if (geolocationEnabled) {
+      const { latitude, longitude } = geolocationPosition.coords
       dispatch(getCityByCoords(latitude, longitude))
     }
-    if (city && !isSearch && !showItem) {
-      dispatch(getCurrentWeather(city.Key))
-      dispatch(getFiveDaysWeather(city.Key))
-    } else if (!isSearch && !showItem) {
+    const cityFromGeolocation =
+      cityFromCoords && !isSearch && !showCityFromFavorites
+    const cityNotBySearchNotFromFavorites = !isSearch && !showCityFromFavorites
+    if (cityFromGeolocation) {
+      dispatch(getCurrentWeather(cityFromCoords.Key))
+      dispatch(getFiveDaysWeather(cityFromCoords.Key))
+    } else if (cityNotBySearchNotFromFavorites) {
       dispatch(getCurrentWeather())
       dispatch(getFiveDaysWeather())
     }
 
     // eslint-disable-next-line
-  }, [dispatch, location.coords, isSearch])
+  }, [dispatch, geolocationPosition.coords, isSearch])
 
   useEffect(() => {
-    document.title = `Hero Weather (${cityField})`
+    document.title = `Hero Weather (${cityNameField})`
     return () => {
       document.title = `Hero Weather Favorites`
     }
-  }, [cityField])
+  }, [cityNameField])
 
   return (
     <>
@@ -125,7 +136,7 @@ const HomePage = () => {
               loading='lazy'
             />
             <div className='column'>
-              <h4>{cityField} </h4>
+              <h4>{cityNameField} </h4>
               <p className='ml-2'>{roundedTemperature} &deg;</p>
             </div>
           </div>

@@ -8,7 +8,7 @@ import {
 export const favoritesReducer = (
   state = {
     favoritesItems: [],
-    showItem: false,
+    showCityFromFavorites: false,
     favoriteCityName: null,
   },
   action
@@ -25,19 +25,19 @@ export const favoritesReducer = (
       return {
         ...state,
         favoritesItems: state.favoritesItems.filter(
-          (item) => item.cityName !== payload
+          (item) => item.favoriteCityName !== payload
         ),
       }
     case FAVORITE_SHOW_ITEM:
       return {
         ...state,
-        showItem: true,
+        showCityFromFavorites: true,
         favoriteCityName: payload,
       }
     case FAVORITE_RESET_ITEM:
       return {
         ...state,
-        showItem: false,
+        showCityFromFavorites: false,
         favoriteCityName: null,
       }
     default:

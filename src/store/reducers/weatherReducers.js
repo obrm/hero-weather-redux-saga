@@ -14,7 +14,7 @@ import {
 } from '../constants/weatherConstants'
 
 export const currentWeatherReducer = (
-  state = { weather: null, cityName: null },
+  state = { weather: null, currentWeatherCityName: null },
   action
 ) => {
   const { type, payload } = action
@@ -26,12 +26,12 @@ export const currentWeatherReducer = (
       return {
         loading: false,
         weather: payload.data,
-        cityName: payload.cityName,
+        currentWeatherCityName: payload.currentWeatherCityName,
       }
     case CURRENT_WEATHER_FAIL:
       return { loading: false, error: payload }
     case CURRENT_WEATHER_RESET:
-      return { ...state, weather: null, cityName: null }
+      return { ...state, weather: null, currentWeatherCityName: null }
     default:
       return state
   }

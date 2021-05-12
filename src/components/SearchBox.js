@@ -3,17 +3,17 @@ import { useDispatch, useSelector } from 'react-redux'
 import { Form, Col } from 'react-bootstrap'
 import { debounce } from 'lodash'
 
-import { getAutoCompleteResults } from '../Redux/actions/autoCompleteActions'
+import { getAutoCompleteResults } from '../store/actions/autoCompleteActions'
 import {
   getCurrentWeather,
   getFiveDaysWeather,
-} from '../Redux/actions/weatherActions'
-import { AUTO_COMPLETE_RESET } from '../Redux/constants/autoCompleteConstants'
-import { FAVORITE_RESET_ITEM } from '../Redux/constants/favoritesConstants'
+} from '../store/actions/weatherActions'
+import { AUTO_COMPLETE_RESET } from '../store/constants/autoCompleteConstants'
+import { FAVORITE_RESET_ITEM } from '../store/constants/favoritesConstants'
 import {
   CURRENT_WEATHER_RESET,
   FIVE_DAYS_WEATHER_RESET,
-} from '../Redux/constants/weatherConstants'
+} from '../store/constants/weatherConstants'
 
 const SearchBox = () => {
   const [text, setText] = useState('')
@@ -31,12 +31,23 @@ const SearchBox = () => {
     []
   )
 
-  const onChangeHandler = (text) => {
-    setText(text)
-    debouncedDispatch(text)
+  const onChangeHandler = (e) => {
+    if (e.target.value === '') {
+      dispatch({ type: AUTO_COMPLETE_RESET })
+      setText('')
+    }
+    setText(e.target.value)
+    debouncedDispatch(e.target.value)
   }
 
-  const onSubmitHandler = ({ location, cityName }) => {
+  const onBlurHandler = () => {
+    setTimeout(() => {
+      dispatch({ type: AUTO_COMPLETE_RESET })
+      setText('')
+    }, 100)
+  }
+
+  const onClickHandler = (location, cityName) => {
     dispatch({ type: CURRENT_WEATHER_RESET })
     dispatch({ type: FIVE_DAYS_WEATHER_RESET })
     dispatch({ type: FAVORITE_RESET_ITEM })
@@ -54,19 +65,8 @@ const SearchBox = () => {
             type='search'
             name='q'
             value={text}
-            onChange={(e) => {
-              if (e.target.value === '') {
-                dispatch({ type: AUTO_COMPLETE_RESET })
-                setText('')
-              }
-              onChangeHandler(e.target.value)
-            }}
-            onBlur={(e) => {
-              setTimeout(() => {
-                dispatch({ type: AUTO_COMPLETE_RESET })
-                setText('')
-              }, 100)
-            }}
+            onChange={onChangeHandler}
+            onBlur={onBlurHandler}
             placeholder='Search Location...'
             className='mr-sm-2 ml-sm-3 form-control'
           />
@@ -78,12 +78,7 @@ const SearchBox = () => {
             <Col
               key={i}
               className='suggestion'
-              onClick={(e) => {
-                onSubmitHandler({
-                  location: result.Key,
-                  cityName: result.LocalizedName,
-                })
-              }}
+              onClick={() => onClickHandler(result.Key, result.LocalizedName)}
             >
               {result.LocalizedName}
             </Col>

@@ -7,12 +7,12 @@ import { BrowserRouter as Router, useHistory } from 'react-router-dom'
 import {
   getCurrentWeather,
   getFiveDaysWeather,
-} from '../Redux/actions/weatherActions'
-import { FAVORITE_SHOW_ITEM } from '../Redux/constants/favoritesConstants'
+} from '../store/actions/weatherActions'
+import { FAVORITE_SHOW_ITEM } from '../store/constants/favoritesConstants'
 import { weatherImageChooser } from './helper/weatherImageChooser'
 
 const FavoriteItem = ({
-  cityName,
+  favoriteCityName,
   cityKey,
   weather: {
     WeatherText,
@@ -31,8 +31,8 @@ const FavoriteItem = ({
   const weatherImage = weatherImageChooser(WeatherText)
 
   const onClickHandler = () => {
-    dispatch({ type: FAVORITE_SHOW_ITEM, payload: cityName })
-    dispatch(getCurrentWeather(cityKey, cityName))
+    dispatch({ type: FAVORITE_SHOW_ITEM, payload: favoriteCityName })
+    dispatch(getCurrentWeather(cityKey, favoriteCityName))
     dispatch(getFiveDaysWeather(cityKey))
     history.push('/home')
   }
@@ -50,8 +50,10 @@ const FavoriteItem = ({
         loading='lazy'
       />
       <Card.ImgOverlay className='text-center'>
-        <h3 style={{ fontSize: cityName.length >= 8 ? '1.5rem' : '2rem' }}>
-          {cityName}
+        <h3
+          style={{ fontSize: favoriteCityName.length >= 8 ? '1.5rem' : '2rem' }}
+        >
+          {favoriteCityName}
         </h3>
         <img
           src={`/img/weather-icons/${WeatherIcon}-s.png`}
@@ -66,7 +68,7 @@ const FavoriteItem = ({
 }
 
 FavoriteItem.propTypes = {
-  cityName: PropTypes.string.isRequired,
+  favoriteCityName: PropTypes.string.isRequired,
   cityKey: PropTypes.string.isRequired,
   weather: PropTypes.object.isRequired,
 }
