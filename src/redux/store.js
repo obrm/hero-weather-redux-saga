@@ -3,10 +3,10 @@ import thunk from 'redux-thunk'
 // saga
 // import createSagaMiddleware from 'redux-saga'
 import { composeWithDevTools } from 'redux-devtools-extension'
-import { weatherReducer } from './reducers/weatherReducers'
-import { cityByCoordsReducer } from './reducers/cityByCoordsReducers'
-import { favoritesReducer } from './reducers/favoritesReducers'
-import { autoCompleteReducer } from './reducers/autoCompleteReducers'
+import { weatherReducer } from './weather/weatherReducers'
+import { cityByCoordsReducer } from './cityByCoords/cityByCoordsReducers'
+import { favoritesReducer } from './favorites/favoritesReducers'
+import { autoCompleteReducer } from './autoComplete/autoCompleteReducers'
 
 const reducer = combineReducers({
   weather: weatherReducer,

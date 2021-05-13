@@ -4,7 +4,7 @@ import {
   AUTO_COMPLETE_REQUEST,
   AUTO_COMPLETE_SUCCESS,
   AUTO_COMPLETE_FAIL,
-} from '../constants/autoCompleteConstants'
+} from './autoCompleteConstants.js'
 
 export const getAutoCompleteResults = (query) => async (dispatch) => {
   try {

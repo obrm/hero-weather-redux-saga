@@ -5,7 +5,7 @@ import {
   WEATHER_FAIL,
   DEFAULT_LOCATION,
   DEFAULT_CITY_NAME,
-} from '../constants/weatherConstants'
+} from './weatherConstants'
 
 export const getWeather =
   (location = DEFAULT_LOCATION, currentWeatherCityName = DEFAULT_CITY_NAME) =>

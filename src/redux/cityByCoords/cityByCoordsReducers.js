@@ -2,7 +2,7 @@ import {
   GET_CITY_BY_COORDS_REQUEST,
   GET_CITY_BY_COORDS_SUCCESS,
   GET_CITY_BY_COORDS_FAIL,
-} from '../constants/cityByCoordsConstants.js'
+} from './cityByCoordsConstants'
 
 export const cityByCoordsReducer = (
   state = { cityFromCoords: null },

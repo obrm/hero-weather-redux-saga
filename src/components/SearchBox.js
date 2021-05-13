@@ -3,10 +3,10 @@ import { useDispatch, useSelector } from 'react-redux'
 import { Form, Col } from 'react-bootstrap'
 import { debounce } from 'lodash'
 
-import { getAutoCompleteResults } from '../store/actions/autoCompleteActions'
-import { getWeather } from '../store/actions/weatherActions'
-import { AUTO_COMPLETE_RESET } from '../store/constants/autoCompleteConstants'
-import { GENERAL_RESET } from '../store/constants/generalConstants'
+import { getAutoCompleteResults } from '../redux/autoComplete/autoCompleteActions'
+import { getWeather } from '../redux/weather/weatherActions'
+import { AUTO_COMPLETE_RESET } from '../redux/autoComplete/autoCompleteConstants'
+import { GENERAL_RESET } from '../redux/general/generalConstants'
 
 const SearchBox = () => {
   const [text, setText] = useState('')

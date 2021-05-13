@@ -6,8 +6,8 @@ import {
   FAVORITE_ITEMS_WEATHER_SUCCESS,
   FAVORITE_ITEMS_WEATHER_FAIL,
   FAVORITE_ITEMS_WEATHER_RESET,
-} from '../constants/favoritesConstants'
-import { GENERAL_RESET } from '../constants/generalConstants'
+} from './favoritesConstants'
+import { GENERAL_RESET } from '../general/generalConstants'
 
 export const favoritesReducer = (
   state = {

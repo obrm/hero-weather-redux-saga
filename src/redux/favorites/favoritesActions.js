@@ -6,7 +6,7 @@ import {
   FAVORITE_ITEMS_WEATHER_SUCCESS,
   FAVORITE_ITEMS_WEATHER_FAIL,
   FAVORITE_ITEMS_WEATHER_RESET,
-} from '../constants/favoritesConstants'
+} from './favoritesConstants'
 import { getCityByName } from '../helper/getCityByName'
 
 export const addToFavorites =

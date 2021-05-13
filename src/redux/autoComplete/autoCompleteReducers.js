@@ -3,8 +3,8 @@ import {
   AUTO_COMPLETE_SUCCESS,
   AUTO_COMPLETE_FAIL,
   AUTO_COMPLETE_RESET,
-} from '../constants/autoCompleteConstants'
-import { GENERAL_RESET } from '../constants/generalConstants'
+} from './autoCompleteConstants.js'
+import { GENERAL_RESET } from '../general/generalConstants'
 
 export const autoCompleteReducer = (
   state = { results: [], isSearch: false },

@@ -2,8 +2,8 @@ import {
   WEATHER_REQUEST,
   WEATHER_SUCCESS,
   WEATHER_FAIL,
-} from '../constants/weatherConstants'
-import { GENERAL_RESET } from '../constants/generalConstants'
+} from './weatherConstants'
+import { GENERAL_RESET } from '../general/generalConstants'
 
 export const weatherReducer = (
   state = {

@@ -4,8 +4,8 @@ import PropTypes from 'prop-types'
 // eslint-disable-next-line no-unused-vars
 import { BrowserRouter as Router, useHistory } from 'react-router-dom'
 
-import { getWeather } from '../store/actions/weatherActions'
-import { FAVORITE_SHOW_ITEM } from '../store/constants/favoritesConstants'
+import { getWeather } from '../redux/weather/weatherActions'
+import { FAVORITE_SHOW_ITEM } from '../redux/favorites/favoritesConstants'
 import { weatherImageChooser } from './helper/weatherImageChooser'
 
 const FavoriteItem = ({

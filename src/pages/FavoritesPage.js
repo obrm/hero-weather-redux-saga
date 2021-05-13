@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Helmet } from 'react-helmet'
-import { getFavoritesWeather } from '../store/actions/favoritesActions'
+import { getFavoritesWeather } from '../redux/favorites/favoritesActions'
 import Spinner from '../components/layout/Spinner'
 import ErrorToast from '../components/ErrorToast'
 import FavoriteItem from '../components/FavoriteItem'
