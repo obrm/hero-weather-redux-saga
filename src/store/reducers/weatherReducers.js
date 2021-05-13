@@ -2,8 +2,8 @@ import {
   WEATHER_REQUEST,
   WEATHER_SUCCESS,
   WEATHER_FAIL,
-  WEATHER_RESET,
 } from '../constants/weatherConstants'
+import { GENERAL_RESET } from '../constants/generalConstants'
 
 export const weatherReducer = (
   state = {
@@ -26,7 +26,7 @@ export const weatherReducer = (
       }
     case WEATHER_FAIL:
       return { loading: false, error: payload }
-    case WEATHER_RESET:
+    case GENERAL_RESET:
       return {
         currentWeather: null,
         currentWeatherCityName: null,

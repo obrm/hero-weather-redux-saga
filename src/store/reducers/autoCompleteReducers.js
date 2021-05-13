@@ -4,6 +4,7 @@ import {
   AUTO_COMPLETE_FAIL,
   AUTO_COMPLETE_RESET,
 } from '../constants/autoCompleteConstants'
+import { GENERAL_RESET } from '../constants/generalConstants'
 
 export const autoCompleteReducer = (
   state = { results: [], isSearch: false },
@@ -18,6 +19,7 @@ export const autoCompleteReducer = (
       return { loading: false, results: payload, isSearch: true }
     case AUTO_COMPLETE_FAIL:
       return { loading: false, error: payload }
+    case GENERAL_RESET:
     case AUTO_COMPLETE_RESET:
       return { ...state, results: [] }
     default:

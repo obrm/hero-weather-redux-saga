@@ -1,7 +1,6 @@
 export const WEATHER_REQUEST = 'WEATHER_REQUEST'
 export const WEATHER_SUCCESS = 'WEATHER_SUCCESS'
 export const WEATHER_FAIL = 'WEATHER_FAIL'
-export const WEATHER_RESET = 'WEATHER_RESET'
 
 export const DEFAULT_LOCATION = '215854'
 export const DEFAULT_CITY_NAME = 'Tel Aviv'

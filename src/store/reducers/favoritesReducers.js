@@ -1,13 +1,13 @@
 import {
   FAVORITE_ADD_ITEM,
   FAVORITE_REMOVE_ITEM,
-  FAVORITE_RESET_ITEM,
   FAVORITE_SHOW_ITEM,
   FAVORITE_ITEMS_WEATHER_REQUEST,
   FAVORITE_ITEMS_WEATHER_SUCCESS,
   FAVORITE_ITEMS_WEATHER_FAIL,
   FAVORITE_ITEMS_WEATHER_RESET,
 } from '../constants/favoritesConstants'
+import { GENERAL_RESET } from '../constants/generalConstants'
 
 export const favoritesReducer = (
   state = {
@@ -39,7 +39,7 @@ export const favoritesReducer = (
         showCityFromFavorites: true,
         favoriteCityName: payload,
       }
-    case FAVORITE_RESET_ITEM:
+    case GENERAL_RESET:
       return {
         ...state,
         showCityFromFavorites: false,

@@ -6,8 +6,7 @@ import { debounce } from 'lodash'
 import { getAutoCompleteResults } from '../store/actions/autoCompleteActions'
 import { getWeather } from '../store/actions/weatherActions'
 import { AUTO_COMPLETE_RESET } from '../store/constants/autoCompleteConstants'
-import { FAVORITE_RESET_ITEM } from '../store/constants/favoritesConstants'
-import { WEATHER_RESET } from '../store/constants/weatherConstants'
+import { GENERAL_RESET } from '../store/constants/generalConstants'
 
 const SearchBox = () => {
   const [text, setText] = useState('')
@@ -42,10 +41,8 @@ const SearchBox = () => {
   }
 
   const onClickHandler = (location, cityName) => {
-    dispatch({ type: WEATHER_RESET })
-    dispatch({ type: FAVORITE_RESET_ITEM })
+    dispatch({ type: GENERAL_RESET })
     dispatch(getWeather(location, cityName))
-    dispatch({ type: AUTO_COMPLETE_RESET })
     setText('')
   }
 
