@@ -5,7 +5,6 @@ import { Helmet } from 'react-helmet'
 
 import { weatherImageChooser } from '../components/helper/weatherImageChooser'
 import { getWeather } from '../redux/weather/weatherActions'
-import { getCityByCoords } from '../redux/cityByCoords/cityByCoordsActions'
 import Spinner from '../components/layout/Spinner'
 import AddFavoriteButton from '../components/AddFavoriteButton'
 import SearchBox from '../components/SearchBox'
@@ -29,9 +28,6 @@ const HomePage = () => {
   const weather = useSelector((state) => state.weather)
   const { loading, error, currentWeather, currentWeatherCityName } = weather
 
-  const cityByCoords = useSelector((state) => state.cityByCoords)
-  const { cityFromCoords } = cityByCoords
-
   const autoComplete = useSelector((state) => state.autoComplete)
   const { isSearch } = autoComplete
 
@@ -42,42 +38,25 @@ const HomePage = () => {
   useEffect(() => {
     const geolocationEnabled =
       geolocationPosition.coords && !isSearch && !showCityFromFavorites
-    const cityFromGeolocation =
-      cityFromCoords && !isSearch && !showCityFromFavorites
-    const cityNotBySearchNotFromFavorites = !isSearch && !showCityFromFavorites
+
+    const defaultLocation = !isSearch && !showCityFromFavorites
 
     if (geolocationEnabled) {
       const { latitude, longitude } = geolocationPosition.coords
-      dispatch(getCityByCoords(latitude, longitude))
-    }
-    if (cityFromGeolocation) {
-      dispatch(getWeather(cityFromCoords.Key))
-    } else if (cityNotBySearchNotFromFavorites) {
+      dispatch(getWeather({ latitude, longitude }))
+    } else if (defaultLocation) {
       dispatch(getWeather())
     }
     // eslint-disable-next-line
   }, [dispatch, geolocationPosition.coords, isSearch])
 
   useEffect(() => {
-    const cityFromGeolocation =
-      geolocationPosition.coords &&
-      cityFromCoords &&
-      !currentWeatherCityName &&
-      !cityFromFavorites
-    const defaultCity = currentWeatherCityName && !cityFromFavorites
-
     if (cityFromFavorites) {
       setCityNameField(cityFromFavorites)
     }
-
-    if (cityFromGeolocation) {
-      setCityNameField(cityFromCoords.EnglishName)
-    }
-
-    if (defaultCity) {
+    if (currentWeatherCityName && !cityFromFavorites) {
       setCityNameField(currentWeatherCityName)
     }
-
     if (currentWeather) {
       setApiWeatherFields({
         ...apiWeatherFields,

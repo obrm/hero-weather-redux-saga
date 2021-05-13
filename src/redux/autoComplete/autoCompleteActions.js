@@ -5,6 +5,7 @@ import {
   AUTO_COMPLETE_SUCCESS,
   AUTO_COMPLETE_FAIL,
 } from './autoCompleteConstants.js'
+import { errorHandler } from '../helper/errorHandler'
 
 export const getAutoCompleteResults = (query) => async (dispatch) => {
   try {
@@ -21,10 +22,7 @@ export const getAutoCompleteResults = (query) => async (dispatch) => {
   } catch (error) {
     dispatch({
       type: AUTO_COMPLETE_FAIL,
-      payload:
-        error.response && error.response.data.message
-          ? error.response.data.message
-          : error.message,
+      payload: errorHandler(error),
     })
   }
 }

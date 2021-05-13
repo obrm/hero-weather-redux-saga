@@ -5,39 +5,61 @@ import {
   WEATHER_FAIL,
   DEFAULT_LOCATION,
   DEFAULT_CITY_NAME,
+  CURRENT_WEATHER_URL,
+  FIVE_DAYS_URL,
 } from './weatherConstants'
+import { errorHandler } from '../helper/errorHandler'
+import { getCityByCoords } from '../helper/getCityByCoords'
 
-export const getWeather =
-  (location = DEFAULT_LOCATION, currentWeatherCityName = DEFAULT_CITY_NAME) =>
-  async (dispatch) => {
+export const getWeather = (weatherParams) => async (dispatch) => {
+  try {
     dispatch({ type: WEATHER_REQUEST })
 
-    const currentWeather = axios.get(
-      `https://dataservice.accuweather.com/currentconditions/v1/${location}?apikey=${process.env.REACT_APP_ACCUWEATHER_KEY}`
+    let { latitude, longitude, location, cityName } = weatherParams
+
+    let cityNameFromGeolocation = ''
+
+    if (latitude && longitude) {
+      const data = await getCityByCoords(latitude, longitude)
+      location = data.Key
+      cityNameFromGeolocation = data.EnglishName
+    }
+
+    if (!location) {
+      location = DEFAULT_LOCATION
+    }
+
+    if (!cityName) {
+      cityName = DEFAULT_CITY_NAME
+    }
+
+    const getCurrentWeather = axios.get(
+      `${CURRENT_WEATHER_URL}${location}?apikey=${process.env.REACT_APP_ACCUWEATHER_KEY}`
     )
 
-    const fiveDaysForecast = axios.get(
-      `https://dataservice.accuweather.com/forecasts/v1/daily/5day/${location}?apikey=${process.env.REACT_APP_ACCUWEATHER_KEY}&metric=true`
+    const getFiveDaysForecast = axios.get(
+      `${FIVE_DAYS_URL}${location}?apikey=${process.env.REACT_APP_ACCUWEATHER_KEY}&metric=true`
     )
 
-    Promise.all([currentWeather, fiveDaysForecast])
-      .then((response) => {
-        dispatch({
-          type: WEATHER_SUCCESS,
-          payload: {
-            currentWeatherData: response[0].data[0],
-            currentWeatherCityName,
-            fiveDaysForecast: response[1].data.DailyForecasts,
-          },
-        })
-      })
-      .catch((error) => {
-        dispatch({
-          type: WEATHER_FAIL,
-          payload:
-            error.response && error.response.data.message
-              ? error.response.data.message
-              : error.message,
-        })
-      })
+    const [currentWeather, fiveDaysForecast] = await Promise.all([
+      getCurrentWeather,
+      getFiveDaysForecast,
+    ])
+
+    dispatch({
+      type: WEATHER_SUCCESS,
+      payload: {
+        currentWeather: currentWeather.data[0],
+        currentWeatherCityName: cityNameFromGeolocation
+          ? cityNameFromGeolocation
+          : cityName,
+        fiveDaysForecast: fiveDaysForecast.data.DailyForecasts,
+      },
+    })
+  } catch (error) {
+    dispatch({
+      type: WEATHER_FAIL,
+      payload: errorHandler(error),
+    })
   }
+}

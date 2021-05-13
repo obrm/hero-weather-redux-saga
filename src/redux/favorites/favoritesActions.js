@@ -7,7 +7,9 @@ import {
   FAVORITE_ITEMS_WEATHER_FAIL,
   FAVORITE_ITEMS_WEATHER_RESET,
 } from './favoritesConstants'
+import { CURRENT_WEATHER_URL } from '../weather/weatherConstants'
 import { getCityByName } from '../helper/getCityByName'
+import { errorHandler } from '../helper/errorHandler'
 
 export const addToFavorites =
   (favoriteCityName) => async (dispatch, getState) => {
@@ -47,7 +49,7 @@ export const getFavoritesWeather = () => async (dispatch, getState) => {
       const key = await getCityByName(favorite.favoriteCityName)
 
       const { data } = await axios.get(
-        `https://dataservice.accuweather.com/currentconditions/v1/${key}?apikey=${process.env.REACT_APP_ACCUWEATHER_KEY}`
+        `${CURRENT_WEATHER_URL}${key}?apikey=${process.env.REACT_APP_ACCUWEATHER_KEY}`
       )
 
       dispatch({
@@ -61,10 +63,7 @@ export const getFavoritesWeather = () => async (dispatch, getState) => {
     } catch (error) {
       dispatch({
         type: FAVORITE_ITEMS_WEATHER_FAIL,
-        payload:
-          error.response && error.response.data.message
-            ? error.response.data.message
-            : error.message,
+        payload: errorHandler(error),
       })
     }
   })

@@ -20,7 +20,7 @@ export const weatherReducer = (
     case WEATHER_SUCCESS:
       return {
         loading: false,
-        currentWeather: payload.currentWeatherData,
+        currentWeather: payload.currentWeather,
         currentWeatherCityName: payload.currentWeatherCityName,
         fiveDaysForecast: payload.fiveDaysForecast,
       }

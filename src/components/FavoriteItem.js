@@ -29,7 +29,7 @@ const FavoriteItem = ({
 
   const onClickHandler = () => {
     dispatch({ type: FAVORITE_SHOW_ITEM, payload: favoriteCityName })
-    dispatch(getWeather(cityKey, favoriteCityName))
+    dispatch(getWeather({ location: cityKey, cityName: favoriteCityName }))
     history.push('/home')
   }
 
@@ -46,7 +46,11 @@ const FavoriteItem = ({
         loading='lazy'
       />
       <Card.ImgOverlay className='text-center'>
-        <h3 style={{ fontSize: '1.5rem' }}>{favoriteCityName}</h3>
+        <h3 style={{ fontSize: '1.5rem' }}>
+          {favoriteCityName.length > 17
+            ? `${favoriteCityName.slice(0, 15)}...`
+            : favoriteCityName}
+        </h3>
         <img
           src={`/img/weather-icons/${WeatherIcon}-s.png`}
           alt='weather icon'

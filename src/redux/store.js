@@ -1,16 +1,14 @@
 import { createStore, combineReducers, applyMiddleware } from 'redux'
 import thunk from 'redux-thunk'
 // saga
-// import createSagaMiddleware from 'redux-saga'
+import createSagaMiddleware from 'redux-saga'
 import { composeWithDevTools } from 'redux-devtools-extension'
 import { weatherReducer } from './weather/weatherReducers'
-import { cityByCoordsReducer } from './cityByCoords/cityByCoordsReducers'
 import { favoritesReducer } from './favorites/favoritesReducers'
 import { autoCompleteReducer } from './autoComplete/autoCompleteReducers'
 
 const reducer = combineReducers({
   weather: weatherReducer,
-  cityByCoords: cityByCoordsReducer,
   autoComplete: autoCompleteReducer,
   favorites: favoritesReducer,
 })
