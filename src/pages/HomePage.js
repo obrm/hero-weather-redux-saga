@@ -36,36 +36,33 @@ const HomePage = () => {
     favorites
 
   useEffect(() => {
-    const geolocationEnabled =
-      geolocationPosition.coords && !isSearch && !showCityFromFavorites
-
     const defaultLocation = !isSearch && !showCityFromFavorites
+    const geolocationEnabled = geolocationPosition.coords && defaultLocation
 
     if (geolocationEnabled) {
       const { latitude, longitude } = geolocationPosition.coords
       dispatch(getWeather({ latitude, longitude }))
     } else if (defaultLocation) {
-      dispatch(getWeather())
+      dispatch(getWeather({ latitude: null, longitude: null }))
     }
-    // eslint-disable-next-line
-  }, [dispatch, geolocationPosition.coords, isSearch])
+  }, [dispatch, geolocationPosition.coords, isSearch, showCityFromFavorites])
 
   useEffect(() => {
     if (cityFromFavorites) {
       setCityNameField(cityFromFavorites)
-    }
-    if (currentWeatherCityName && !cityFromFavorites) {
+    } else if (currentWeatherCityName) {
       setCityNameField(currentWeatherCityName)
     }
+  }, [cityFromFavorites, currentWeatherCityName])
+
+  useEffect(() => {
     if (currentWeather) {
       setApiWeatherFields({
-        ...apiWeatherFields,
         WeatherText: currentWeather.WeatherText,
         WeatherIcon: currentWeather.WeatherIcon,
         Value: currentWeather.Temperature.Metric.Value,
       })
     }
-    // eslint-disable-next-line
   }, [currentWeather])
 
   const { WeatherText, WeatherIcon, Value } = apiWeatherFields

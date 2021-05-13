@@ -28,6 +28,7 @@ export const weatherReducer = (
       return { loading: false, error: payload }
     case GENERAL_RESET:
       return {
+        loading: false,
         currentWeather: null,
         currentWeatherCityName: null,
         fiveDaysForecast: null,

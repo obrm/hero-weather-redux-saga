@@ -21,7 +21,7 @@ export const autoCompleteReducer = (
       return { loading: false, error: payload }
     case GENERAL_RESET:
     case AUTO_COMPLETE_RESET:
-      return { ...state, results: [] }
+      return { ...state, results: [], loading: false }
     default:
       return state
   }
