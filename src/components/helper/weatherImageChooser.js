@@ -25,6 +25,7 @@ export const weatherImageChooser = (weatherText) => {
     case 'Sleet':
     case 'Mostly Cloudy w/ Showers':
     case 'Partly Sunny w/ Showers':
+    case 'Light rain':
       return 'cloudy-with-showers-day'
     case 'Mostly Cloudy w/ T-Storms':
     case 'Partly Sunny w/ T-Storms':
