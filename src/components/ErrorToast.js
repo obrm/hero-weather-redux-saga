@@ -8,8 +8,8 @@ const ErrorToast = () => {
   const weather = useSelector((state) => state.weather)
   const { error } = weather
 
-  const favoritesWeather = useSelector((state) => state.favoritesWeather)
-  const { error: favoritesWeatherError } = favoritesWeather
+  const favorites = useSelector((state) => state.favorites)
+  const { error: favoritesWeatherError } = favorites
 
   useEffect(() => {
     if (error || favoritesWeatherError) {
