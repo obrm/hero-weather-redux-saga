@@ -1,4 +1,3 @@
-import axios from 'axios'
 import {
   FAVORITE_ADD_ITEM_START,
   FAVORITE_ADD_ITEM_SUCCESS,
@@ -8,9 +7,9 @@ import {
   FAVORITE_ITEMS_WEATHER_SUCCESS,
   FAVORITE_ITEMS_WEATHER_FAIL,
   FAVORITE_ITEMS_WEATHER_RESET,
+  FAVORITE_ITEMS_WEATHER_START,
 } from './favoritesConstants'
-import { CURRENT_WEATHER_URL } from '../weather/weatherConstants'
-import { getCityByName } from '../helper/getCityByName'
+
 import { errorHandler } from '../helper/errorHandler'
 
 export const addItemToFavoritesStart = (favoriteCityName) => ({
@@ -33,34 +32,24 @@ export const removeItemFromFavoritesSuccess = (favoriteCityName) => ({
   payload: favoriteCityName,
 })
 
-export const getFavoritesWeather = () => async (dispatch, getState) => {
-  dispatch({ type: FAVORITE_ITEMS_WEATHER_RESET })
+export const getFavoritesWeatherReset = () => ({
+  type: FAVORITE_ITEMS_WEATHER_RESET,
+})
 
-  const favorites = getState().favorites.favoritesWeatherItems
+export const getFavoritesWeatherStart = () => ({
+  type: FAVORITE_ITEMS_WEATHER_START,
+})
 
-  favorites.forEach(async (favorite) => {
-    try {
-      dispatch({ type: FAVORITE_ITEMS_WEATHER_REQUEST })
+export const getFavoritesWeatherRequest = () => ({
+  type: FAVORITE_ITEMS_WEATHER_REQUEST,
+})
 
-      const key = await getCityByName(favorite.favoriteCityName)
+export const getFavoritesWeatherSuccess = (cityWeatherData) => ({
+  type: FAVORITE_ITEMS_WEATHER_SUCCESS,
+  payload: cityWeatherData,
+})
 
-      const { data } = await axios.get(
-        `${CURRENT_WEATHER_URL}${key}?apikey=${process.env.REACT_APP_ACCUWEATHER_KEY}`
-      )
-
-      dispatch({
-        type: FAVORITE_ITEMS_WEATHER_SUCCESS,
-        payload: {
-          favoriteCityName: favorite.favoriteCityName,
-          weather: data[0],
-          key,
-        },
-      })
-    } catch (error) {
-      dispatch({
-        type: FAVORITE_ITEMS_WEATHER_FAIL,
-        payload: errorHandler(error),
-      })
-    }
-  })
-}
+export const getFavoritesWeatherError = (error) => ({
+  type: FAVORITE_ITEMS_WEATHER_FAIL,
+  payload: errorHandler(error),
+})

@@ -48,12 +48,14 @@ const HomePage = () => {
   }, [dispatch, geolocationPosition.coords, isSearch, showCityFromFavorites])
 
   useEffect(() => {
-    if (cityFromFavorites) {
+    if (error) {
+      setCityNameField('error')
+    } else if (cityFromFavorites) {
       setCityNameField(cityFromFavorites)
     } else if (currentWeatherCityName) {
       setCityNameField(currentWeatherCityName)
     }
-  }, [cityFromFavorites, currentWeatherCityName])
+  }, [cityFromFavorites, currentWeatherCityName, error])
 
   useEffect(() => {
     if (currentWeather) {

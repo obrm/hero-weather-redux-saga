@@ -4,6 +4,7 @@ import {
   FAVORITE_REMOVE_ITEM_START,
   FAVORITE_REMOVE_ITEM_SUCCESS,
   FAVORITE_SHOW_ITEM,
+  FAVORITE_ITEMS_WEATHER_START,
   FAVORITE_ITEMS_WEATHER_REQUEST,
   FAVORITE_ITEMS_WEATHER_SUCCESS,
   FAVORITE_ITEMS_WEATHER_FAIL,
@@ -51,6 +52,7 @@ export const favoritesReducer = (
         showCityFromFavorites: false,
         favoriteCityName: null,
       }
+    case FAVORITE_ITEMS_WEATHER_START:
     case FAVORITE_ITEMS_WEATHER_REQUEST:
       return { ...state, loading: true }
     case FAVORITE_ITEMS_WEATHER_SUCCESS:
