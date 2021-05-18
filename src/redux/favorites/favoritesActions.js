@@ -1,7 +1,9 @@
 import axios from 'axios'
 import {
-  FAVORITE_ADD_ITEM,
-  FAVORITE_REMOVE_ITEM,
+  FAVORITE_ADD_ITEM_START,
+  FAVORITE_ADD_ITEM_SUCCESS,
+  FAVORITE_REMOVE_ITEM_START,
+  FAVORITE_REMOVE_ITEM_SUCCESS,
   FAVORITE_ITEMS_WEATHER_REQUEST,
   FAVORITE_ITEMS_WEATHER_SUCCESS,
   FAVORITE_ITEMS_WEATHER_FAIL,
@@ -11,31 +13,25 @@ import { CURRENT_WEATHER_URL } from '../weather/weatherConstants'
 import { getCityByName } from '../helper/getCityByName'
 import { errorHandler } from '../helper/errorHandler'
 
-export const addToFavorites =
-  (favoriteCityName) => async (dispatch, getState) => {
-    dispatch({
-      type: FAVORITE_ADD_ITEM,
-      payload: { favoriteCityName },
-    })
+export const addItemToFavoritesStart = (favoriteCityName) => ({
+  type: FAVORITE_ADD_ITEM_START,
+  payload: favoriteCityName,
+})
 
-    localStorage.setItem(
-      'favorites',
-      JSON.stringify(getState().favorites.favoritesWeatherItems)
-    )
-  }
+export const addItemToFavoritesSuccess = (favoriteCityName) => ({
+  type: FAVORITE_ADD_ITEM_SUCCESS,
+  payload: favoriteCityName,
+})
 
-export const removeFromFavorites =
-  (favoriteCityName) => (dispatch, getState) => {
-    dispatch({
-      type: FAVORITE_REMOVE_ITEM,
-      payload: favoriteCityName,
-    })
+export const removeItemFromFavoritesStart = (favoriteCityName) => ({
+  type: FAVORITE_REMOVE_ITEM_START,
+  payload: favoriteCityName,
+})
 
-    localStorage.setItem(
-      'favorites',
-      JSON.stringify(getState().favorites.favoritesWeatherItems)
-    )
-  }
+export const removeItemFromFavoritesSuccess = (favoriteCityName) => ({
+  type: FAVORITE_REMOVE_ITEM_SUCCESS,
+  payload: favoriteCityName,
+})
 
 export const getFavoritesWeather = () => async (dispatch, getState) => {
   dispatch({ type: FAVORITE_ITEMS_WEATHER_RESET })

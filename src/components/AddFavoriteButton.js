@@ -3,8 +3,8 @@ import { Button, Badge } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
 
 import {
-  addToFavorites,
-  removeFromFavorites,
+  addItemToFavoritesStart,
+  removeItemFromFavoritesStart,
 } from '../redux/favorites/favoritesActions'
 
 const AddFavoriteButton = () => {
@@ -33,10 +33,10 @@ const AddFavoriteButton = () => {
 
   const favoritesButtonHandler = () => {
     if (isFavorite) {
-      dispatch(removeFromFavorites(currentWeatherCityName))
+      dispatch(removeItemFromFavoritesStart(currentWeatherCityName))
       setIsFavorite(false)
     } else {
-      dispatch(addToFavorites(currentWeatherCityName))
+      dispatch(addItemToFavoritesStart(currentWeatherCityName))
     }
   }
 

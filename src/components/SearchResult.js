@@ -1,7 +1,7 @@
 import { useDispatch } from 'react-redux'
 import { Col } from 'react-bootstrap'
 
-import { getWeather } from '../redux/weather/weatherActions'
+import { getWeatherRequest } from '../redux/weather/weatherActions'
 import { GENERAL_RESET } from '../redux/general/generalConstants'
 
 const SearchResult = ({ result, setText }) => {
@@ -10,7 +10,10 @@ const SearchResult = ({ result, setText }) => {
   const onClickHandler = () => {
     dispatch({ type: GENERAL_RESET })
     dispatch(
-      getWeather({ location: result.Key, cityName: result.LocalizedName })
+      getWeatherRequest({
+        location: result.Key,
+        cityName: result.LocalizedName,
+      })
     )
     setText('')
   }

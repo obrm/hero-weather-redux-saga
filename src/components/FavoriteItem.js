@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 // eslint-disable-next-line no-unused-vars
 import { BrowserRouter as Router, useHistory } from 'react-router-dom'
 
-import { getWeather } from '../redux/weather/weatherActions'
+import { getWeatherRequest } from '../redux/weather/weatherActions'
 import { FAVORITE_SHOW_ITEM } from '../redux/favorites/favoritesConstants'
 import { weatherImageChooser } from './helper/weatherImageChooser'
 
@@ -29,7 +29,9 @@ const FavoriteItem = ({
 
   const onClickHandler = () => {
     dispatch({ type: FAVORITE_SHOW_ITEM, payload: favoriteCityName })
-    dispatch(getWeather({ location: cityKey, cityName: favoriteCityName }))
+    dispatch(
+      getWeatherRequest({ location: cityKey, cityName: favoriteCityName })
+    )
     history.push('/home')
   }
 

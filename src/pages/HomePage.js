@@ -4,7 +4,7 @@ import { Jumbotron, Row, Col } from 'react-bootstrap'
 import { Helmet } from 'react-helmet'
 
 import { weatherImageChooser } from '../components/helper/weatherImageChooser'
-import { getWeather } from '../redux/weather/weatherActions'
+import { getWeatherRequest } from '../redux/weather/weatherActions'
 import Spinner from '../components/layout/Spinner'
 import AddFavoriteButton from '../components/AddFavoriteButton'
 import SearchBox from '../components/SearchBox'
@@ -41,9 +41,9 @@ const HomePage = () => {
 
     if (geolocationEnabled) {
       const { latitude, longitude } = geolocationPosition.coords
-      dispatch(getWeather({ latitude, longitude }))
+      dispatch(getWeatherRequest({ latitude, longitude }))
     } else if (defaultLocation) {
-      dispatch(getWeather({ latitude: null, longitude: null }))
+      dispatch(getWeatherRequest({ latitude: null, longitude: null }))
     }
   }, [dispatch, geolocationPosition.coords, isSearch, showCityFromFavorites])
 

@@ -1,6 +1,8 @@
 import {
-  FAVORITE_ADD_ITEM,
-  FAVORITE_REMOVE_ITEM,
+  FAVORITE_ADD_ITEM_START,
+  FAVORITE_ADD_ITEM_SUCCESS,
+  FAVORITE_REMOVE_ITEM_START,
+  FAVORITE_REMOVE_ITEM_SUCCESS,
   FAVORITE_SHOW_ITEM,
   FAVORITE_ITEMS_WEATHER_REQUEST,
   FAVORITE_ITEMS_WEATHER_SUCCESS,
@@ -21,12 +23,15 @@ export const favoritesReducer = (
   const { type, payload } = action
 
   switch (type) {
-    case FAVORITE_ADD_ITEM:
+    case FAVORITE_ADD_ITEM_START:
+    case FAVORITE_REMOVE_ITEM_START:
+      return { ...state, loading: true }
+    case FAVORITE_ADD_ITEM_SUCCESS:
       return {
         ...state,
         favoritesWeatherItems: [...state.favoritesWeatherItems, payload],
       }
-    case FAVORITE_REMOVE_ITEM:
+    case FAVORITE_REMOVE_ITEM_SUCCESS:
       return {
         ...state,
         favoritesWeatherItems: state.favoritesWeatherItems.filter(
