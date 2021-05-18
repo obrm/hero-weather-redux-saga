@@ -30,11 +30,13 @@ export const favoritesReducer = (
     case FAVORITE_ADD_ITEM_SUCCESS:
       return {
         ...state,
+        loading: false,
         favoritesWeatherItems: [...state.favoritesWeatherItems, payload],
       }
     case FAVORITE_REMOVE_ITEM_SUCCESS:
       return {
         ...state,
+        loading: false,
         favoritesWeatherItems: state.favoritesWeatherItems.filter(
           (item) => item.favoriteCityName !== payload
         ),

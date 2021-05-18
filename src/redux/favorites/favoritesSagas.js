@@ -38,11 +38,12 @@ export function* removeFromFavorites(favoriteCityName) {
 
 export function* getFavoritesItemsWeather() {
   yield put(getFavoritesWeatherReset())
+
   const favorites = yield select(getFavoritesWeatherItems)
 
   for (const favorite of favorites) {
     try {
-      yield put(getFavoritesWeatherRequest)
+      yield put(getFavoritesWeatherRequest())
 
       const key = yield call(getCityByName, favorite.favoriteCityName)
 

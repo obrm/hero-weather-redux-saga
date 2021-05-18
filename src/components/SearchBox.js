@@ -1,9 +1,8 @@
-import React, { useState, useCallback } from 'react'
+import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Form } from 'react-bootstrap'
-import { debounce } from 'lodash'
 
-import { getAutoCompleteResults } from '../redux/autoComplete/autoCompleteActions'
+import { getAutoCompleteResultsRequest } from '../redux/autoComplete/autoCompleteActions'
 import { AUTO_COMPLETE_RESET } from '../redux/autoComplete/autoCompleteConstants'
 import SearchResult from './SearchResult'
 
@@ -15,21 +14,13 @@ const SearchBox = () => {
   const autoComplete = useSelector((state) => state.autoComplete)
   const { results } = autoComplete
 
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  const debouncedDispatch = useCallback(
-    debounce((value) => {
-      dispatch(getAutoCompleteResults(value))
-    }, 1000),
-    []
-  )
-
   const onChangeHandler = (e) => {
     if (e.target.value === '') {
       dispatch({ type: AUTO_COMPLETE_RESET })
       setText('')
     }
     setText(e.target.value)
-    debouncedDispatch(e.target.value)
+    dispatch(getAutoCompleteResultsRequest(e.target.value))
   }
 
   const onBlurHandler = () => {

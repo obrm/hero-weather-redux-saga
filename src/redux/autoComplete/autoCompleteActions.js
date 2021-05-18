@@ -1,5 +1,3 @@
-import axios from 'axios'
-
 import {
   AUTO_COMPLETE_REQUEST,
   AUTO_COMPLETE_SUCCESS,
@@ -7,22 +5,17 @@ import {
 } from './autoCompleteConstants.js'
 import { errorHandler } from '../helper/errorHandler'
 
-export const getAutoCompleteResults = (query) => async (dispatch) => {
-  try {
-    dispatch({ type: AUTO_COMPLETE_REQUEST })
+export const getAutoCompleteResultsRequest = (key) => ({
+  type: AUTO_COMPLETE_REQUEST,
+  payload: key,
+})
 
-    const { data } = await axios.get(
-      `https://dataservice.accuweather.com/locations/v1/cities/autocomplete?apikey=${process.env.REACT_APP_ACCUWEATHER_KEY}&q=${query}`
-    )
+export const getAutoCompleteResultsSuccess = (data) => ({
+  type: AUTO_COMPLETE_SUCCESS,
+  payload: data,
+})
 
-    dispatch({
-      type: AUTO_COMPLETE_SUCCESS,
-      payload: data,
-    })
-  } catch (error) {
-    dispatch({
-      type: AUTO_COMPLETE_FAIL,
-      payload: errorHandler(error),
-    })
-  }
-}
+export const getAutoCompleteResultsFail = (error) => ({
+  type: AUTO_COMPLETE_FAIL,
+  payload: errorHandler(error),
+})
