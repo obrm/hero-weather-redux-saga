@@ -4,15 +4,15 @@ import { Col } from 'react-bootstrap'
 import { getWeatherRequest } from '../redux/weather/weatherActions'
 import { GENERAL_RESET } from '../redux/general/generalConstants'
 
-const SearchResult = ({ result, setText }) => {
+const SearchResult = ({ Key, LocalizedName, setText }) => {
   const dispatch = useDispatch()
 
   const onClickHandler = () => {
     dispatch({ type: GENERAL_RESET })
     dispatch(
       getWeatherRequest({
-        location: result.Key,
-        cityName: result.LocalizedName,
+        location: Key,
+        cityName: LocalizedName,
       })
     )
     setText('')
@@ -20,7 +20,7 @@ const SearchResult = ({ result, setText }) => {
 
   return (
     <Col className='suggestion' onClick={onClickHandler}>
-      {result.LocalizedName}
+      {LocalizedName}
     </Col>
   )
 }

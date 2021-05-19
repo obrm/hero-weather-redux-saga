@@ -49,11 +49,7 @@ const SearchBox = () => {
         {results &&
           results.map((result) => {
             return (
-              <SearchResult
-                key={result.Key}
-                result={result}
-                setText={setText}
-              />
+              <SearchResult key={result.Key} {...result} setText={setText} />
             )
           })}
       </div>
