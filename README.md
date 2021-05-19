@@ -2,7 +2,7 @@
 
 > React weather app with the AccuWeather API.
 
-### [To website](https://obrm-hero-weather.netlify.app/)
+> [To website](https://obrm-hero-weather.netlify.app/)
 
 ## Usage
 
