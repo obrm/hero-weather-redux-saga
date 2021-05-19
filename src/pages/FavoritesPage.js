@@ -14,8 +14,10 @@ const FavoritesPage = () => {
     favorites
 
   useEffect(() => {
-    dispatch(getFavoritesWeatherStart())
-  }, [dispatch])
+    if (favoritesWeatherItems.length > 0) {
+      dispatch(getFavoritesWeatherStart())
+    }
+  }, [dispatch, favoritesWeatherItems])
 
   return (
     <>
