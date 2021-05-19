@@ -7,8 +7,7 @@ import { GENERAL_RESET } from '../redux/general/generalConstants'
 const SearchResult = ({ Key, LocalizedName, setText }) => {
   const dispatch = useDispatch()
 
-  const onClickHandler = (e) => {
-    e.preventDefault()
+  const onClickHandler = () => {
     dispatch({ type: GENERAL_RESET })
     dispatch(
       getWeatherRequest({

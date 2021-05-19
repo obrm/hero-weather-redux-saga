@@ -1,51 +1,57 @@
 export const weatherImageChooser = (weatherText) => {
-  switch (weatherText) {
+  const weatherTextLowerCase = weatherText.toLowerCase()
+
+  switch (weatherTextLowerCase) {
     case 'sunny':
-    case 'Hot':
-    case 'Mostly Sunny':
-    case 'Partly Sunny':
-    case 'Intermittent Clouds':
+    case 'hot':
+    case 'mostly sunny':
+    case 'partly sunny':
+    case 'intermittent clouds':
       return 'sunny-day'
-    case 'Hazy Sunshine':
-    case 'Windy':
+    case 'hazy sunshine':
+    case 'windy':
       return 'hazy-day'
-    case 'Fog':
+    case 'fog':
       return 'fog-day'
-    case 'Mostly Cloudy':
-    case 'Cloudy':
-    case 'Partly Sunny w/ Flurries':
+    case 'cloudy':
+    case 'mostly cloudy':
+    case 'overcast':
+    case 'some clouds':
+    case 'partly sunny w/ flurries':
       return 'cloudy-day'
-    case 'Dreary (Overcast)':
-    case 'Mostly Cloudy w/ Flurries':
-    case 'Flurries':
-      return 'Dreary-day'
-    case 'Showers':
-    case 'Cold':
-    case 'Ice':
-    case 'Sleet':
-    case 'Mostly Cloudy w/ Showers':
-    case 'Partly Sunny w/ Showers':
-    case 'Light rain':
+    case 'dreary (overcast)':
+    case 'mostly cloudy w/ flurries':
+    case 'flurries':
+      return 'dreary-day'
+    case 'showers':
+    case 'a shower':
+    case 'cold':
+    case 'ice':
+    case 'sleet':
+    case 'mostly cloudy w/ showers':
+    case 'partly sunny w/ showers':
+    case 'light rain':
       return 'cloudy-with-showers-day'
-    case 'Mostly Cloudy w/ T-Storms':
-    case 'Partly Sunny w/ T-Storms':
-    case 'T-Storms':
-    case 'Mostly Cloudy w/ Snow':
-    case 'Snow':
-    case 'Rain and Snow':
+    case 'mostly cloudy w/ t-storms':
+    case 'partly sunny w/ t-storms':
+    case 't-storms':
+    case 'mostly cloudy w/ snow':
+    case 'snow':
+    case 'thunderstorms':
+    case 'rain and snow':
       return 'storm-day'
-    case 'Rain':
-    case 'Freezing Rain':
+    case 'rain':
+    case 'freezing rain':
       return 'rain-day'
-    case 'Clear':
-    case 'Mostly Clear':
+    case 'clear':
+    case 'mostly clear':
       return 'clear-sky-night'
-    case 'Partly Cloudy':
-    case 'Partly Cloudy w/ Showers':
+    case 'partly cloudy':
+    case 'partly cloudy w/ showers':
       return 'cloudy-night'
-    case 'Hazy Moonlight':
+    case 'hazy moonlight':
       return 'hazy-night'
-    case 'Partly Cloudy w/ T-Storms':
+    case 'partly cloudy w/ t-storms':
       return 'rain-night'
     default:
       return 'sunny-day'
