@@ -2,12 +2,16 @@
 
 > React weather app with the AccuWeather API.
 
+[Website](https://obrm-hero-weather.netlify.app/)
+
 ## Usage
 
 ### `npm install`
+
 Intalls dependencies.
 
 ### `npm run start`
+
 Runs the app on the local server.<br>
 Opens http://localhost:3000
 
