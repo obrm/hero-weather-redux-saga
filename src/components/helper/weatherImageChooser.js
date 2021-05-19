@@ -1,5 +1,9 @@
 export const weatherImageChooser = (weatherText) => {
-  const weatherTextLowerCase = weatherText.toLowerCase()
+  let weatherTextLowerCase = 'cloudy'
+
+  if (weatherText) {
+    weatherTextLowerCase = weatherText.toLowerCase()
+  }
 
   switch (weatherTextLowerCase) {
     case 'sunny':
@@ -11,6 +15,7 @@ export const weatherImageChooser = (weatherText) => {
     case 'hazy sunshine':
     case 'windy':
       return 'hazy-day'
+    case 'light fog':
     case 'fog':
       return 'fog-day'
     case 'cloudy':

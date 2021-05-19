@@ -27,7 +27,7 @@ const SearchBox = () => {
     setTimeout(() => {
       dispatch({ type: AUTO_COMPLETE_RESET })
       setText('')
-    }, 200)
+    }, 300)
   }
 
   return (
