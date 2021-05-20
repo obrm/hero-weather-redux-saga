@@ -1,14 +1,22 @@
+import { useSelector } from 'react-redux'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import { Container, Row, Col } from 'react-bootstrap'
+import { ThemeProvider } from 'styled-components'
 
+import GlobalStyle from './theme/GlobalStyle'
+import { lightTheme, darkTheme } from './theme/theme'
 import Header from './components/Header'
 import HomePage from './pages/HomePage'
 import FavoritesPage from './pages/FavoritesPage'
 import PageNotFound from './pages/PageNotFound'
 
 function App() {
+  const darkMode = useSelector((state) => state.darkMode)
+  const { theme } = darkMode
+
   return (
-    <>
+    <ThemeProvider theme={theme ? lightTheme : darkTheme}>
+      <GlobalStyle />
       <Router>
         <Header />
         <Container>
@@ -24,7 +32,7 @@ function App() {
           </Row>
         </Container>
       </Router>
-    </>
+    </ThemeProvider>
   )
 }
 

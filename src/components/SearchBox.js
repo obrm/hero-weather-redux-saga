@@ -5,11 +5,15 @@ import { Form } from 'react-bootstrap'
 import { getAutoCompleteResultsRequest } from '../redux/autoComplete/autoCompleteActions'
 import { AUTO_COMPLETE_RESET } from '../redux/autoComplete/autoCompleteConstants'
 import SearchResult from './SearchResult'
+import SearchBoxInput from './styled/SearchBoxInput'
 
 const SearchBox = () => {
   const [text, setText] = useState('')
 
   const dispatch = useDispatch()
+
+  const darkMode = useSelector((state) => state.darkMode)
+  const { theme } = darkMode
 
   const autoComplete = useSelector((state) => state.autoComplete)
   const { results } = autoComplete
@@ -34,7 +38,8 @@ const SearchBox = () => {
     <div className='search-box'>
       <Form inline>
         <div className='input-group search-md search-sm'>
-          <input
+          <SearchBoxInput
+            theme={theme}
             type='search'
             name='q'
             value={text}

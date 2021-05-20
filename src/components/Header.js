@@ -1,29 +1,15 @@
-import React, { useState, useEffect } from 'react'
+import { useState } from 'react'
 import { Navbar, Nav, Container } from 'react-bootstrap'
 import { LinkContainer } from 'react-router-bootstrap'
-import DarkModeToggle from 'react-dark-mode-toggle'
+import { useSelector } from 'react-redux'
 
-const getThemeFromStorage = () => {
-  let theme = false
-  if (localStorage.getItem('theme')) {
-    theme = JSON.parse(localStorage.getItem('theme'))
-  }
-  return theme
-}
+import NightModeToggle from './NightModeToggle'
 
 const Header = () => {
-  const [isDarkMode, setIsDarkMode] = useState(getThemeFromStorage())
+  const darkMode = useSelector((state) => state.darkMode)
+  const { theme } = darkMode
 
-  useEffect(() => {
-    if (isDarkMode) {
-      document.documentElement.className = 'light'
-      document.body.style.backgroundColor = '#f4f4f4'
-    } else {
-      document.documentElement.className = 'dark'
-      document.body.style.backgroundColor = '#222'
-    }
-    localStorage.setItem('theme', isDarkMode)
-  }, [isDarkMode])
+  const [mode, setMode] = useState(theme)
 
   return (
     <header>
@@ -60,11 +46,12 @@ const Header = () => {
                 </Nav.Link>
               </LinkContainer>
             </Nav>
-            <DarkModeToggle
+            <NightModeToggle
               className='toggler'
               size={50}
-              onChange={setIsDarkMode}
-              checked={isDarkMode}
+              onChange={setMode}
+              checked={mode}
+              speed={2}
             />
           </Navbar.Collapse>
         </Container>
