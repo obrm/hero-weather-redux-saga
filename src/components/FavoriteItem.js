@@ -5,7 +5,7 @@ import { BrowserRouter as Router, useHistory } from 'react-router-dom'
 
 import { getWeatherRequest } from '../redux/weather/weatherActions'
 import { FAVORITE_SHOW_ITEM } from '../redux/favorites/favoritesConstants'
-import { weatherImageChooser } from './helper/weatherImageChooser'
+import { chooseWeatherImage } from './helper/chooseWeatherImage'
 import {
   StyledFavoriteItemCard,
   StyledHeading3,
@@ -29,7 +29,7 @@ const FavoriteItem = ({
 
   const roundedTemperature = Math.round(parseFloat(Value))
 
-  const weatherImage = weatherImageChooser(WeatherText)
+  const weatherImage = chooseWeatherImage(WeatherText)
 
   const onClickHandler = () => {
     dispatch({ type: FAVORITE_SHOW_ITEM, payload: favoriteCityName })

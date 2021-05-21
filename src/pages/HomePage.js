@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { Row, Col } from 'react-bootstrap'
 import { Helmet } from 'react-helmet'
 
-import { weatherImageChooser } from '../components/helper/weatherImageChooser'
+import { chooseWeatherImage } from '../components/helper/chooseWeatherImage'
 import { getWeatherRequest } from '../redux/weather/weatherActions'
 import Spinner from '../components/layout/Spinner'
 import AddFavoriteButton from '../components/AddFavoriteButton'
@@ -79,9 +79,7 @@ const HomePage = () => {
 
   const roundedTemperature = Math.round(parseFloat(value))
 
-  const weatherImage = !loading
-    ? weatherImageChooser(weatherText)
-    : 'cloudy-day'
+  const weatherImage = !loading ? chooseWeatherImage(weatherText) : 'cloudy-day'
 
   return (
     <>

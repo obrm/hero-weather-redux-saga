@@ -1,4 +1,4 @@
-export const weatherImageChooser = (weatherText) => {
+export const chooseWeatherImage = (weatherText) => {
   let weatherTextLowerCase = 'cloudy'
 
   if (weatherText) {

@@ -2,7 +2,7 @@ import { useSelector } from 'react-redux'
 import PropTypes from 'prop-types'
 
 import Spinner from './layout/Spinner'
-import { weatherImageChooser } from './helper/weatherImageChooser'
+import { chooseWeatherImage } from './helper/chooseWeatherImage'
 import {
   StyledCardForecast,
   StyledCardIcon,
@@ -38,7 +38,7 @@ const WeatherForecastItem = ({
 
   const roundedTemperature = Math.round(parseFloat(Value))
 
-  const weatherImage = !loading ? weatherImageChooser(IconPhrase) : 'cloudy-day'
+  const weatherImage = !loading ? chooseWeatherImage(IconPhrase) : 'cloudy-day'
 
   return (
     <>
