@@ -134,7 +134,7 @@ export const WeatherText = styled.div`
   width: 80%;
   z-index: 1;
   position: absolute;
-  top: 300px;
+  top: 300px !important;
   left: 95px;
 
   @media ${({ theme }) => theme.mediaQueries['md-width']} {

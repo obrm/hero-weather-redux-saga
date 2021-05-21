@@ -1,11 +1,15 @@
 import styled from 'styled-components'
 
 export const LargeHeading = styled.h1`
-  font-size: 6rem;
+  font-size: 5rem;
   color: #fff;
 
   @media ${({ theme }) => theme.mediaQueries['md-width']} {
-    font-size: 5rem;
+    font-size: 4rem;
+  }
+
+  @media ${({ theme }) => theme.mediaQueries['xmd-width']} {
+    font-size: 3.5rem;
   }
 
   @media ${({ theme }) => theme.mediaQueries['sm-width']} {

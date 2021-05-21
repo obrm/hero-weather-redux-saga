@@ -32,7 +32,7 @@ const HomePage = () => {
 
   return (
     <>
-      <Row className='justify-content-md-center mb-5'>
+      <Row className='justify-content-center text-center mx-auto mb-5'>
         <Col md='auto'>
           <SearchBox />
         </Col>

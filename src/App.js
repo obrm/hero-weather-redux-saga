@@ -20,7 +20,7 @@ function App() {
       <Router>
         <Header />
         <Container>
-          <Row className='justify-content-md-center mt-5'>
+          <Row className='justify-content-center mx-auto mt-5'>
             <Col md='auto'>
               <Switch>
                 <Route path='/favorites' component={FavoritesPage} exact />
