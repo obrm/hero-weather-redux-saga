@@ -36,25 +36,25 @@ export const JumbotronStyled = styled(Jumbotron)`
 
   @media ${({ theme }) => theme.mediaQueries['md-width']} {
     width: 600px;
+    margin-left: -45px;
   }
 
   @media ${({ theme }) => theme.mediaQueries['xmd-width']} {
     width: 500px;
+    margin-left: 0;
   }
 
   @media ${({ theme }) => theme.mediaQueries['sm-width']} {
     width: 350px;
     margin-bottom: 0;
-    margin-left: 1rem;
   }
 
   @media ${({ theme }) => theme.mediaQueries['xsm-width']} {
-    margin-left: 0.5rem;
     width: 330px;
+    margin-left: -0.7rem;
   }
 
   @media ${({ theme }) => theme.mediaQueries['xxsm-width']} {
-    margin-left: 0;
     width: 290px;
   }
 
@@ -93,6 +93,10 @@ export const WeatherIcon = styled.div`
     p {
       font-size: 0.8rem;
     }
+  }
+
+  @media ${({ theme }) => theme.mediaQueries['md-width']} {
+    left: 15px;
   }
 
   @media ${({ theme }) => theme.mediaQueries['xxsm-width']} {
@@ -139,11 +143,11 @@ export const WeatherText = styled.div`
 
   @media ${({ theme }) => theme.mediaQueries['md-width']} {
     top: 250px;
+    left: 55px;
   }
 
   @media ${({ theme }) => theme.mediaQueries['xmd-width']} {
     top: 230px !important;
-    left: 55px;
   }
 
   @media ${({ theme }) => theme.mediaQueries['sm-width']} {
@@ -186,11 +190,7 @@ export const SearchDiv = styled.div`
   }
 
   @media ${({ theme }) => theme.mediaQueries['sm-width']} {
-    width: 70%;
-  }
-
-  @media ${({ theme }) => theme.mediaQueries['xxsm-width']} {
-    width: 80%;
+    width: 100%;
   }
 `
 
@@ -202,12 +202,13 @@ export const FavoriteButton = styled.div`
 
   @media ${({ theme }) => theme.mediaQueries['lg-width']} {
     top: 150px !important;
-    right: -35px !important;
+    right: -60px !important;
   }
 
   @media ${({ theme }) => theme.mediaQueries['md-width']} {
     top: 150px !important;
-    left: 530px !important;
+    left: 470px !important;
+    width: 50px;
   }
 
   @media ${({ theme }) => theme.mediaQueries['xmd-width']} {
@@ -280,7 +281,7 @@ export const WeatherForecast = styled.div`
   @media ${({ theme }) => theme.mediaQueries['md-width']} {
     grid-template-columns: 1fr;
     top: 500px;
-    left: 75px;
+    left: 25px;
   }
 
   @media ${({ theme }) => theme.mediaQueries['xmd-width']} {
@@ -290,11 +291,11 @@ export const WeatherForecast = styled.div`
 
   @media ${({ theme }) => theme.mediaQueries['sm-width']} {
     top: 340px;
-    left: 55px;
+    left: 40px;
   }
 
   @media ${({ theme }) => theme.mediaQueries['xsm-width']} {
-    left: 30px;
+    left: 20px;
     top: 330px;
   }
 
