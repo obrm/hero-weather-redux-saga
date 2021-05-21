@@ -22,9 +22,9 @@ import { LargeHeading } from './styled/StyledUtils'
 
 const HomePage = () => {
   const [apiWeatherFields, setApiWeatherFields] = useState({
-    WeatherText: null,
-    WeatherIcon: null,
-    Value: null,
+    weatherText: null,
+    weatherIcon: null,
+    value: null,
   })
 
   const [cityNameField, setCityNameField] = useState('')
@@ -68,19 +68,19 @@ const HomePage = () => {
   useEffect(() => {
     if (currentWeather) {
       setApiWeatherFields({
-        WeatherText: currentWeather.WeatherText,
-        WeatherIcon: currentWeather.WeatherIcon,
-        Value: currentWeather.Temperature.Metric.Value,
+        weatherText: currentWeather.WeatherText,
+        weatherIcon: currentWeather.WeatherIcon,
+        value: currentWeather.Temperature.Metric.Value,
       })
     }
   }, [currentWeather])
 
-  const { WeatherText, WeatherIcon, Value } = apiWeatherFields
+  const { weatherText, weatherIcon, value } = apiWeatherFields
 
-  const roundedTemperature = Math.round(parseFloat(Value))
+  const roundedTemperature = Math.round(parseFloat(value))
 
   const weatherImage = !loading
-    ? weatherImageChooser(WeatherText)
+    ? weatherImageChooser(weatherText)
     : 'cloudy-day'
 
   return (
@@ -106,7 +106,7 @@ const HomePage = () => {
           />
           <StyledWeatherIcon>
             <img
-              src={`/img/weather-icons/${WeatherIcon}-s.png`}
+              src={`/img/weather-icons/${weatherIcon}-s.png`}
               alt='weather icon'
               className='column'
               loading='lazy'
@@ -120,7 +120,7 @@ const HomePage = () => {
             <AddFavoriteButton />
           </StyledFavoriteButton>
           <StyledWeatherText>
-            <LargeHeading>{WeatherText}</LargeHeading>
+            <LargeHeading>{weatherText}</LargeHeading>
           </StyledWeatherText>
           <FiveDaysForecast />
         </StyledJumbotron>
