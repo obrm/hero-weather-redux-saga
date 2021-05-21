@@ -1,7 +1,7 @@
 import { Jumbotron } from 'react-bootstrap'
 import styled from 'styled-components'
 
-export const StyledJumbotron = styled(Jumbotron)`
+export const JumbotronStyled = styled(Jumbotron)`
   width: 870px;
 
   @media ${({ theme }) => theme.mediaQueries['lg-width']} {
@@ -43,7 +43,7 @@ export const StyledJumbotron = styled(Jumbotron)`
     margin-left: 1rem;
   }
 `
-export const StyledWeatherImage = styled.img`
+export const WeatherImage = styled.img`
   width: 100%;
   position: relative;
   top: 0;
@@ -51,7 +51,7 @@ export const StyledWeatherImage = styled.img`
   z-index: 0;
 `
 
-export const StyledWeatherIcon = styled.div`
+export const WeatherIcon = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -102,7 +102,7 @@ export const StyledWeatherIcon = styled.div`
   }
 `
 
-export const StyledFavoriteButton = styled.div`
+export const FavoriteButton = styled.div`
   z-index: 1;
   position: absolute;
   top: 140px;
@@ -142,7 +142,7 @@ export const StyledFavoriteButton = styled.div`
   }
 `
 
-export const StyledWeatherText = styled.div`
+export const WeatherText = styled.div`
   text-align: center;
   width: 80%;
   z-index: 1;
@@ -184,7 +184,7 @@ export const StyledWeatherText = styled.div`
   }
 `
 
-export const StyledFavoritesGrid = styled.div`
+export const FavoritesGrid = styled.div`
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 1.5rem;

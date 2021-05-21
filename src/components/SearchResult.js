@@ -2,7 +2,7 @@ import { useDispatch } from 'react-redux'
 
 import { getWeatherRequest } from '../redux/weather/weatherActions'
 import { GENERAL_RESET } from '../redux/general/generalConstants'
-import { StyledSuggestions } from './styled/Styled'
+import { Suggestions } from './styled/Styled'
 
 const SearchResult = ({ Key, LocalizedName, setText }) => {
   const dispatch = useDispatch()
@@ -18,11 +18,7 @@ const SearchResult = ({ Key, LocalizedName, setText }) => {
     setText('')
   }
 
-  return (
-    <StyledSuggestions onClick={onClickHandler}>
-      {LocalizedName}
-    </StyledSuggestions>
-  )
+  return <Suggestions onClick={onClickHandler}>{LocalizedName}</Suggestions>
 }
 
 export default SearchResult

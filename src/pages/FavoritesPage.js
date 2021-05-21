@@ -5,7 +5,7 @@ import { getFavoritesWeatherStart } from '../redux/favorites/favoritesActions'
 import Spinner from '../components/layout/Spinner'
 import ErrorToast from '../components/ErrorToast'
 import FavoriteItem from '../components/FavoriteItem'
-import { StyledFavoritesGrid } from './styled/Styled'
+import { FavoritesGrid } from './styled/Styled'
 
 const FavoritesPage = () => {
   const dispatch = useDispatch()
@@ -37,7 +37,7 @@ const FavoritesPage = () => {
           favoritesWeatherItems &&
           !loading &&
           favoritesItemsWeather && (
-            <StyledFavoritesGrid className='text-center'>
+            <FavoritesGrid className='text-center'>
               {favoritesItemsWeather.map((fav) => (
                 <FavoriteItem
                   favoriteCityName={fav.favoriteCityName}
@@ -46,7 +46,7 @@ const FavoritesPage = () => {
                   cityKey={fav.key}
                 />
               ))}
-            </StyledFavoritesGrid>
+            </FavoritesGrid>
           )
         )}
       </div>

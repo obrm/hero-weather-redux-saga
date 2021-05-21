@@ -6,7 +6,7 @@ import { useDispatch } from 'react-redux'
 
 import animationData from './animationData.json'
 import { darkModeToggle } from '../redux/darkMode/darkModeActions'
-import { StyledNightModeButton, StyledNightModeDiv } from './styled/Styled'
+import { NightModeButton, NightModeDiv } from './styled/Styled'
 
 const NightModeToggle = ({ size, checked, onChange, speed, className }) => {
   const [sizeValue, sizeUnit] = parseUnit(size)
@@ -24,14 +24,14 @@ const NightModeToggle = ({ size, checked, onChange, speed, className }) => {
   }
 
   return (
-    <StyledNightModeButton
+    <NightModeButton
       onClick={onClickHandler}
       aria-hidden='true'
       className={className}
       sizeValue={sizeValue}
       sizeUnit={sizeUnit}
     >
-      <StyledNightModeDiv sizeValue={sizeValue} sizeUnit={sizeUnit}>
+      <NightModeDiv sizeValue={sizeValue} sizeUnit={sizeUnit}>
         <Lottie
           key='$preventGlitches'
           play={isReadyToAnimate}
@@ -41,8 +41,8 @@ const NightModeToggle = ({ size, checked, onChange, speed, className }) => {
           segments={segmentsToPlay}
           goTo={segmentToGoTo}
         />
-      </StyledNightModeDiv>
-    </StyledNightModeButton>
+      </NightModeDiv>
+    </NightModeButton>
   )
 }
 

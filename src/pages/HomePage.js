@@ -12,11 +12,11 @@ import ErrorToast from '../components/ErrorToast'
 import useGeolocation from '../components/hooks/useGeolocation'
 import FiveDaysForecast from '../components/FiveDaysForecast'
 import {
-  StyledJumbotron,
-  StyledWeatherImage,
-  StyledWeatherIcon,
-  StyledFavoriteButton,
-  StyledWeatherText,
+  JumbotronStyled,
+  WeatherImage,
+  WeatherIcon,
+  FavoriteButton,
+  WeatherText,
 } from './styled/Styled'
 import { LargeHeading } from './styled/StyledUtils'
 
@@ -96,13 +96,13 @@ const HomePage = () => {
       ) : error ? (
         <ErrorToast />
       ) : (
-        <StyledJumbotron>
-          <StyledWeatherImage
+        <JumbotronStyled>
+          <WeatherImage
             src={`/img/weather-images/${weatherImage}.jpg`}
             alt=''
             loading='lazy'
           />
-          <StyledWeatherIcon>
+          <WeatherIcon>
             <img
               src={`/img/weather-icons/${weatherIcon}-s.png`}
               alt='weather icon'
@@ -113,15 +113,15 @@ const HomePage = () => {
               <h4>{cityNameField} </h4>
               <p className='ml-2'>{roundedTemperature} &deg;</p>
             </div>
-          </StyledWeatherIcon>
-          <StyledFavoriteButton>
+          </WeatherIcon>
+          <FavoriteButton>
             <AddFavoriteButton />
-          </StyledFavoriteButton>
-          <StyledWeatherText>
+          </FavoriteButton>
+          <WeatherText>
             <LargeHeading>{weatherText}</LargeHeading>
-          </StyledWeatherText>
+          </WeatherText>
           <FiveDaysForecast />
-        </StyledJumbotron>
+        </JumbotronStyled>
       )}
     </>
   )

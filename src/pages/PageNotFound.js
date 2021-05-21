@@ -1,5 +1,5 @@
 import React from 'react'
-import { StyledLink } from './styled/StyledUtils'
+import { LinkStyled } from './styled/StyledUtils'
 
 const PageNotFound = () => {
   return (
@@ -11,7 +11,7 @@ const PageNotFound = () => {
           Found
         </h1>
         <h4>We are sorry, but the page you are looking for does not exist</h4>
-        <StyledLink to='/'>Back To Home Page</StyledLink>
+        <LinkStyled to='/'>Back To Home Page</LinkStyled>
       </div>
     </>
   )

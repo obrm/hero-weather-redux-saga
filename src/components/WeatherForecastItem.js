@@ -3,12 +3,7 @@ import PropTypes from 'prop-types'
 
 import Spinner from './layout/Spinner'
 import { chooseWeatherImage } from './helper/chooseWeatherImage'
-import {
-  StyledCardForecast,
-  StyledCardIcon,
-  StyledCardText,
-  StyledCardTitle,
-} from './styled/Styled'
+import { CardForecast, CardIcon, CardText, CardTitle } from './styled/Styled'
 
 const WeatherForecastItem = ({
   forecast: {
@@ -47,23 +42,23 @@ const WeatherForecastItem = ({
       ) : error ? (
         <></>
       ) : (
-        <StyledCardForecast className='img-fluid'>
-          <StyledCardForecast.Img
+        <CardForecast className='img-fluid'>
+          <CardForecast.Img
             src={`/img/weather-images/${weatherImage}.jpg`}
             alt='Card image'
             style={{ width: '100%' }}
             loading='lazy'
           />
-          <StyledCardForecast.ImgOverlay className='text-center'>
-            <StyledCardTitle>{day}</StyledCardTitle>
-            <StyledCardText>{roundedTemperature} &deg;</StyledCardText>
-            <StyledCardIcon
+          <CardForecast.ImgOverlay className='text-center'>
+            <CardTitle>{day}</CardTitle>
+            <CardText>{roundedTemperature} &deg;</CardText>
+            <CardIcon
               src={`/img/weather-icons/${Icon}-s.png`}
               alt='weather icon'
               loading='lazy'
             />
-          </StyledCardForecast.ImgOverlay>
-        </StyledCardForecast>
+          </CardForecast.ImgOverlay>
+        </CardForecast>
       )}
     </>
   )

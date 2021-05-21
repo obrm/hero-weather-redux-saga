@@ -6,7 +6,7 @@ import {
   addItemToFavoritesStart,
   removeItemFromFavoritesStart,
 } from '../redux/favorites/favoritesActions'
-import { StyledFavoriteText } from './styled/Styled'
+import { FavoriteText } from './styled/Styled'
 
 const AddFavoriteButton = () => {
   const [isFavorite, setIsFavorite] = useState(false)
@@ -50,9 +50,9 @@ const AddFavoriteButton = () => {
           <i className='fas fa-heart fa-2x' style={{ color: '#f52f19' }}></i>
         )}
       </Badge>
-      <StyledFavoriteText>
+      <FavoriteText>
         {isFavorite ? `Remove from favorites` : `Add to favorites`}
-      </StyledFavoriteText>
+      </FavoriteText>
     </Button>
   )
 }

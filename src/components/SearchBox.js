@@ -6,10 +6,10 @@ import { getAutoCompleteResultsRequest } from '../redux/autoComplete/autoComplet
 import { AUTO_COMPLETE_RESET } from '../redux/autoComplete/autoCompleteConstants'
 import SearchResult from './SearchResult'
 import {
-  StyledSearchBoxDiv,
-  StyledSearchResultsDiv,
-  StyledSearchBoxInput,
-  StyledSearchDiv,
+  SearchBoxDiv,
+  SearchResultsDiv,
+  SearchBoxInput,
+  SearchDiv,
 } from './styled/Styled'
 
 const SearchBox = () => {
@@ -40,10 +40,10 @@ const SearchBox = () => {
   }
 
   return (
-    <StyledSearchBoxDiv>
+    <SearchBoxDiv>
       <Form inline>
-        <StyledSearchDiv className='input-group'>
-          <StyledSearchBoxInput
+        <SearchDiv className='input-group'>
+          <SearchBoxInput
             theme={theme}
             type='search'
             name='q'
@@ -53,17 +53,17 @@ const SearchBox = () => {
             placeholder='Search Location...'
             className='mr-sm-2 ml-sm-3 form-control'
           />
-        </StyledSearchDiv>
+        </SearchDiv>
       </Form>
-      <StyledSearchResultsDiv>
+      <SearchResultsDiv>
         {results &&
           results.map((result) => {
             return (
               <SearchResult key={result.Key} {...result} setText={setText} />
             )
           })}
-      </StyledSearchResultsDiv>
-    </StyledSearchBoxDiv>
+      </SearchResultsDiv>
+    </SearchBoxDiv>
   )
 }
 

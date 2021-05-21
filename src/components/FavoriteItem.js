@@ -6,11 +6,7 @@ import { BrowserRouter as Router, useHistory } from 'react-router-dom'
 import { getWeatherRequest } from '../redux/weather/weatherActions'
 import { FAVORITE_SHOW_ITEM } from '../redux/favorites/favoritesConstants'
 import { chooseWeatherImage } from './helper/chooseWeatherImage'
-import {
-  StyledFavoriteItemCard,
-  StyledHeading3,
-  StyledFavoriteCardText,
-} from './styled/Styled'
+import { FavoriteItemCard, Heading3, FavoriteCardText } from './styled/Styled'
 
 const FavoriteItem = ({
   favoriteCityName,
@@ -40,30 +36,28 @@ const FavoriteItem = ({
   }
 
   return (
-    <StyledFavoriteItemCard className='img-fluid' onClick={onClickHandler}>
-      <StyledFavoriteItemCard.Img
+    <FavoriteItemCard className='img-fluid' onClick={onClickHandler}>
+      <FavoriteItemCard.Img
         src={`/img/weather-images/${weatherImage}.jpg`}
         alt='Weather image'
         style={{ width: '100%' }}
         loading='lazy'
       />
-      <StyledFavoriteItemCard.ImgOverlay className='text-center'>
-        <StyledHeading3>
+      <FavoriteItemCard.ImgOverlay className='text-center'>
+        <Heading3>
           {favoriteCityName.length > 17
             ? `${favoriteCityName.slice(0, 15)}...`
             : favoriteCityName}
-        </StyledHeading3>
+        </Heading3>
         <img
           src={`/img/weather-icons/${WeatherIcon}-s.png`}
           alt='weather icon'
           className='column'
           loading='lazy'
         />
-        <StyledFavoriteCardText>
-          {roundedTemperature} &deg;
-        </StyledFavoriteCardText>
-      </StyledFavoriteItemCard.ImgOverlay>{' '}
-    </StyledFavoriteItemCard>
+        <FavoriteCardText>{roundedTemperature} &deg;</FavoriteCardText>
+      </FavoriteItemCard.ImgOverlay>{' '}
+    </FavoriteItemCard>
   )
 }
 

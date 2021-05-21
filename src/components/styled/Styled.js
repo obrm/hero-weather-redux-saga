@@ -4,7 +4,7 @@ import styled from 'styled-components'
 const darkAndLight = (props) => (props.theme === true ? '#6e6e6e' : '#fff')
 const lightAndDark = (props) => (props.theme === true ? '#fff' : '#6e6e6e')
 
-export const StyledSearchBoxInput = styled.input`
+export const SearchBoxInput = styled.input`
   background-color: ${darkAndLight};
   ::placeholder,
   ::-webkit-input-placeholder {
@@ -26,14 +26,14 @@ export const StyledSearchBoxInput = styled.input`
     }
   }
 `
-export const StyledSearchBoxDiv = styled.div`
+export const SearchBoxDiv = styled.div`
   position: relative;
   display: inline-block;
 `
-export const StyledSearchResultsDiv = styled.div`
+export const SearchResultsDiv = styled.div`
   position: absolute;
 `
-export const StyledSearchDiv = styled.div`
+export const SearchDiv = styled.div`
   @media ${({ theme }) => theme.mediaQueries['xmd-width']} {
     width: 80%;
     margin-right: 0.5rem;
@@ -49,7 +49,7 @@ export const StyledSearchDiv = styled.div`
   }
 `
 
-export const StyledFavoriteText = styled.span`
+export const FavoriteText = styled.span`
   font-weight: 800;
   font-size: 1.3rem;
   margin-left: 0.5rem;
@@ -58,16 +58,16 @@ export const StyledFavoriteText = styled.span`
     display: none;
   }
 `
-export const StyledFavoriteItemCard = styled(Card)`
+export const FavoriteItemCard = styled(Card)`
   width: 15rem;
   height: 160px;
   cursor: pointer;
 `
-export const StyledHeading3 = styled.h3`
+export const Heading3 = styled.h3`
   font-size: 1.5rem;
 `
 
-export const StyledFavoriteCardText = styled.p`
+export const FavoriteCardText = styled.p`
   font-weight: 800;
   font-size: 1.5rem;
   color: #fff;
@@ -77,7 +77,7 @@ export const StyledFavoriteCardText = styled.p`
   }
 `
 
-export const StyledWeatherForecast = styled.div`
+export const WeatherForecast = styled.div`
   display: grid;
   grid-template-columns: repeat(5, 1fr);
   gap: 0.5rem;
@@ -133,7 +133,7 @@ export const StyledWeatherForecast = styled.div`
   }
 `
 
-export const StyledNightModeButton = styled.button`
+export const NightModeButton = styled.button`
   cursor: pointer;
   overflow: hidden;
   width: ${(props) =>
@@ -152,7 +152,7 @@ export const StyledNightModeButton = styled.button`
   padding: 0;
 `
 
-export const StyledNightModeDiv = styled.div`
+export const NightModeDiv = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
@@ -173,7 +173,7 @@ export const StyledNightModeDiv = styled.div`
       ? `${props.sizeValue * 1.65}${props.sizeUnit}`
       : `${props.sizeValue * 1.65}px`};
 `
-export const StyledSuggestions = styled(Col)`
+export const Suggestions = styled(Col)`
   z-index: 99;
   top: 100%;
   left: 16px;
@@ -192,7 +192,7 @@ export const StyledSuggestions = styled(Col)`
   }
 `
 
-export const StyledCardForecast = styled(Card)`
+export const CardForecast = styled(Card)`
   width: 10rem;
 
   @media ${({ theme }) => theme.mediaQueries['lg-width']} {
@@ -229,7 +229,7 @@ export const StyledCardForecast = styled(Card)`
     height: 9rem;
   }
 `
-export const StyledCardIcon = styled.img`
+export const CardIcon = styled.img`
   @media ${({ theme }) => theme.mediaQueries['lg-width']} {
     width: 50%;
   }
@@ -239,7 +239,7 @@ export const StyledCardIcon = styled.img`
   }
 `
 
-export const StyledCardText = styled.p`
+export const CardText = styled.p`
   margin-bottom: 0;
   color: #fff;
 
@@ -247,7 +247,7 @@ export const StyledCardText = styled.p`
     font-size: 1.5rem;
   }
 `
-export const StyledCardTitle = styled.h5`
+export const CardTitle = styled.h5`
   margin-bottom: 0;
   color: #fff;
 

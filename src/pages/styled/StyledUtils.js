@@ -26,7 +26,7 @@ export const LargeHeading = styled.h1`
   }
 `
 
-export const StyledLink = styled(Link)`
+export const LinkStyled = styled(Link)`
   display: inline-block;
   border: none;
   background: #b3b3b3;
