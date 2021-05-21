@@ -430,6 +430,7 @@ export const CardIcon = styled.img`
 export const CardText = styled.p`
   margin-bottom: 0;
   color: #e9ebee;
+  text-shadow: 1px 1px 5px #222222;
 
   @media ${({ theme }) => theme.mediaQueries['md-width']} {
     font-size: 1.5rem;
@@ -438,6 +439,7 @@ export const CardText = styled.p`
 export const CardTitle = styled.h5`
   margin-bottom: 0;
   color: #e9ebee;
+  text-shadow: 1px 1px 5px #222222;
 
   @media ${({ theme }) => theme.mediaQueries['md-width']} {
     font-size: 2rem;
