@@ -239,6 +239,7 @@ export const FavoriteText = styled.span`
   font-weight: 800;
   font-size: 1.3rem;
   margin-left: 0.5rem;
+  color: #e9ebee;
 
   @media ${({ theme }) => theme.mediaQueries['md-width']} {
     display: none;

@@ -14,7 +14,7 @@ const mediaQueries = {
 const Theme = {
   lightTheme: {
     text: '#222',
-    background: '#fafafa',
+    background: '#E9EBEE',
     mediaQueries,
   },
 

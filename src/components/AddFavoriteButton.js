@@ -45,7 +45,7 @@ const AddFavoriteButton = () => {
     <Button variant='outline' onClick={favoritesButtonHandler}>
       <Badge variant='light'>
         {isFavorite ? (
-          <i className='far fa-heart fa-2x' style={{ color: '#fff' }}></i>
+          <i className='far fa-heart fa-2x' style={{ color: '#E9EBEE' }}></i>
         ) : (
           <i className='fas fa-heart fa-2x' style={{ color: '#f52f19' }}></i>
         )}

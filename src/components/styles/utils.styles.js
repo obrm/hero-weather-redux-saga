@@ -2,7 +2,9 @@ import styled from 'styled-components'
 
 export const LargeHeading = styled.h1`
   font-size: 5rem;
-  color: #fff;
+  color: #e9ebee;
+  font-weight: bold;
+  -webkit-text-stroke: 1px black;
 
   @media ${({ theme }) => theme.mediaQueries['md-width']} {
     font-size: 4rem;
