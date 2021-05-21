@@ -27,7 +27,9 @@ export const removeItemFromFavoritesStart = (favoriteCityName) => ({
   payload: favoriteCityName,
 })
 
-export const removeItemFromFavoritesSuccess = (favoriteCityName) => ({
+export const removeItemFromFavoritesSuccess = ({
+  payload: favoriteCityName,
+}) => ({
   type: FAVORITE_REMOVE_ITEM_SUCCESS,
   payload: favoriteCityName,
 })
