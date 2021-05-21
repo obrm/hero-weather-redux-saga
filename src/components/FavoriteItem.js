@@ -1,4 +1,3 @@
-import { Card } from 'react-bootstrap'
 import { useDispatch } from 'react-redux'
 import PropTypes from 'prop-types'
 // eslint-disable-next-line no-unused-vars
@@ -7,6 +6,11 @@ import { BrowserRouter as Router, useHistory } from 'react-router-dom'
 import { getWeatherRequest } from '../redux/weather/weatherActions'
 import { FAVORITE_SHOW_ITEM } from '../redux/favorites/favoritesConstants'
 import { weatherImageChooser } from './helper/weatherImageChooser'
+import {
+  StyledFavoriteItemCard,
+  StyledHeading3,
+  StyledFavoriteCardText,
+} from './styled/Styled'
 
 const FavoriteItem = ({
   favoriteCityName,
@@ -36,32 +40,30 @@ const FavoriteItem = ({
   }
 
   return (
-    <Card
-      className='img-fluid'
-      style={{ width: '15rem', height: '160px', cursor: 'pointer' }}
-      onClick={onClickHandler}
-    >
-      <Card.Img
+    <StyledFavoriteItemCard className='img-fluid' onClick={onClickHandler}>
+      <StyledFavoriteItemCard.Img
         src={`/img/weather-images/${weatherImage}.jpg`}
         alt='Weather image'
         style={{ width: '100%' }}
         loading='lazy'
       />
-      <Card.ImgOverlay className='text-center'>
-        <h3 style={{ fontSize: '1.5rem' }}>
+      <StyledFavoriteItemCard.ImgOverlay className='text-center'>
+        <StyledHeading3>
           {favoriteCityName.length > 17
             ? `${favoriteCityName.slice(0, 15)}...`
             : favoriteCityName}
-        </h3>
+        </StyledHeading3>
         <img
           src={`/img/weather-icons/${WeatherIcon}-s.png`}
           alt='weather icon'
           className='column'
           loading='lazy'
         />
-        <p className='card-text-favorite'>{roundedTemperature} &deg;</p>
-      </Card.ImgOverlay>{' '}
-    </Card>
+        <StyledFavoriteCardText>
+          {roundedTemperature} &deg;
+        </StyledFavoriteCardText>
+      </StyledFavoriteItemCard.ImgOverlay>{' '}
+    </StyledFavoriteItemCard>
   )
 }
 

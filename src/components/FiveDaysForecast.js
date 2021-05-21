@@ -1,5 +1,7 @@
 import { useSelector } from 'react-redux'
 
+import { StyledWeatherForecast } from './styled/Styled'
+
 import WeatherForecastItem from '../components/WeatherForecastItem'
 
 const FiveDaysForecast = () => {
@@ -7,13 +9,13 @@ const FiveDaysForecast = () => {
   const { fiveDaysForecast, loading } = weather
 
   return (
-    <div className='weather-forecast'>
+    <StyledWeatherForecast>
       {!loading &&
         fiveDaysForecast &&
         fiveDaysForecast.map((forecast) => (
           <WeatherForecastItem key={forecast.EpochDate} forecast={forecast} />
         ))}
-    </div>
+    </StyledWeatherForecast>
   )
 }
 

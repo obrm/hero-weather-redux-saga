@@ -5,7 +5,12 @@ import { Form } from 'react-bootstrap'
 import { getAutoCompleteResultsRequest } from '../redux/autoComplete/autoCompleteActions'
 import { AUTO_COMPLETE_RESET } from '../redux/autoComplete/autoCompleteConstants'
 import SearchResult from './SearchResult'
-import SearchBoxInput from './styled/SearchBoxInput'
+import {
+  StyledSearchBoxDiv,
+  StyledSearchResultsDiv,
+  StyledSearchBoxInput,
+  StyledSearchDiv,
+} from './styled/Styled'
 
 const SearchBox = () => {
   const [text, setText] = useState('')
@@ -35,10 +40,10 @@ const SearchBox = () => {
   }
 
   return (
-    <div className='search-box'>
+    <StyledSearchBoxDiv>
       <Form inline>
-        <div className='input-group search-md search-sm'>
-          <SearchBoxInput
+        <StyledSearchDiv className='input-group'>
+          <StyledSearchBoxInput
             theme={theme}
             type='search'
             name='q'
@@ -48,17 +53,17 @@ const SearchBox = () => {
             placeholder='Search Location...'
             className='mr-sm-2 ml-sm-3 form-control'
           />
-        </div>
+        </StyledSearchDiv>
       </Form>
-      <div className='search-results'>
+      <StyledSearchResultsDiv>
         {results &&
           results.map((result) => {
             return (
               <SearchResult key={result.Key} {...result} setText={setText} />
             )
           })}
-      </div>
-    </div>
+      </StyledSearchResultsDiv>
+    </StyledSearchBoxDiv>
   )
 }
 

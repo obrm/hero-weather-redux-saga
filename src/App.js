@@ -4,7 +4,7 @@ import { Container, Row, Col } from 'react-bootstrap'
 import { ThemeProvider } from 'styled-components'
 
 import GlobalStyle from './theme/GlobalStyle'
-import { lightTheme, darkTheme } from './theme/theme'
+import Theme from './theme/theme'
 import Header from './components/Header'
 import HomePage from './pages/HomePage'
 import FavoritesPage from './pages/FavoritesPage'
@@ -15,7 +15,7 @@ function App() {
   const { theme } = darkMode
 
   return (
-    <ThemeProvider theme={theme ? lightTheme : darkTheme}>
+    <ThemeProvider theme={theme ? Theme.lightTheme : Theme.darkTheme}>
       <GlobalStyle />
       <Router>
         <Header />

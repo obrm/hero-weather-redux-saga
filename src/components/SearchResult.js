@@ -1,8 +1,8 @@
 import { useDispatch } from 'react-redux'
-import { Col } from 'react-bootstrap'
 
 import { getWeatherRequest } from '../redux/weather/weatherActions'
 import { GENERAL_RESET } from '../redux/general/generalConstants'
+import { StyledSuggestions } from './styled/Styled'
 
 const SearchResult = ({ Key, LocalizedName, setText }) => {
   const dispatch = useDispatch()
@@ -19,9 +19,9 @@ const SearchResult = ({ Key, LocalizedName, setText }) => {
   }
 
   return (
-    <Col className='suggestion' onClick={onClickHandler}>
+    <StyledSuggestions onClick={onClickHandler}>
       {LocalizedName}
-    </Col>
+    </StyledSuggestions>
   )
 }
 

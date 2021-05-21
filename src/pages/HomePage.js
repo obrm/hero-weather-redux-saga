@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { Jumbotron, Row, Col } from 'react-bootstrap'
+import { Row, Col } from 'react-bootstrap'
 import { Helmet } from 'react-helmet'
 
 import { weatherImageChooser } from '../components/helper/weatherImageChooser'
@@ -11,6 +11,14 @@ import SearchBox from '../components/SearchBox'
 import ErrorToast from '../components/ErrorToast'
 import useGeolocation from '../components/hooks/useGeolocation'
 import FiveDaysForecast from '../components/FiveDaysForecast'
+import {
+  StyledJumbotron,
+  StyledWeatherImage,
+  StyledWeatherIcon,
+  StyledFavoriteButton,
+  StyledWeatherText,
+} from './styled/Styled'
+import { LargeHeading } from './styled/StyledUtils'
 
 const HomePage = () => {
   const [apiWeatherFields, setApiWeatherFields] = useState({
@@ -90,14 +98,13 @@ const HomePage = () => {
       ) : error ? (
         <ErrorToast />
       ) : (
-        <Jumbotron>
-          <img
+        <StyledJumbotron>
+          <StyledWeatherImage
             src={`/img/weather-images/${weatherImage}.jpg`}
             alt=''
-            className='weather-img'
             loading='lazy'
           />
-          <div className='weather-icon'>
+          <StyledWeatherIcon>
             <img
               src={`/img/weather-icons/${WeatherIcon}-s.png`}
               alt='weather icon'
@@ -108,15 +115,15 @@ const HomePage = () => {
               <h4>{cityNameField} </h4>
               <p className='ml-2'>{roundedTemperature} &deg;</p>
             </div>
-          </div>
-          <div className='favorite-button'>
+          </StyledWeatherIcon>
+          <StyledFavoriteButton>
             <AddFavoriteButton />
-          </div>
-          <div className='weather-text'>
-            <h1 className='l-heading'>{WeatherText}</h1>
-          </div>
+          </StyledFavoriteButton>
+          <StyledWeatherText>
+            <LargeHeading>{WeatherText}</LargeHeading>
+          </StyledWeatherText>
           <FiveDaysForecast />
-        </Jumbotron>
+        </StyledJumbotron>
       )}
     </>
   )

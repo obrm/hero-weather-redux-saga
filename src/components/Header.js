@@ -2,8 +2,14 @@ import { useState } from 'react'
 import { Navbar, Nav, Container } from 'react-bootstrap'
 import { LinkContainer } from 'react-router-bootstrap'
 import { useSelector } from 'react-redux'
+import styled from 'styled-components'
 
 import NightModeToggle from './NightModeToggle'
+
+const Logo = styled.h3`
+  color: #fff;
+  text-decoration: none;
+`
 
 const Header = () => {
   const darkMode = useSelector((state) => state.darkMode)
@@ -24,7 +30,7 @@ const Header = () => {
             <Navbar.Brand>
               <LinkContainer to='/home'>
                 <Nav.Link>
-                  <h3 className='logo'>Hero Weather</h3>
+                  <Logo>Hero Weather</Logo>
                 </Nav.Link>
               </LinkContainer>
             </Navbar.Brand>
