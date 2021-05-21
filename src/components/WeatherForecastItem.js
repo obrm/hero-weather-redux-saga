@@ -3,7 +3,12 @@ import PropTypes from 'prop-types'
 
 import Spinner from './layout/Spinner'
 import { chooseWeatherImage } from './helper/chooseWeatherImage'
-import { CardForecast, CardIcon, CardText, CardTitle } from './styled/Styled'
+import {
+  CardForecast,
+  CardIcon,
+  CardText,
+  CardTitle,
+} from './styles/components.styles'
 
 const WeatherForecastItem = ({
   forecast: {

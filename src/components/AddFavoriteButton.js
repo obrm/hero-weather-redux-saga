@@ -6,7 +6,7 @@ import {
   addItemToFavoritesStart,
   removeItemFromFavoritesStart,
 } from '../redux/favorites/favoritesActions'
-import { FavoriteText } from './styled/Styled'
+import { FavoriteText } from './styles/components.styles'
 
 const AddFavoriteButton = () => {
   const [isFavorite, setIsFavorite] = useState(false)

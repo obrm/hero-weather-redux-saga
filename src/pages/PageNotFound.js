@@ -1,5 +1,5 @@
 import React from 'react'
-import { LinkStyled } from './styled/StyledUtils'
+import { LinkStyled } from './styles/utils.styles'
 
 const PageNotFound = () => {
   return (

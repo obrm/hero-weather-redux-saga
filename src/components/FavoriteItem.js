@@ -6,7 +6,11 @@ import { BrowserRouter as Router, useHistory } from 'react-router-dom'
 import { getWeatherRequest } from '../redux/weather/weatherActions'
 import { FAVORITE_SHOW_ITEM } from '../redux/favorites/favoritesConstants'
 import { chooseWeatherImage } from './helper/chooseWeatherImage'
-import { FavoriteItemCard, Heading3, FavoriteCardText } from './styled/Styled'
+import {
+  FavoriteItemCard,
+  Heading3,
+  FavoriteCardText,
+} from './styles/components.styles'
 
 const FavoriteItem = ({
   favoriteCityName,

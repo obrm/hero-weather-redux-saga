@@ -10,7 +10,7 @@ import {
   SearchResultsDiv,
   SearchBoxInput,
   SearchDiv,
-} from './styled/Styled'
+} from './styles/components.styles'
 
 const SearchBox = () => {
   const [text, setText] = useState('')

@@ -5,7 +5,7 @@ import { getFavoritesWeatherStart } from '../redux/favorites/favoritesActions'
 import Spinner from '../components/layout/Spinner'
 import ErrorToast from '../components/ErrorToast'
 import FavoriteItem from '../components/FavoriteItem'
-import { FavoritesGrid } from './styled/Styled'
+import { FavoritesGrid } from './styles/components.styles'
 
 const FavoritesPage = () => {
   const dispatch = useDispatch()

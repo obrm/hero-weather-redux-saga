@@ -2,7 +2,7 @@ import { useDispatch } from 'react-redux'
 
 import { getWeatherRequest } from '../redux/weather/weatherActions'
 import { GENERAL_RESET } from '../redux/general/generalConstants'
-import { Suggestions } from './styled/Styled'
+import { Suggestions } from './styles/components.styles'
 
 const SearchResult = ({ Key, LocalizedName, setText }) => {
   const dispatch = useDispatch()

@@ -1,6 +1,6 @@
 import { useSelector } from 'react-redux'
 
-import { WeatherForecast } from './styled/Styled'
+import { WeatherForecast } from './styles/components.styles'
 
 import WeatherForecastItem from '../components/WeatherForecastItem'
 

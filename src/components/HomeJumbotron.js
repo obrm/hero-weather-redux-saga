@@ -7,12 +7,12 @@ import {
   WeatherIcon,
   FavoriteButton,
   WeatherText,
-} from './styled/Styled'
+} from './styles/components.styles'
 import { chooseWeatherImage } from '../components/helper/chooseWeatherImage'
 import ErrorToast from '../components/ErrorToast'
 import Spinner from '../components/layout/Spinner'
 import AddFavoriteButton from './AddFavoriteButton'
-import { LargeHeading } from './styled/StyledUtils'
+import { LargeHeading } from './styles/utils.styles'
 import FiveDaysForecast from './FiveDaysForecast'
 
 const HomeJumbotron = () => {

@@ -6,7 +6,7 @@ import { useDispatch } from 'react-redux'
 
 import animationData from './animationData.json'
 import { darkModeToggle } from '../redux/darkMode/darkModeActions'
-import { NightModeButton, NightModeDiv } from './styled/Styled'
+import { NightModeButton, NightModeDiv } from './styles/components.styles'
 
 const NightModeToggle = ({ size, checked, onChange, speed, className }) => {
   const [sizeValue, sizeUnit] = parseUnit(size)
