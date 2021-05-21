@@ -212,6 +212,7 @@ export const StyledCardForecast = styled(Card)`
   @media ${({ theme }) => theme.mediaQueries['sm-width']} {
     margin-left: 0.5rem;
     width: 18rem;
+    height: 200px;
   }
 
   @media ${({ theme }) => theme.mediaQueries['xxsm-width']} {

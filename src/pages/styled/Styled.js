@@ -124,20 +124,15 @@ export const StyledFavoriteButton = styled.div`
   }
 
   @media ${({ theme }) => theme.mediaQueries['sm-width']} {
-    top: 120px;
+    top: 120px !important;
+    left: 276px !important;
   }
 
-  @media ${({ theme }) => theme.mediaQueries['xsm-width']} {
-    top: 100px;
-    right: 30px;
+  @media ${({ theme }) => theme.mediaQueries['xxsm-width']} {
+    left: 240px !important;
   }
 
-  @media ${({ theme }) => theme.mediaQueries['sm-width']} {
-    top: 110px;
-    right: 35px;
-  }
-
-  @media ${({ theme }) => theme.mediaQueries['height-below-375']} {
+  @media ${({ theme }) => theme.mediaQueries['sm-height']} {
     top: 110px;
     right: 40px;
   }
