@@ -24,7 +24,6 @@ function App() {
             <Col md='auto'>
               <Switch>
                 <Route path='/favorites' component={FavoritesPage} exact />
-                <Route path='/home' component={HomePage} exact />
                 <Route path='/' component={HomePage} exact />
                 <Route path='/*' component={PageNotFound} />
               </Switch>

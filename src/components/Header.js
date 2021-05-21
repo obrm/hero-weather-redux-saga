@@ -28,7 +28,7 @@ const Header = () => {
         <Container>
           <Navbar.Brand className='mr-n4'>
             <Navbar.Brand>
-              <LinkContainer to='/home'>
+              <LinkContainer to='/'>
                 <Nav.Link>
                   <Logo>Hero Weather</Logo>
                 </Nav.Link>
@@ -41,7 +41,7 @@ const Header = () => {
             id='basic-navbar-nav'
           >
             <Nav>
-              <LinkContainer to='/home'>
+              <LinkContainer to='/'>
                 <Nav.Link>
                   <i className='fas fa-home'></i> Home{' '}
                 </Nav.Link>
