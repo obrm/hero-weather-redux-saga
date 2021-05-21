@@ -252,12 +252,15 @@ export const FavoriteItemCard = styled(Card)`
 `
 export const Heading3 = styled.h3`
   font-size: 1.5rem;
+  color: #e9ebee;
+  text-shadow: 1px 1px 5px #222222;
 `
 
 export const FavoriteCardText = styled.p`
   font-weight: 800;
   font-size: 1.5rem;
-  color: #fff;
+  color: #e9ebee;
+  text-shadow: 1px 1px 5px #222222;
 
   @media ${({ theme }) => theme.mediaQueries['xsm-height']} {
     font-size: 1.5rem !important;
