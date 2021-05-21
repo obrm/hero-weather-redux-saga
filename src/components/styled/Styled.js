@@ -372,6 +372,7 @@ export const Suggestions = styled(Col)`
   border-right: 1px solid #333;
   border-left: 1px solid #333;
   border-bottom: 1px solid #333;
+  text-align: left;
 
   &:hover {
     background-color: #e9e9e9;
