@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react'
 import { useSelector } from 'react-redux'
+import { Col } from 'react-bootstrap'
 
 import {
   JumbotronStyled,
+  WeatherCol,
   WeatherImage,
   WeatherIcon,
   FavoriteButton,
@@ -31,13 +33,7 @@ const HomeJumbotron = () => {
   const { loading, error, currentWeather, currentWeatherCityName } = weather
 
   useEffect(() => {
-    if (error) {
-      setCityNameField('error')
-    } else if (cityFromFavorites) {
-      setCityNameField(cityFromFavorites)
-    } else if (currentWeatherCityName) {
-      setCityNameField(currentWeatherCityName)
-    }
+    setCityNameField(cityFromFavorites ?? currentWeatherCityName)
   }, [cityFromFavorites, currentWeatherCityName, error])
 
   useEffect(() => {
@@ -76,10 +72,10 @@ const HomeJumbotron = () => {
               className='column'
               loading='lazy'
             />
-            <div className='column'>
+            <WeatherCol>
               <h4>{cityNameField} </h4>
               <p className='ml-2'>{roundedTemperature} &deg;</p>
-            </div>
+            </WeatherCol>
           </WeatherIcon>
           <FavoriteButton>
             <AddFavoriteButton />

@@ -26,7 +26,10 @@ export const SearchBoxInput = styled.input`
     }
   }
 `
-
+export const Logo = styled.h3`
+  color: #e9ebee;
+  text-decoration: none;
+`
 export const JumbotronStyled = styled(Jumbotron)`
   width: 870px;
 
@@ -68,6 +71,9 @@ export const JumbotronStyled = styled(Jumbotron)`
     margin-bottom: 0;
     margin-left: 1rem;
   }
+`
+export const WeatherCol = styled(Col)`
+  color: #e9ebee;
 `
 
 export const WeatherIcon = styled.div`

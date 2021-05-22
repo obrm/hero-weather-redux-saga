@@ -38,14 +38,16 @@ const FavoritesPage = () => {
           !loading &&
           favoritesItemsWeather && (
             <FavoritesGrid className='text-center'>
-              {favoritesItemsWeather.map((fav) => (
-                <FavoriteItem
-                  favoriteCityName={fav.favoriteCityName}
-                  weather={fav.weather}
-                  key={fav.key}
-                  cityKey={fav.key}
-                />
-              ))}
+              {favoritesItemsWeather.map(
+                ({ favoriteCityName, weather, key }) => (
+                  <FavoriteItem
+                    favoriteCityName={favoriteCityName}
+                    weather={weather}
+                    key={key}
+                    cityKey={key}
+                  />
+                )
+              )}
             </FavoritesGrid>
           )
         )}

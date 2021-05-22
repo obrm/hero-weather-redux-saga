@@ -27,9 +27,10 @@ const SearchBox = () => {
     if (e.target.value === '') {
       dispatch({ type: AUTO_COMPLETE_RESET })
       setText('')
+    } else {
+      setText(e.target.value)
+      dispatch(getAutoCompleteResultsRequest(e.target.value))
     }
-    setText(e.target.value)
-    dispatch(getAutoCompleteResultsRequest(e.target.value))
   }
 
   const onBlurHandler = () => {

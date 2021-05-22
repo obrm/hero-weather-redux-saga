@@ -9,6 +9,7 @@ import {
   CardText,
   CardTitle,
 } from './styles/components.styles'
+import { getWeekDay } from './helper/getWeekDay'
 
 const WeatherForecastItem = ({
   forecast: {
@@ -19,19 +20,7 @@ const WeatherForecastItem = ({
     Day: { Icon, IconPhrase },
   },
 }) => {
-  const weekday = [
-    'Sunday',
-    'Monday',
-    'Tuesday',
-    'Wednesday',
-    'Thursday',
-    'Friday',
-    'Saturday',
-  ]
-
-  let day = new Date(date).getDay()
-
-  day = weekday[day]
+  const day = getWeekDay(date)
 
   const weather = useSelector((state) => state.weather)
   const { loading, error } = weather

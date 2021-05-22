@@ -20,19 +20,17 @@ const AddFavoriteButton = () => {
   const { favoritesWeatherItems } = favorites
 
   useEffect(() => {
-    let check = false
-
-    if (favoritesWeatherItems && favoritesWeatherItems.length > 0) {
-      check = favoritesWeatherItems.find(
-        (fav) => fav.favoriteCityName === currentWeatherCityName
-      )
-    }
-    if (check) {
-      setIsFavorite(true)
-    }
+    setIsFavorite((prev) => {
+      if (favoritesWeatherItems.length > 0) {
+        return favoritesWeatherItems.find(
+          (fav) => fav.favoriteCityName === currentWeatherCityName
+        )
+      }
+      return prev
+    })
   }, [currentWeatherCityName, favoritesWeatherItems])
 
-  const favoritesButtonHandler = () => {
+  const onClickHandler = () => {
     if (isFavorite) {
       dispatch(removeItemFromFavoritesStart(currentWeatherCityName))
       setIsFavorite(false)
@@ -42,7 +40,7 @@ const AddFavoriteButton = () => {
   }
 
   return (
-    <Button variant='outline' onClick={favoritesButtonHandler}>
+    <Button variant='outline' onClick={onClickHandler}>
       <Badge variant='light'>
         {isFavorite ? (
           <i className='far fa-heart fa-2x' style={{ color: '#E9EBEE' }}></i>

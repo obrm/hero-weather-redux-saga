@@ -2,14 +2,9 @@ import { useState } from 'react'
 import { Navbar, Nav, Container } from 'react-bootstrap'
 import { LinkContainer } from 'react-router-bootstrap'
 import { useSelector } from 'react-redux'
-import styled from 'styled-components'
 
 import NightModeToggle from './NightModeToggle'
-
-const Logo = styled.h3`
-  color: #fff;
-  text-decoration: none;
-`
+import { Logo } from './styles/components.styles'
 
 const Header = () => {
   const themeToggle = useSelector((state) => state.themeToggle)
