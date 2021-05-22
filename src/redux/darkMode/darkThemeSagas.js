@@ -1,11 +1,11 @@
-import { call, put, all, take } from 'redux-saga/effects'
+import { call, all, take } from 'redux-saga/effects'
 
 import { DARK_MODE_TOGGLE } from './darkModeConstants'
 import { darkModeToggle } from './darkModeActions'
 
 export function* toggleMode(theme) {
   localStorage.setItem('theme', JSON.stringify(theme))
-  yield put(darkModeToggle(theme))
+  yield darkModeToggle(theme)
 }
 
 export function* toggleDarkMode() {

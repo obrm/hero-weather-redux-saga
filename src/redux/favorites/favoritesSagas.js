@@ -58,6 +58,14 @@ export function* getFavoritesItemWeather(favorite) {
   }
 }
 
+export function* getFavoritesItemsWeather() {
+  const favorites = yield select(getFavoritesWeatherItems)
+
+  for (const favorite of favorites) {
+    yield fork(getFavoritesItemWeather, favorite)
+  }
+}
+
 export function* addToFavoritesStart() {
   yield takeLatest(FAVORITE_ADD_ITEM_START, addToFavorites)
 }
@@ -66,13 +74,6 @@ export function* removeFromFavoritesStart() {
   yield takeLatest(FAVORITE_REMOVE_ITEM_START, removeFromFavorites)
 }
 
-export function* getFavoritesItemsWeather() {
-  const favorites = yield select(getFavoritesWeatherItems)
-
-  for (const favorite of favorites) {
-    yield fork(getFavoritesItemWeather, favorite)
-  }
-}
 export function* getFavoritesItemsWeatherStart() {
   yield takeLatest(FAVORITE_ITEMS_WEATHER_START, getFavoritesItemsWeather)
 }
