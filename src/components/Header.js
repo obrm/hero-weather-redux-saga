@@ -12,8 +12,8 @@ const Logo = styled.h3`
 `
 
 const Header = () => {
-  const darkMode = useSelector((state) => state.darkMode)
-  const { theme } = darkMode
+  const themeToggle = useSelector((state) => state.themeToggle)
+  const { theme } = themeToggle
 
   const [mode, setMode] = useState(theme)
 

@@ -11,8 +11,8 @@ import FavoritesPage from './pages/FavoritesPage'
 import PageNotFound from './pages/PageNotFound'
 
 function App() {
-  const darkMode = useSelector((state) => state.darkMode)
-  const { theme } = darkMode
+  const themeToggle = useSelector((state) => state.themeToggle)
+  const { theme } = themeToggle
 
   return (
     <ThemeProvider theme={theme ? Theme.lightTheme : Theme.darkTheme}>

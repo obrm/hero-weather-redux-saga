@@ -17,8 +17,8 @@ const SearchBox = () => {
 
   const dispatch = useDispatch()
 
-  const darkMode = useSelector((state) => state.darkMode)
-  const { theme } = darkMode
+  const themeToggle = useSelector((state) => state.themeToggle)
+  const { theme } = themeToggle
 
   const autoComplete = useSelector((state) => state.autoComplete)
   const { results } = autoComplete
