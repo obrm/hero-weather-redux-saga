@@ -15,17 +15,17 @@ import {
   getFavoritesWeatherSuccess,
   getFavoritesWeatherError,
 } from './favoritesActions'
+import { setToStorage } from '../helper/localStorage'
 
-const getFavoritesWeatherItems = (state) => {
-  return state.favorites.favoritesWeatherItems
-}
+const getFavoritesWeatherItems = (state) =>
+  state.favorites.favoritesWeatherItems
 
 function* addToFavorites({ payload: favoriteCityName }) {
   yield put(addItemToFavoritesSuccess({ favoriteCityName }))
 
   const favoritesWeatherItems = yield select(getFavoritesWeatherItems)
 
-  localStorage.setItem('favorites', JSON.stringify(favoritesWeatherItems))
+  setToStorage('favorites', favoritesWeatherItems)
 }
 
 export function* removeFromFavorites(favoriteCityName) {
@@ -33,7 +33,7 @@ export function* removeFromFavorites(favoriteCityName) {
 
   const favoritesWeatherItems = yield select(getFavoritesWeatherItems)
 
-  localStorage.setItem('favorites', JSON.stringify(favoritesWeatherItems))
+  setToStorage('favorites', favoritesWeatherItems)
 }
 
 export function* getFavoritesItemWeather(favorite) {
@@ -60,9 +60,10 @@ export function* getFavoritesItemWeather(favorite) {
 
 export function* getFavoritesItemsWeather() {
   const favorites = yield select(getFavoritesWeatherItems)
-
-  for (const favorite of favorites) {
-    yield fork(getFavoritesItemWeather, favorite)
+  if (favorites.length > 0) {
+    for (const favorite of favorites) {
+      yield fork(getFavoritesItemWeather, favorite)
+    }
   }
 }
 

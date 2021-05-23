@@ -1,34 +1,23 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import { Button, Badge } from 'react-bootstrap'
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
+import PropTypes from 'prop-types'
 
 import {
   addItemToFavoritesStart,
   removeItemFromFavoritesStart,
 } from '../redux/favorites/favoritesActions'
 import { FavoriteText } from './styles/components.styles'
+import { findCity } from './helper/findCity'
 
-const AddFavoriteButton = () => {
-  const [isFavorite, setIsFavorite] = useState(false)
-
+const AddFavoriteButton = ({
+  currentWeatherCityName,
+  favoritesWeatherItems,
+}) => {
+  const [isFavorite, setIsFavorite] = useState(
+    !!findCity(favoritesWeatherItems, currentWeatherCityName)
+  )
   const dispatch = useDispatch()
-
-  const weather = useSelector((state) => state.weather)
-  const { currentWeatherCityName } = weather
-
-  const favorites = useSelector((state) => state.favorites)
-  const { favoritesWeatherItems } = favorites
-
-  useEffect(() => {
-    setIsFavorite((prev) => {
-      if (favoritesWeatherItems.length > 0) {
-        return favoritesWeatherItems.find(
-          (fav) => fav.favoriteCityName === currentWeatherCityName
-        )
-      }
-      return prev
-    })
-  }, [currentWeatherCityName, favoritesWeatherItems])
 
   const onClickHandler = () => {
     if (isFavorite) {
@@ -36,6 +25,7 @@ const AddFavoriteButton = () => {
       setIsFavorite(false)
     } else {
       dispatch(addItemToFavoritesStart(currentWeatherCityName))
+      setIsFavorite(true)
     }
   }
 
@@ -53,6 +43,11 @@ const AddFavoriteButton = () => {
       </FavoriteText>
     </Button>
   )
+}
+
+AddFavoriteButton.propTypes = {
+  currentWeatherCityName: PropTypes.string,
+  favoritesWeatherItems: PropTypes.array.isRequired,
 }
 
 export default AddFavoriteButton

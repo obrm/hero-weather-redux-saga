@@ -1,6 +1,5 @@
 import { THEME_TOGGLE } from './themeConstants'
 
-export const darkModeToggle = (theme) => ({
+export const darkModeToggle = () => ({
   type: THEME_TOGGLE,
-  payload: theme,
 })

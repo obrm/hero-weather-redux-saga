@@ -1,21 +1,9 @@
-import { useState, useEffect } from 'react'
-import { useSelector } from 'react-redux'
+import { useState } from 'react'
+import PropTypes from 'prop-types'
 import { Toast } from 'react-bootstrap'
 
-const ErrorToast = () => {
-  const [show, setShow] = useState(false)
-
-  const weather = useSelector((state) => state.weather)
-  const { error } = weather
-
-  const favorites = useSelector((state) => state.favorites)
-  const { error: favoritesWeatherError } = favorites
-
-  useEffect(() => {
-    if (error || favoritesWeatherError) {
-      setShow(true)
-    }
-  }, [error, favoritesWeatherError])
+const ErrorToast = ({ error }) => {
+  const [show, setShow] = useState(!!error)
 
   const hideToast = () => setShow(false)
 
@@ -34,6 +22,10 @@ const ErrorToast = () => {
       </Toast.Body>
     </Toast>
   )
+}
+
+ErrorToast.propTypes = {
+  error: PropTypes.any,
 }
 
 export default ErrorToast

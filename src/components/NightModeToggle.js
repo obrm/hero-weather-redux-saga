@@ -1,6 +1,7 @@
 import React, { memo, useState } from 'react'
 import Lottie from 'react-lottie-player'
 import parseUnit from 'parse-unit'
+import PropTypes from 'prop-types'
 import { useDispatch } from 'react-redux'
 
 import animationData from './animationData.json'
@@ -43,6 +44,14 @@ const NightModeToggle = ({ size, checked, onChange, speed, className }) => {
       </NightModeDiv>
     </NightModeButton>
   )
+}
+
+NightModeToggle.propTypes = {
+  size: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+  checked: PropTypes.bool,
+  onChange: PropTypes.func,
+  speed: PropTypes.number,
+  className: PropTypes.string,
 }
 
 NightModeToggle.defaultProps = {

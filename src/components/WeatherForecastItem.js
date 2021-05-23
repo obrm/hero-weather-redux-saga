@@ -29,32 +29,26 @@ const WeatherForecastItem = ({
 
   const weatherImage = !loading ? chooseWeatherImage(IconPhrase) : 'cloudy-day'
 
+  if (loading) return <Spinner margin='0 1rem 2rem' width='130px' />
+  if (error) return null
   return (
-    <>
-      {loading ? (
-        <Spinner margin='0 1rem 2rem' width='130px' />
-      ) : error ? (
-        <></>
-      ) : (
-        <CardForecast className='img-fluid'>
-          <CardForecast.Img
-            src={`/img/weather-images/${weatherImage}.jpg`}
-            alt='Card image'
-            style={{ width: '100%' }}
-            loading='lazy'
-          />
-          <CardForecast.ImgOverlay className='text-center'>
-            <CardTitle>{day}</CardTitle>
-            <CardText>{roundedTemperature} &deg;</CardText>
-            <CardIcon
-              src={`/img/weather-icons/${Icon}-s.png`}
-              alt='weather icon'
-              loading='lazy'
-            />
-          </CardForecast.ImgOverlay>
-        </CardForecast>
-      )}
-    </>
+    <CardForecast className='img-fluid'>
+      <CardForecast.Img
+        src={`/img/weather-images/${weatherImage}.jpg`}
+        alt='Card image'
+        style={{ width: '100%' }}
+        loading='lazy'
+      />
+      <CardForecast.ImgOverlay className='text-center'>
+        <CardTitle>{day}</CardTitle>
+        <CardText>{roundedTemperature} &deg;</CardText>
+        <CardIcon
+          src={`/img/weather-icons/${Icon}-s.png`}
+          alt='weather icon'
+          loading='lazy'
+        />
+      </CardForecast.ImgOverlay>
+    </CardForecast>
   )
 }
 

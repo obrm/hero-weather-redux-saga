@@ -40,6 +40,9 @@ export const favoritesReducer = (
         favoritesWeatherItems: state.favoritesWeatherItems.filter(
           (item) => item.favoriteCityName !== payload
         ),
+        favoritesItemsWeather: state.favoritesItemsWeather.filter(
+          (item) => item.favoriteCityName !== payload
+        ),
       }
     case FAVORITE_SHOW_ITEM:
       return {

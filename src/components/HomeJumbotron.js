@@ -26,13 +26,14 @@ const HomeJumbotron = () => {
   const [cityNameField, setCityNameField] = useState('')
 
   const favorites = useSelector((state) => state.favorites)
-  const { favoriteCityName: cityFromFavorites } = favorites
+  const { favoriteCityName: cityFromFavorites, favoritesWeatherItems } =
+    favorites
 
   const weather = useSelector((state) => state.weather)
   const { loading, error, currentWeather, currentWeatherCityName } = weather
 
   useEffect(() => {
-    setCityNameField(cityFromFavorites ?? currentWeatherCityName)
+    setCityNameField(cityFromFavorites || currentWeatherCityName)
   }, [cityFromFavorites, currentWeatherCityName, error])
 
   useEffect(() => {
@@ -51,41 +52,38 @@ const HomeJumbotron = () => {
 
   const weatherImage = !loading ? chooseWeatherImage(weatherText) : 'cloudy-day'
 
+  if (loading) return <Spinner />
+  if (error) return <ErrorToast error={error} />
   return (
-    <>
-      {loading ? (
-        <Spinner />
-      ) : error ? (
-        <ErrorToast />
-      ) : (
-        <JumbotronStyled>
-          <WeatherImage
-            src={`/img/weather-images/${weatherImage}.jpg`}
-            alt=''
-            loading='lazy'
-          />
-          <WeatherIcon>
-            <img
-              src={`/img/weather-icons/${weatherIcon}-s.png`}
-              alt='weather icon'
-              className='column'
-              loading='lazy'
-            />
-            <WeatherCol>
-              <h4>{cityNameField} </h4>
-              <p className='ml-2'>{roundedTemperature} &deg;</p>
-            </WeatherCol>
-          </WeatherIcon>
-          <FavoriteButton>
-            <AddFavoriteButton />
-          </FavoriteButton>
-          <WeatherText>
-            <LargeHeading>{weatherText}</LargeHeading>
-          </WeatherText>
-          <FiveDaysForecast />
-        </JumbotronStyled>
-      )}
-    </>
+    <JumbotronStyled>
+      <WeatherImage
+        src={`/img/weather-images/${weatherImage}.jpg`}
+        alt=''
+        loading='lazy'
+      />
+      <WeatherIcon>
+        <img
+          src={`/img/weather-icons/${weatherIcon}-s.png`}
+          alt='weather icon'
+          className='column'
+          loading='lazy'
+        />
+        <WeatherCol>
+          <h4>{cityNameField} </h4>
+          <p className='ml-2'>{roundedTemperature} &deg;</p>
+        </WeatherCol>
+      </WeatherIcon>
+      <FavoriteButton>
+        <AddFavoriteButton
+          currentWeatherCityName={currentWeatherCityName}
+          favoritesWeatherItems={favoritesWeatherItems}
+        />
+      </FavoriteButton>
+      <WeatherText>
+        <LargeHeading>{weatherText}</LargeHeading>
+      </WeatherText>
+      <FiveDaysForecast />
+    </JumbotronStyled>
   )
 }
 

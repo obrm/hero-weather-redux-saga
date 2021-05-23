@@ -12,11 +12,11 @@ const HomePage = () => {
 
   const dispatch = useDispatch()
 
-  const autoComplete = useSelector((state) => state.autoComplete)
-  const { isSearch } = autoComplete
+  const isSearch = useSelector((state) => state.autoComplete.isSearch)
 
-  const favorites = useSelector((state) => state.favorites)
-  const { showCityFromFavorites } = favorites
+  const showCityFromFavorites = useSelector(
+    (state) => state.favorites.showCityFromFavorites
+  )
 
   useEffect(() => {
     const defaultLocation = !isSearch && !showCityFromFavorites

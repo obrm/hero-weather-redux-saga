@@ -5,13 +5,13 @@ import { WeatherForecast } from './styles/components.styles'
 import WeatherForecastItem from '../components/WeatherForecastItem'
 
 const FiveDaysForecast = () => {
-  const weather = useSelector((state) => state.weather)
-  const { fiveDaysForecast, loading } = weather
+  const fiveDaysForecast = useSelector(
+    (state) => state.weather.fiveDaysForecast
+  )
 
   return (
     <WeatherForecast>
-      {!loading &&
-        fiveDaysForecast &&
+      {fiveDaysForecast &&
         fiveDaysForecast.map((forecast) => (
           <WeatherForecastItem key={forecast.EpochDate} forecast={forecast} />
         ))}

@@ -7,8 +7,7 @@ import NightModeToggle from './NightModeToggle'
 import { Logo } from './styles/components.styles'
 
 const Header = () => {
-  const themeToggle = useSelector((state) => state.themeToggle)
-  const { theme } = themeToggle
+  const theme = useSelector((state) => state.themeToggle.theme)
 
   const [mode, setMode] = useState(theme)
 

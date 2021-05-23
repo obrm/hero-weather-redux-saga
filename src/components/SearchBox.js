@@ -17,11 +17,9 @@ const SearchBox = () => {
 
   const dispatch = useDispatch()
 
-  const themeToggle = useSelector((state) => state.themeToggle)
-  const { theme } = themeToggle
+  const theme = useSelector((state) => state.themeToggle.theme)
 
-  const autoComplete = useSelector((state) => state.autoComplete)
-  const { results } = autoComplete
+  const results = useSelector((state) => state.autoComplete.results)
 
   const onChangeHandler = (e) => {
     if (e.target.value === '') {
