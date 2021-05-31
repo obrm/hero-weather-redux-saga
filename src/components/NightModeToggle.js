@@ -20,7 +20,7 @@ const NightModeToggle = ({ size, checked, onChange, speed, className }) => {
   const onClickHandler = () => {
     setReadyToAnimate(true)
     onChange(!checked)
-    dispatch(darkModeToggle(!checked))
+    dispatch(darkModeToggle())
   }
 
   return (
