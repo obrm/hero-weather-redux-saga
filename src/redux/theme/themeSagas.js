@@ -1,9 +1,9 @@
-import { takeEvery, call, all } from 'redux-saga/effects'
+import { takeEvery, call, put, all } from 'redux-saga/effects'
 
 import { darkModeToggle } from './themeActions'
 
 export function* toggleTheme() {
-  yield darkModeToggle()
+  yield put(darkModeToggle)
 }
 
 export function* toggleThemeStart() {
