@@ -1,8 +1,9 @@
 # Hero-Weather
 
 > React weather app with the AccuWeather API.
+> Features: Current weather of current location, search cities with auto complete and display their weather, local storage favorites.
 
-> [To website](https://obrm-hero-weather.netlify.app/)
+[To website](https://obrm-hero-weather.netlify.app/)
 
 ## Usage
 
