@@ -18,7 +18,7 @@ export function* getAutoCompleteResults({ payload: query }) {
 }
 
 export function* getAutoCompleteResultsRequest() {
-  yield throttle('1000', AUTO_COMPLETE_REQUEST, getAutoCompleteResults)
+  yield throttle(500, AUTO_COMPLETE_REQUEST, getAutoCompleteResults)
 }
 
 export function* autoCompleteSagas() {
