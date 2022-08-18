@@ -10,7 +10,8 @@ export const weatherReducer = (
     currentWeather: null,
     currentWeatherCityName: null,
     fiveDaysForecast: null,
-    loading: false
+    loading: false,
+    error: null
   },
   action
 ) => {
@@ -20,6 +21,7 @@ export const weatherReducer = (
       return { ...state, loading: true }
     case WEATHER_SUCCESS:
       return {
+        ...state,
         loading: false,
         currentWeather: payload.currentWeather,
         currentWeatherCityName: payload.currentWeatherCityName,
@@ -33,6 +35,7 @@ export const weatherReducer = (
         currentWeather: null,
         currentWeatherCityName: null,
         fiveDaysForecast: null,
+        error: null
       }
     default:
       return state
