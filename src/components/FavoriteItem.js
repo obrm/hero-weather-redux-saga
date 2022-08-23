@@ -32,7 +32,7 @@ const FavoriteItem = ({
   const weatherImage = chooseWeatherImage(WeatherText)
 
   const onClickHandler = () => {
-    dispatch({ type: FAVORITE_SHOW_ITEM, payload: favoriteCityName })
+    dispatch({ type: FAVORITE_SHOW_ITEM })
     dispatch(
       getWeatherRequest({ location: cityKey, cityName: favoriteCityName })
     )

@@ -48,7 +48,6 @@ export const favoritesReducer = (
       return {
         ...state,
         showCityFromFavorites: true,
-        favoriteCityName: payload,
       }
     case GENERAL_RESET:
       return {
