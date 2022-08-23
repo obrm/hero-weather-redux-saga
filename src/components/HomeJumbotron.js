@@ -25,16 +25,15 @@ const HomeJumbotron = () => {
 
   const [cityNameField, setCityNameField] = useState('')
 
-  const favorites = useSelector((state) => state.favorites)
-  const { favoriteCityName: cityFromFavorites, favoritesWeatherItems } =
-    favorites
+  const favoritesWeatherItems = useSelector((state) => state.favorites.favoritesWeatherItems)
 
   const weather = useSelector((state) => state.weather)
+
   const { loading, error, currentWeather, currentWeatherCityName } = weather
 
   useEffect(() => {
-    setCityNameField(cityFromFavorites || currentWeatherCityName)
-  }, [cityFromFavorites, currentWeatherCityName, error])
+    setCityNameField(currentWeatherCityName)
+  }, [currentWeatherCityName])
 
   useEffect(() => {
     if (currentWeather) {
