@@ -1,4 +1,4 @@
-import { call, put, all, delay, takeLatest } from 'redux-saga/effects'
+import { call, put, all, takeLatest } from 'redux-saga/effects'
 
 import { AUTO_COMPLETE_REQUEST } from './autoCompleteConstants.js'
 import { getAutoCompleteResultsFromAPI } from './autoCompleteAPI'
@@ -8,7 +8,6 @@ import {
 } from './autoCompleteActions'
 
 export function* getAutoCompleteResults({ payload: query }) {
-  yield delay(1000)
   try {
     const { data } = yield call(getAutoCompleteResultsFromAPI, query)
 

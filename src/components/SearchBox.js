@@ -1,7 +1,8 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Form } from 'react-bootstrap'
 
+import useDebounce from "./hooks/useDebounce";
 import { getAutoCompleteResultsRequest } from '../redux/autoComplete/autoCompleteActions'
 import { AUTO_COMPLETE_RESET } from '../redux/autoComplete/autoCompleteConstants'
 import SearchResult from './SearchResult'
@@ -21,13 +22,18 @@ const SearchBox = () => {
 
   const results = useSelector((state) => state.autoComplete.results)
 
+  const debouncedSearch = useDebounce(text, 500);
+
+  useEffect(() => {
+    if (debouncedSearch) dispatch(getAutoCompleteResultsRequest(debouncedSearch))
+  }, [debouncedSearch, dispatch])
+
   const onChangeHandler = (e) => {
     if (e.target.value === '') {
       dispatch({ type: AUTO_COMPLETE_RESET })
       setText('')
     } else {
       setText(e.target.value)
-      dispatch(getAutoCompleteResultsRequest(e.target.value))
     }
   }
 
