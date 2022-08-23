@@ -16,7 +16,6 @@ export const favoritesReducer = (
   state = {
     favoritesWeatherItems: [],
     showCityFromFavorites: false,
-    favoriteCityName: null,
     favoritesItemsWeather: [],
   },
   action
@@ -54,7 +53,6 @@ export const favoritesReducer = (
         ...state,
         loading: false,
         showCityFromFavorites: false,
-        favoriteCityName: null,
       }
     case FAVORITE_ITEMS_WEATHER_START:
     case FAVORITE_ITEMS_WEATHER_REQUEST:
