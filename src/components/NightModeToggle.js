@@ -4,7 +4,7 @@ import parseUnit from 'parse-unit'
 import PropTypes from 'prop-types'
 import { useDispatch } from 'react-redux'
 
-import animationData from './animationData.json'
+import animationData from './animationData/animationData.json'
 import { darkModeToggle } from '../redux/theme/themeActions'
 import { NightModeButton, NightModeDiv } from './styles/components.styles'
 
